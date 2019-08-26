@@ -24,28 +24,39 @@ Things you may want to cover:
 |first_name          |string  |null: false |
 |family_kana_name    |string  |null: false |
 |first_kana_name     |string  |null: false |
-|birthday            |datetime |null: false |
+|birthday            |datetime|null: false |
 |tel                 |integer |unique: true | 
-|postal_code         |integer |null: false |
-|prefecture_id       |references  |null: false, foreign_key: true |
-|city                |string  |null: false |
-|block               |integer |null: false |
-|building_name       |string  |
 |profile             |text    |
-|item_id             |references  |null: false, foreign_key: true |
 |credit              |references  |null: false, foreign_key: true |
 
 ### Association
 - has_many :items
-- belongs_to :credit
-- has_many :items, through: :item_likes
-- belongs_to :prefecture
+- has_one :credit
+- has_one :address
+- has_many :item_likes
+
+
+## addresses
+|column|type|options|
+|------|----|-------|
+|user_id             |references |null: false, foreign_key: true |
+|postal_code         |integer    |null: false |
+|prefecture          |string     |null: false |
+|city                |string     |null: false |
+|block               |integer    |null: false |
+|building_name       |string     |
+
+### Association
+- belongs_to :user
+
 
 ## credits table
 |colum|type|options|
 |-----|----|-------|
 |user_id             |references |null: false, foreign_key: true |
-|credit_number       |integer  |null: false |
+|credit_number       |integer    |null: false |
+|credit_name         |string     |null: false |
+|expiration_date     |integer    |null: false |
 
 ### Association
 - belongs_to :user
@@ -53,14 +64,14 @@ Things you may want to cover:
 ## items table
 |column|type|options|
 |------|----|-------|
-|photo_id          |references |null: false, foreign_key: true |
+|user_id           |references |null: false, foreign_key: true |
 |name              |string  |null: false |
 |description       |text    |null: false |
 |category_id       |references |null: false, foreign_key: true |
 |brand_id          |references |null: false, foreign_key: true |
 |item_status       |integer  |null: false|
 |shipping_charge   |integer  |
-|prefecture_id     |references  |null: false, foreign_key: true |
+|delivery_region   |string   |
 |delivery_days     |integer  |
 |price             |integer  |null: false |
 |trade_status      |integer  |null: false |
@@ -68,18 +79,18 @@ Things you may want to cover:
 
 ### association
 - has_many :photos
-- has_many :user, through: :item_likes
+- belongs_to :item_likes
 - belongs_to :user
 - belongs_to :categorys
 - belongs_to :brands
-- belongs_to :prefecture
+
 
 
 ## photos table
 
 |Column|Type|Options|
 |------|----|-------|
-|item_id            |references    |foreign_key: true    |
+|item_id            |references    |null :false, foreign_key: true    |
 |image              |string        |
 
 ### Association
@@ -88,8 +99,7 @@ Things you may want to cover:
 ## categorys table
 |Column|Type|Options|
 |------|----|-------|
-|item_id             |references |foreign_key: true    |
-|category_name       |string     |
+|category_name      |string     |
 
 ### Association
 - has_many :items
@@ -97,8 +107,7 @@ Things you may want to cover:
 ## brands table
 |Column|Type|Options|
 |------|----|-------|
-|item_id             |references |foreign_key: true    |
-|brand_name          |string     |
+|brand_name         |string     |
 
 ### Association
 - has_many :items
@@ -113,10 +122,3 @@ Things you may want to cover:
 - belongs_to :item
 - belongs_to :user
 
-## prefectures table
-|Column|Type|Options|
-|------|----|-------|
-|prefecture           |string|
-### Association
-- has_many :items
-- has_many :users
