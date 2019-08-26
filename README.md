@@ -99,7 +99,7 @@ Things you may want to cover:
 ## categorys table
 |Column|Type|Options|
 |------|----|-------|
-|category_name      |string     |
+|name  |string 　   |
 
 ### Association
 - has_many :items
@@ -107,7 +107,7 @@ Things you may want to cover:
 ## brands table
 |Column|Type|Options|
 |------|----|-------|
-|brand_name         |string     |
+|name  |string      |
 
 ### Association
 - has_many :items
