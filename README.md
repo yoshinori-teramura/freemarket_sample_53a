@@ -54,8 +54,8 @@ Things you may want to cover:
 |colum|type|options|
 |-----|----|-------|
 |user_id             |references |null: false, foreign_key: true |
-|credit_number       |integer    |null: false |
-|credit_name         |string     |null: false |
+|number              |integer    |null: false, unique: true |
+|name                |string     |null: false |
 |expiration_date     |integer    |null: false |
 
 ### Association
@@ -69,10 +69,10 @@ Things you may want to cover:
 |description       |text    |null: false |
 |category_id       |references |null: false, foreign_key: true |
 |brand_id          |references |null: false, foreign_key: true |
-|item_status       |integer  |null: false|
-|shipping_charge   |integer  |
-|delivery_region   |string   |
-|delivery_days     |integer  |
+|item_status       |integer  |null: false |
+|shipping_charge   |integer  |null: false |
+|delivery_region   |string   |null: false |
+|delivery_days     |integer  |null: false |
 |price             |integer  |null: false |
 |trade_status      |integer  |null: false |
 
@@ -90,8 +90,8 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|item_id            |references    |null :false, foreign_key: true    |
-|image              |string        |
+|item_id            |references    |null: false, foreign_key: true    |
+|image              |string        |null: false|
 
 ### Association
 - belongs_to :item
@@ -99,7 +99,7 @@ Things you may want to cover:
 ## categorys table
 |Column|Type|Options|
 |------|----|-------|
-|name  |string 　   |
+|name  |string      |null: false  |
 
 ### Association
 - has_many :items
@@ -107,7 +107,7 @@ Things you may want to cover:
 ## brands table
 |Column|Type|Options|
 |------|----|-------|
-|name  |string      |
+|name  |string      |null: false  |
 
 ### Association
 - has_many :items
@@ -115,8 +115,8 @@ Things you may want to cover:
 ## item_likes table
 |Column|Type|Options|
 |------|----|-------|
-|item_id             |references |foreign_key: true    |
-|user_id             |references |foreign_key: true    |
+|item_id            |references |null: false, foreign_key: true |
+|user_id            |references |null: false, foreign_key: true |
 
 ### Association
 - belongs_to :item
