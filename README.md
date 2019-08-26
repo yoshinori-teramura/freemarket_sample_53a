@@ -19,13 +19,13 @@ Things you may want to cover:
 ## users table
 |column|type|options|
 |------|----|-------|
-|nickname            |string  |unique: true |
+|nickname            |string  |null: false, unique: true |
 |family_name         |string  |null: false |
 |first_name          |string  |null: false |
 |family_kana_name    |string  |null: false |
 |first_kana_name     |string  |null: false |
 |birthday            |datetime|null: false |
-|tel                 |integer |unique: true | 
+|tel                 |integer |null: false, unique: true | 
 |profile             |text    |
 |credit              |references  |null: false, foreign_key: true |
 
@@ -99,7 +99,7 @@ Things you may want to cover:
 ## categorys table
 |Column|Type|Options|
 |------|----|-------|
-|name  |string      |null: false  |
+|name  |string      |null: false, unique: true  |
 
 ### Association
 - has_many :items
@@ -107,7 +107,7 @@ Things you may want to cover:
 ## brands table
 |Column|Type|Options|
 |------|----|-------|
-|name  |string      |null: false  |
+|name  |string      |null: false, unique: true  |
 
 ### Association
 - has_many :items
