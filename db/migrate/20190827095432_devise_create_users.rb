@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_kana_name,    null: false
       t.date   :birthday,           null: false
       t.integer :tel,               null: false, unique: true
-      t.text   :profile,             
+      t.text   :profile             
       t.references :credit,         null: false, foreign_key: true
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
