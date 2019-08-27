@@ -12,7 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.date   :birthday,           null: false
       t.integer :tel,               null: false, unique: true
       t.text   :profile             
-      t.references :credit,         null: false, foreign_key: true
+      t.references :credit,         null: false 
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
