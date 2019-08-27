@@ -7,7 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :nickname,           null: false, unique: true
       t.string :family_name,        null: false
       t.string :first_name,         null: false
-      t.string :family_kana_naem,   null: false
+      t.string :family_kana_name,   null: false
       t.string :first_kana_name,    null: false
       t.date   :birthday,           null: false
       t.integer :tel,               null: false, unique: true
