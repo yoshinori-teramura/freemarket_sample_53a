@@ -1,0 +1,83 @@
+<div class="single-container">
+    <header class="single-header">
+      <h1>
+        <a href="https://www.mercari.com/jp/">
+        <img src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?944967624" alt="mercari">
+        </a>
+      </h1>＿＿＿＿
+    </header>
+
+    <main class="single-main">
+      <section class="l-single-container">
+        <h2 class="l-single-head registration">新規会員登録</h2>
+        <div class="l-single-inner registration-form">
+          <div class="l-single-content">      
+            <a href="https://www.mercari.com/jp/signup/registration/" class="btn-default btn-mail">
+              <i class="icon-mail"></i>
+              メールアドレスで登録
+            </a>
+            <button id="facebook-login" class="btn-default btn-sns btn-sns-facebook">
+              <i class="icon-facebook"></i>
+              Facebookで登録
+            </button>
+            <button id="google-login" class="btn-default btn-sns btn-sns-google">
+              Googleで登録
+            </button>
+          </div>
+        </div>
+      </section>
+
+    <form id="login_form_facebook" action="/jp/signup/facebook/" method="POST" novalidate="novalidate">
+    <input type="hidden" name="__csrf_value" value="0c896cc30035616924b6fb6ac916516309d332b9554622543335ccb949323eebde90d9f2fdf2e45dc508b71b88159a645aa09c909c75ce97003041b2729ea5cca">
+    <input type="hidden" name="nickname" value="">
+    <input type="hidden" name="email" value="">
+    <input type="hidden" name="facebook_user_id" value="">
+    <input type="hidden" name="facebook_access_token" value="">
+    <input type="hidden" name="login_type" value="facebook">
+      </form>
+
+    <form id="login_form_google" action="/jp/signup/google/" method="POST" novalidate="novalidate">
+    <input type="hidden" name="__csrf_value" value="0c896cc30035616924b6fb6ac916516309d332b9554622543335ccb949323eebde90d9f2fdf2e45dc508b71b88159a645aa09c909c75ce97003041b2729ea5cca">
+    <input type="hidden" name="nickname" value="">
+    <input type="hidden" name="email" value="">
+    <input type="hidden" name="google_user_id" value="">
+    <input type="hidden" name="google_access_token" value="">
+    <input type="hidden" name="login_type" value="google">
+      </form>
+  <input type="hidden" id="google_client_id" value="238694260676-l0gp5j3hs9p8l2hjmnt126q0b4iin34r.apps.googleusercontent.com">
+  <input type="hidden" id="facebook_app_id" value="466308336793848">
+      </main>
+
+              <footer class="single-footer">
+          <nav>
+            <ul class="clearfix">
+              <li>
+                <a href="https://www.mercari.com/jp/privacy/">プライバシーポリシー</a>
+              </li>
+              <li>
+                <a href="https://www.mercari.com/jp/tos/">メルカリ利用規約</a>
+              </li>
+                              <li>
+                  <a href="https://www.mercari.com/jp/tokutei/">特定商取引に関する表記</a>
+                </li>
+                          </ul>
+          </nav>
+          <a href="https://www.mercari.com/jp/" class="single-footer-logo">
+            <img src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?944967624" alt="mercari" width="80" height="65">
+          </a>
+          <p>
+            <small>&copy; 2019 Mercari</small>
+          </p>
+        </footer>
+          </div>    
+      <script src="https://apis.google.com/js/api:client.js"></script>
+        <script src="//www-mercari-jp.akamaized.net/assets/js/app.js?1449737804"></script>          
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KLPT5L5');</script>
+<!-- End Google Tag Manager -->
+      </body>
+</html>
