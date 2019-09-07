@@ -1,3 +1,19 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.single-container {
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+
+}
+
+.single-header {
+  height: 120px;
+  
+
+
+  &__logo {
+    width: 185px;
+    height: 49px;
+    margin: 40px;
+    text-align: center;
+  }
+}
