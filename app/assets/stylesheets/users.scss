@@ -7,7 +7,7 @@
 
 .single-header {
   height: 120px;
-  
+  margin: 0 auto;
 
 
   &__logo {
@@ -16,4 +16,9 @@
     margin: 40px;
     text-align: center;
   }
+}
+
+.single-main {
+  width: 700px;
+  margin: 0 auto;
 }
