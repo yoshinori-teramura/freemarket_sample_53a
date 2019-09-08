@@ -1,12 +1,6 @@
 
 <div class='single-container'>
-  <div class='single-header'>
-    <h1 class='single-header__logo'>
-      <a href="https://www.mercari.com/jp/">
-        <img src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2482339763" alt="mercari">
-      </a>
-    </h1>
-  </div>
+  <%=render 'partial/header'%>
   <main class='single-main'>
     <section class='single-main__container'>
       <h2 class='single-main__container__header'>新規会員登録</h2>
@@ -27,25 +21,5 @@
       </div>
     </section>
   </main>
-  <footer class='single-footer'>
-    <nav>
-      <ul class='single-footer__menu'>
-        <li class='single-footer__menu__content'>
-          <a href="https://www.mercari.com/jp/privacy/">プライバシーポリシー</a>
-        </li>
-        <li class='single-footer__menu__content'>
-          <a href="https://www.mercari.com/jp/tos/">メルカリ利用規約</a>
-        </li>
-        <li class='single-footer__menu__content'>
-          <a href="https://www.mercari.com/jp/tokutei/">特定商取引に関する表記</a>
-        </li>
-      </ul>
-      <a href="https://www.mercari.com/jp/" class="single-footer__logo">
-        <img src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2482339763" alt="mercari" width="80" height="65">
-      </a>
-      <p class='single-footer-century'>
-        <small>© 2019 Mercari</small>
-      </p>
-    </nav>
-  </footer>
+  <%=render 'partial/footer'%>
 </div>
