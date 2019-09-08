@@ -1,13 +1,19 @@
 .single-container {
-  overflow: visible;
   margin: 0;
   padding: 0;
+  background-color: rgb(245, 245, 245);
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 
 }
 
 .single-header {
   height: 120px;
   margin: 0 auto;
+  text-align: center;
 
 
   &__logo {
@@ -15,11 +21,14 @@
     height: 49px;
     margin: 40px 0 0;
     text-align: center;
+    display: inline-block;
   }
 }
 
 .single-main {
   display: block;
+  text-align: center;
+  
 
   &__container {
     width: 700px;
@@ -39,17 +48,45 @@
 
 
 .single-footer {
-  width: 456px;
-  height: 256px;
+  height: 220px;
   margin: 0 auto;
   text-align: center;
+  margin-top: auto;
+
+
 
 
 
   &__menu {
     text-align: center;
+    color: #333;
+
+    &__content {
+      font-size: 12px;
+      display: inline-block;
+
+      a {
+        margin: 0 5px;
+        color: #333;
+      }
+    }
+  }
+
+
+  &__logo {
+    width: 80px;
+    height: 65px;
+    margin: 40px auto 0;
+    display: block;
+    color: #333;
 
   }
 
+  &__century {
+    color: #333;
+    font-size: 13px;
+
+
+  }
 }
 
