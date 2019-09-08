@@ -19,6 +19,23 @@
 }
 
 .single-main {
-  width: 700px;
+  display: block;
+
+  &__container {
+    width: 700px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    padding: 32px;
+    font-size: 22px;
+  }
+}
+
+
+.single-footer {
+  width: 456px;
+  height: 256px;
   margin: 0 auto;
+
 }
