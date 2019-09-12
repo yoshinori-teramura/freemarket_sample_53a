@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
-lock "3.11.1"
+lock "3.11.0"
 
 # Capistranoのログの表示に利用する
 set :application, 'freemarket_sample_53a'
