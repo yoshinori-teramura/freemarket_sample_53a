@@ -24,7 +24,7 @@
 ## addresses
 |column|type|options|
 |------|----|-------|
-|user_id             |references |null: false, foreign_key: true |
+<!-- |user_id             |references |null: false, foreign_key: true | -->
 |postal_code         |integer    |null: false |
 |prefecture          |string     |null: false |
 |city                |string     |null: false |
