@@ -16,6 +16,13 @@
         display: flex;
         height: 40px;
         margin-right: 45px;
+        &__link {
+          &__image {
+            height: 36px;
+            width: 134px;
+            }            
+          }
+        }
        }
      &__box {
         position: relative;
@@ -39,7 +46,6 @@
           }
         }
        }
-     }
     &__bottom {
       display: flex;
       justify-content: space-between;
