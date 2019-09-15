@@ -1,3 +1,31 @@
-// Place all the styles related to the mypages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.mypage-container {
+  @include clearfix();
+  width: 1024px;
+  margin: 40px auto 0;
+}
+
+.mypage-side-menu {
+  float: left;
+  width: 280px;
+}
+
+.mypage-content {
+  float: right;
+  width: 700px;
+}
+
+.mypage-navi {
+
+}
+
+.mypage-navi-list {
+
+}
+
+.navi-item {
+
+}
+
+.navi-item__icon-arrow {
+
+}
