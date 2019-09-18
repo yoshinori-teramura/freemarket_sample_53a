@@ -1,0 +1,149 @@
+%main.mypage-container
+  / サイドメニュー
+  .mypage-side-menu
+    %nav.mypage-navi
+      %ul.mypage-navi-list
+        %li
+          %a.navi-item{:href => ""}
+            マイページ
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            お知らせ
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            やることリスト
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            いいね！一覧
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            出品する
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            出品した商品 - 出品中
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            出品した商品 - 取引中
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            出品した商品 - 売却済み
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            購入した商品 - 取引中
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            購入した商品 - 過去の取引
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            ニュース一覧
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            評価一覧
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            ガイド
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            お問い合わせ
+            %i.navi-item__icon-arrow
+      %h3.navi__head 設定
+      %ul.navi-list
+        %li
+          %a.navi-item{:href => ""}
+            プロフィール
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            発送元・お届け先住所変更
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            支払い方法
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            メール/パスワード
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            本人情報
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            電話番号の確認
+            %i.navi-item__icon-arrow
+        %li
+          %a.navi-item{:href => ""}
+            ログアウト
+            %i.navi-item__icon-arrow
+  / メインコンテンツ
+  .mypage-content
+    / ユーザー
+    %section.mypage__user
+      %a{:href => ""}
+        %figure.user__icon
+          / ユーザーアイコン
+          %img{:alt => "", :height => "60", :src => "", :width => "60"}/
+        %h2.user__name--bold user_name
+        %div
+          %div
+            評価
+            %span.user__reviewe--bold 0
+          %div
+            出品数
+            %span.user__listings--bold 0
+    / お知らせ/やることリスト
+    %section.tab-container
+      / タブ
+      %ul.mypage-tab
+        %li.mypage-tab__item--active
+          %h3
+            %a{:href => ""} お知らせ
+        %li.mypage-tab__item
+          %h3
+            %a{:href => ""} やることリスト
+      .mypage-list-items
+        / リスト:お知らせ
+        %ul#mypage-tab-notification.mypage-item-list
+          %li.mypage-item
+            %a.mypage-item__link{:href => ""}
+              %figure
+                %img{:alt => "", :src => ""}/
+              .mypage-item__body
+                .mypage-item__text 事務局から個別メッセージ「Googleログイン通知」
+                %time
+                  %i.mypage-item__icon-time
+                  %span 27秒前
+                %i.mypage-item__icon-arrow
+          %li.mypage-item--more
+            %a{:href => ""} 一覧を見る
+        / リスト:やることリスト
+        %ul#mypage-tab-todolist.mypage-item-list
+          %li.mypage-item--not-found 現在、やることリストはありません
+    / 購入した商品(取引中/過去の取引)
+    %section.tab-container
+      %h2 購入した商品
+      / タブ
+      %ul.mypage-tab
+        %li.mypage-tab--active
+          %h3
+            %a{:href => ""} 取引中
+        %li
+          %h3
+            %a{:href => ""} 過去の取引
+      %div
+        / リスト
+        %ul
