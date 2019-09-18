@@ -17,17 +17,54 @@
 }
 
 .mypage-navi {
+  display: block;
 
+  &__head {
+    margin: 40px 0 0;
+    font-size: 16px;
+  }
 }
 
 .mypage-navi-list {
-
+  margin: 8px 0 0;
+  list-style: none;
 }
 
 .navi-item {
+  border-top: 1px solid #eee;
 
-}
+  &--first {
+    border: 0;
+  }
 
-.navi-item__icon-arrow {
+  &__link {
+    position: relative;
+    display: block;
+    min-height: 48px;
+    padding: 16px;
+    background: #fff;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
 
+    &--active {
+      background-color: #eee;
+      font-weight: 600;
+    }
+  }
+
+  &__icon-arrow {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    color: #ccc;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    -webkit-transition: all ease-out .2s;
+    transition: all ease-out .2s;
+
+    &--active {
+      color: #333;
+    }
+  }
 }
