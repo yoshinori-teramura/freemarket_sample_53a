@@ -86,3 +86,57 @@
     }
   }
 }
+
+.mypage-user {
+  position: relative;
+  height: 200px;
+  padding: 20px;
+  background: rgba(22, 192, 6, 0.5);
+  text-align: center;
+
+  &__link {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    color: #333;
+  }
+
+  &__icon {
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  &__name {
+    margin: 8px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  &__status {
+    margin: 8px 0 0;
+    font-size: 0;
+
+    &__number {
+      margin: 0 0 0 8px;
+      font-size: 16px;
+    }
+
+    &__review {
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    &__listings {
+      display: inline-block;
+      font-size: 14px;
+      margin: 0 0 0 16px;
+    }
+  }
+}

@@ -93,19 +93,19 @@
   / メインコンテンツ
   .mypage-content
     / ユーザー
-    %section.mypage__user
-      %a{:href => ""}
-        %figure.user__icon
+    %section.mypage-user
+      %a.mypage-user__link{:href => ""}
+        %figure.mypage-user__icon
           / ユーザーアイコン
-          %img{:alt => "", :height => "60", :src => "", :width => "60"}/
-        %h2.user__name--bold user_name
-        %div
-          %div
+          = image_tag "member_photo_noimage_thumb.png", size: "60x60"
+        %h2.mypage-user__name.bold user_name
+        .mypage-user__status
+          .mypage-user__status__review
             評価
-            %span.user__reviewe--bold 0
-          %div
+            %span.mypage-user__status__number.bold 0
+          .mypage-user__status__listings
             出品数
-            %span.user__listings--bold 0
+            %span.mypage-user__status__number.bold 0
     / お知らせ/やることリスト
     %section.tab-container
       / タブ
