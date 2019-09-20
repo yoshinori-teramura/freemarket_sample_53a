@@ -1,6 +1,5 @@
 = render 'devise/shared/header'
 %main.mypage-container
-  / サイドメニュー
   .mypage-side-menu
     %nav.mypage-navi
       %ul.mypage-navi-list
@@ -90,13 +89,10 @@
           %a.navi-item__link{:href => ""}
             ログアウト
             = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-  / メインコンテンツ
   .mypage-content
-    / ユーザー
     %section.mypage-user
       %a.mypage-user__link{:href => ""}
         %figure.mypage-user__icon
-          / ユーザーアイコン
           = image_tag "member_photo_noimage_thumb.png", size: "60x60"
         %h2.mypage-user__name.bold user_name
         .mypage-user__status
