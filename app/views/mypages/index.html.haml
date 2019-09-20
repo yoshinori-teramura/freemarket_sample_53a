@@ -1,94 +1,6 @@
 = render 'devise/shared/header'
 %main.mypage-container
-  .mypage-side-menu
-    %nav.mypage-navi
-      %ul.mypage-navi-list
-        %li.navi-item--first
-          %a.navi-item__link.navi-item__link--active{:href => ""}
-            マイページ
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow navi-item__icon-arrow--active"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            お知らせ
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            やることリスト
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            いいね！一覧
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            出品する
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            出品した商品 - 出品中
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            出品した商品 - 取引中
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            出品した商品 - 売却済み
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            購入した商品 - 取引中
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            購入した商品 - 過去の取引
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            ニュース一覧
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            評価一覧
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            ガイド
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            お問い合わせ
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-      %h3.mypage-navi__head 設定
-      %ul.mypage-navi-list
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            プロフィール
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            発送元・お届け先住所変更
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            支払い方法
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            メール/パスワード
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            本人情報
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            電話番号の確認
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
-        %li.navi-item
-          %a.navi-item__link{:href => ""}
-            ログアウト
-            = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
+  = render 'sidemenu'
   .mypage-content
     %section.mypage-user
       %a.mypage-user__link{:href => ""}
@@ -112,16 +24,10 @@
             %a.mypage-tab__item__link{:href => ""} やることリスト
       .mypage-tab-content
         %ul#mypage-tab-notification.mypage-item-list.mypage-item-list--active
-          %li.mypage-li-wrapper
-            %a.mypage-li{:href => ""}
-              %figure.mypage-li__figure
-                %img.mypage-li__figure__img{:src => "https://static.mercdn.net/images/mercari_profile.png"}
-              .mypage-li__body
-                .mypage-li__body__text 事務局から個別メッセージ「ログイン通知」
-                %time.mypage-li__body__time
-                  = fa_icon 'clock-o', class: "mypage-li__body__time__icon"
-                  %span.mypage-li__body__time__text 27秒前
-              = fa_icon 'angle-right 2x', class: "mypage-li__icon-arrow"
+          = render 'message_link'
+          = render 'message_link'
+          = render 'message_link'
+          = render 'message_link'
           %li.mypage-li-more
             %a.mypage-li-more__link{:href => ""} 一覧を見る
         %ul#mypage-tab-todolist.mypage-item-list
