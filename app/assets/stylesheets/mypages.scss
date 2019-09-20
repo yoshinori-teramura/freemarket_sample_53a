@@ -229,6 +229,12 @@
   padding: 16px;
   color: #333;
 
+  &:hover {
+    background-color: #fafafa;
+    opacity: 1;
+    text-decoration: none;
+  }
+
   &__figure {
     margin: 0;
     position: relative;
