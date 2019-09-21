@@ -1,0 +1,48 @@
+= render 'devise/shared/header'
+%main.mypage-container
+  = render 'sidemenu'
+  .mypage-content
+    %section.mypage-user
+      %a.mypage-user__link{:href => ""}
+        %figure.mypage-user__icon
+          = image_tag "member_photo_noimage_thumb.png", size: "60x60"
+        %h2.mypage-user__name.bold user_name
+        .mypage-user__status
+          .mypage-user__status__review
+            評価
+            %span.mypage-user__status__number.bold 0
+          .mypage-user__status__listings
+            出品数
+            %span.mypage-user__status__number.bold 0
+    %section.mypage-tab-container-notification-todo
+      %ul.mypage-tab
+        %li.mypage-tab__item.mypage-tab__item--active
+          %h3.mypage-tab__item__head
+            %a.mypage-tab__item__link{:href => ""} お知らせ
+        %li.mypage-tab__item
+          %h3.mypage-tab__item__head
+            %a.mypage-tab__item__link{:href => ""} やることリスト
+      .mypage-tab-content
+        %ul#mypage-tab-notification.mypage-item-list.mypage-item-list--active
+          = render 'message_link'
+          = render 'message_link'
+          = render 'message_link'
+          = render 'message_link'
+          %li.mypage-li-more
+            %a.mypage-li-more__link{:href => ""} 一覧を見る
+        %ul#mypage-tab-todolist.mypage-item-list
+          %li.mypage-li-wrapper--not-found.bold 現在、やることリストはありません
+    %section.mypage-tab-container
+      %h2.mypage-tab-header 購入した商品
+      %ul.mypage-tab
+        %li.mypage-tab__item.mypage-tab__item--active
+          %h3.mypage-tab__item__head
+            %a.mypage-tab__item__link{:href => ""} 取引中
+        %li.mypage-tab__item
+          %h3.mypage-tab__item__head
+            %a.mypage-tab__item__link{:href => ""} 過去の取引
+      .mypage-tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.mypage-item-list--active
+          %li.mypage-li-wrapper--not-found.bold 取引中の商品がありません
+        %ul#mypage-tab-transaction-old.mypage-item-list
+          %li.mypage-li-wrapper--not-found.bold 過去に取引した商品がありません

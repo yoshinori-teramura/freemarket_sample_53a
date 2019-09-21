@@ -1,0 +1,10 @@
+%li.mypage-li-wrapper
+  %a.mypage-li{:href => ""}
+    %figure.mypage-li__figure
+      %img.mypage-li__figure__img{:src => "https://static.mercdn.net/images/mercari_profile.png"}
+    .mypage-li__body
+      .mypage-li__body__text 事務局から個別メッセージ「ログイン通知」
+      %time.mypage-li__body__time
+        = fa_icon 'clock-o', class: "mypage-li__body__time__icon"
+        %span.mypage-li__body__time__text 27秒前
+    = fa_icon 'angle-right 2x', class: "mypage-li__icon-arrow"
