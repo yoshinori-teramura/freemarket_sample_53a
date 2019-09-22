@@ -28,11 +28,10 @@
 
 .single-main {
   display: block;
-  // text-align: center;
   background-color: white;
   width: 700px;
   margin: 0 auto;
-  height: 344px;
+  height: 100%;
 
   &__container {
     width: 700px;
@@ -53,13 +52,9 @@
 
 .single-footer {
   height: 220px;
-  margin: 0 auto;
-  text-align: center;
   margin-top: auto;
-
-
-
-
+  text-align: center;
+ 
 
   &__menu {
     text-align: center;
@@ -161,6 +156,14 @@
   line-height: 1.5;
   font-size: 16px;
   display: block;
+
+  &__input {
+    display: block;
+
+    &__herf {
+      display: inline-block;
+    }
+  }  
 }
 
 .btn-red {
