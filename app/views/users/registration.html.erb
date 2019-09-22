@@ -1,0 +1,100 @@
+
+<head>
+  <nav class="progress-bar signup-bar">
+  <%# <%=render 'partial/header'%>
+    <%# <ol class="clearfix">
+      <li class="active">
+        会員情報
+        <div class="progress-status"></div>
+      </li>
+      <li class="">
+        電話番号認証
+        <div class="progress-status"></div>
+      </li>
+      <li class="">
+        お届け先住所入力
+        <div class="progress-status"></div>
+      </li>
+      <li class="">
+        支払い方法
+        <div class="progress-status"></div>
+      </li>
+      <li class="">
+        完了
+        <div class="progress-status"></div>
+      </li>
+    </ol> %>
+  </nav>
+  </header>
+
+<main class="single-main">
+  <section class="single-main__container">
+    <h2 class="singl-main__container__header">会員情報入力</h2>
+      <div class="single-main__container">
+
+        <div class="form-group">
+          <label for="nickname">ニックネーム</label>
+          <span class="form-group__requier">必須</span>
+          <input type="text" value="" name="nickname" placeholder="例) メルカリ太郎" class="input-form">
+        </div>
+
+        <div class="form-group">
+          <label for ="password">パスワード</label>
+          <span class="f
+          orm-groupe__requier">必須</span>
+          <input type="password" value="" name="passwprd" placeholder="７文字以上" class="input-form">
+        </div>
+
+        <div class="form-group">
+          <label for =password_confirmation>パスワード（確認）</label>
+          <span class="form-group__requier">必須</span>
+          <input type="password" value="" name="password_confirmation" placeholder="７文字以上" class="input-form">
+        </div>
+
+        <div class="form-group">
+          <h3>本人確認</h3>
+          <p class="form-group__text">安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。</p>
+        </div>
+
+        <div class="form-group">
+          <label>お名前（全角）</label>
+          <span class="form-group__requier">必須</span>
+          <input type="text" value="" name="family_name" placeholder="例：　橋本" class="input-form">
+          <input type="text" value="" name="first_name" placeholder="例：　環奈" class="input-form">
+        </div>
+        
+        <div class="form-group">
+          <label>お名前カナ（全角）</label>
+          <span class="form-group__requier">必須</span>
+          <input type="text" value="" name="family_kana_name" placeholder="例：　ハシモト" class="input-form">
+          <input type="text" value="" name="first_kana_name" placeholder="例：　カンナ" class="input-form">
+        </div>
+
+        <div class="form-group">
+          <label for="birthday">生年月日</label>
+          <span class="form-require">必須</span>
+          <input type="" name="birthday"><p>年</p>
+          <input type="" name="birthday"><p>月</p>
+          <input type="" name="birthday"><p>日</p>
+          <p class="form-info-text">※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。</p>
+        </div>
+
+        <div class="form-group">
+        <%# Googleの「reCAPTCHA」を実装する %>
+        </div>
+
+        <div class="form-group">
+          <p class="l-single-text text-center">「次へ進む」のボタンを押すことにより、<a href=""target="_blank">利用規約</a>に同意したものとみなします</p>
+        </div>
+
+        <button type="submit" class="btn-default btn-red">次へ進む</button>
+
+        <div class="form-group text-right">
+          <p>
+            <a href="/jp/help_center/article/423/" target="_blank">本人情報の登録について<i class="icon-arrow-right"></i></a>
+          </p>
+        </div>
+      </div>
+  </section>
+</main>
+<%# <%=render 'partial/footer'%>
