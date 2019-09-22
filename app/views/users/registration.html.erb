@@ -1,31 +1,29 @@
 
-<head>
-  <nav class="progress-bar signup-bar">
-  <%# <%=render 'partial/header'%>
-    <%# <ol class="clearfix">
-      <li class="active">
-        会員情報
-        <div class="progress-status"></div>
-      </li>
-      <li class="">
-        電話番号認証
-        <div class="progress-status"></div>
-      </li>
-      <li class="">
-        お届け先住所入力
-        <div class="progress-status"></div>
-      </li>
-      <li class="">
-        支払い方法
-        <div class="progress-status"></div>
-      </li>
-      <li class="">
-        完了
-        <div class="progress-status"></div>
-      </li>
-    </ol> %>
-  </nav>
-  </header>
+<%=render 'partial/header'%>
+<header>
+  <ol class="clearfix">
+    <li class="active">
+      会員情報
+      <div class="progress-status"></div>
+    </li>
+    <li class="">
+      電話番号認証
+      <div class="progress-status"></div>
+    </li>
+    <li class="">
+      お届け先住所入力
+      <div class="progress-status"></div>
+    </li>
+    <li class="">
+      支払い方法
+      <div class="progress-status"></div>
+    </li>
+    <li class="">
+      完了
+      <div class="progress-status"></div>
+    </li>
+  </ol>
+</header>
 
 <main class="single-main">
   <section class="single-main__container">
@@ -40,8 +38,7 @@
 
         <div class="form-group">
           <label for ="password">パスワード</label>
-          <span class="f
-          orm-groupe__requier">必須</span>
+          <span class="form-groupe__requier">必須</span>
           <input type="password" value="" name="passwprd" placeholder="７文字以上" class="input-form">
         </div>
 
@@ -59,20 +56,25 @@
         <div class="form-group">
           <label>お名前（全角）</label>
           <span class="form-group__requier">必須</span>
-          <input type="text" value="" name="family_name" placeholder="例：　橋本" class="input-form">
-          <input type="text" value="" name="first_name" placeholder="例：　環奈" class="input-form">
+          <div class="form-group__requier__input">
+            <input type="text" value="" name="family_name" placeholder="例：　橋本" class="input-form__herf">
+            <input type="text" value="" name="first_name" placeholder="例：　環奈" class="input-form__herf">
+          </div>  
         </div>
         
         <div class="form-group">
           <label>お名前カナ（全角）</label>
           <span class="form-group__requier">必須</span>
-          <input type="text" value="" name="family_kana_name" placeholder="例：　ハシモト" class="input-form">
-          <input type="text" value="" name="first_kana_name" placeholder="例：　カンナ" class="input-form">
+          <div class="form-group__requier__input">
+            <input type="text" value="" name="family_kana_name" placeholder="例：　ハシモト" class="input-form__herf">
+            <input type="text" value="" name="first_kana_name" placeholder="例：　カンナ" class="input-form__herf">
+          </div>  
         </div>
 
         <div class="form-group">
           <label for="birthday">生年月日</label>
-          <span class="form-require">必須</span>
+          <span class="form-group__requier">必須</span>
+          <br>
           <input type="" name="birthday"><p>年</p>
           <input type="" name="birthday"><p>月</p>
           <input type="" name="birthday"><p>日</p>
@@ -97,4 +99,4 @@
       </div>
   </section>
 </main>
-<%# <%=render 'partial/footer'%>
+<%=render 'partial/footer'%>
