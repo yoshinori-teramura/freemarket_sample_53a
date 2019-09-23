@@ -74,4 +74,5 @@ gem 'devise'
 gem "font-awesome-rails"
 gem 'carrierwave'
 gem 'fog-aws'
+gem 'haml-rails'
 
