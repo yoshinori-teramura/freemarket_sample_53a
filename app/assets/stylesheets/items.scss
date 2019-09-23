@@ -186,36 +186,145 @@ input {
 
 
 .wrapper__main {
+  max-width: 700px;
+  padding: 0px; //同じパターン？
+  width: 100%;
+  margin: 0px auto;
   .main {
+    position: relative;
     &__top {
+      height: 290px; //同じパターン？
+      left: 50%;
+      margin-left: -50vw;
+      position: relative;
+      top: 0px;
+      width: 100vw;
+      overflow: hidden;
       &__link {
-
+        color: inherit;
+        text-decoration: none;
       }
       &__slider {
+        box-sizing: border-box;
+        display: block;
+        height: auto;
+        position: relative;
+        visibility: inherit;
+        width: 100%;
+        margin-top: 0px; //変化する＆パターン
         &__frame {
+          box-sizing: border-box;
+          display: block;
+          height: 100%;
+          margin: 0px;
+          overflow: hidden;
+          padding: 0;
+          position: relative;
+          touch-action: pinch-zoom pan-y;
+          -webkit-transform: translate3d(0, 0, 0);
           &__lists {
+            transform: translate3d(0px, 0px, 0px);
+            position: relative;
+            display: block;
+            margin: 0px;
+            padding: 0px;
+            height: 290px;
+            width: 1704px;
+            cursor: pointer;
+            box-sizing: border-box;
+            touch-action: pan-y pinch-zoom;
             &__slide__visible {
+              box-sizing: border-box;
+              display: inline-block;
+              height: auto;
+              left: 0px;
+              list-style-type: none;
+              margin: auto 0px;
+              position: absolute;
+              top: 0px;
+              transform: scale(1);
+              transition: transform 0.4s linear 0s;
+              vertical-align: top;
+              width: 852px;
               &__image {
-
+                height: 290px; //同じパターン？
+                position: relative;
+                background-size: cover;
+                background-image: url(https://web-jp-assets.mercdn.net/_next/static/images/top-banner-camp-4f3fd88c685e8932d7dde2ad3a8336ba.jpg);
+                background-position: center center;
               }
             }
             &__slide__invisible {
-              &__content {
-                &__image {
-                }
-                &__subs {
-                  &__toptexts {
-
+              box-sizing: border-box;
+              display: inline-block;
+              height: auto;
+              left: 852px;
+              list-style-type: none;
+              margin: auto 0px;
+              position: absolute;
+              top: 0px;
+              transform: scale(1);
+              transition: transform 0.4s linear 0s;
+              vertical-align: top;
+              width: 852px;
+              &__box {
+                height: 290px; //同じパターン？
+                position: relative;
+                background-size: cover;
+                background-image: url(https://web-jp-assets.mercdn.net/_next/static/images/top-banner-main-892151cc75b1f6a1285bf7943c9b933c.jpg);
+                background-position: center center;
+                &__content {
+                  -webkit-box-align: center;
+                  align-items: center;
+                  max-width: 860px; //同じパターン？
+                  display: flex;
+                  height: 100%;
+                  position: relative;
+                  margin: 0px auto;
+                  &__image {
+                    height: 290px; //同じパターン？
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
                   }
-                  &__middletexts {
-
-                  }
-                  &__bottomeimages {
-                    &__itunes {
-
+                  &__subs {
+                    height: initial; //同じパターン？
+                    position: relative;
+                    width: 100%;
+                    padding: 20px 40px;
+                    &__toptexts {
+                      font-size: 40px;
+                      white-space: normal;
+                      padding: 0px; //同じパターン？
+                      font-weight: 600;
+                      line-height: 1.4;
+                      margin-bottom: 16px;
                     }
-                    &__google {
-                      
+                    &__middletexts {
+                      display: block; //同じパターン？
+                      font-size: 16px;
+                      line-height: 1.77777;
+                      margin-bottom: 24px;
+                    }
+                    &__bottomeimages {
+                      background-color: initial;
+                      position: initial;
+                      text-align: left;
+                      padding: 0px; //同じパターン？
+                      bottom: 0px;
+                      left: 0px;
+                      width: 100%;
+                      &__itunes {
+                        height: 38px;
+                        width: 128px; //同じパターン？
+                        display: inline-block;
+                      }
+                      &__google {
+                        margin-left: 8px;
+                        height: 38px;
+                        width: 128px; //同じパターン？
+                        display: inline-block;
+                      }
                     }
                   }
                 }
