@@ -1,5 +1,4 @@
 
-<div class='single-container'>
   <%=render 'partial/header'%>
   <main class='single-main'>
     <section class='single-main__container'>
@@ -7,14 +6,15 @@
       <div class='single-main__container__inner'>
         <div class='single-main__container__inner__content'>
           <div class="btn-default btn-sns btn-mail" >
-            <i class="icon-mail"></i>
-            <%=link_to'メールアドレスで登録','users/registration'%>
+            <%= fa_icon("envelope 2x") %>            
+            <%=link_to'メールアドレスで登録',''%>
           </div>
           <button id="facebook-login" class="btn-default btn-sns btn-sns-facebook">
-            <i class="icon-facebook"></i>
+            <%= fa_icon("facebook-square 2x")%>
             Facebookで登録
           </button>
           <button id="google-login" class="btn-default btn-sns btn-sns-google">
+            <%= fa_icon("google 2x")%>
             Googleで登録
           </button>
         </div>
@@ -22,4 +22,4 @@
     </section>
   </main>
   <%=render 'partial/footer'%>
-</div>
+

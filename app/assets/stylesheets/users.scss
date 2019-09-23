@@ -1,20 +1,10 @@
-// users/index
-.single-container {
-  margin: 0;
-  padding: 0;
-  background-color: rgb(245, 245, 245);
-  min-height: 100vh;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
 
-}
 
 .single-header {
   height: 120px;
   margin: 0 auto;
   text-align: center;
+  background-color: rgb(245, 245, 245);
 
 
   &__logo {
@@ -25,17 +15,38 @@
     display: inline-block;
   }
 }
+.progress {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgb(245, 245, 245 );
+
+  &__status {
+    width: 12px;
+    height: 12px;
+    margin: 8px auto 0;
+    background: #ccc;
+    border-radius: 50%;
+    display: inline-block
+  }
+}
+.active .progress__status{
+  background-color: #ea352d;
+}
 
 .single-main {
   display: block;
-  background-color: white;
-  width: 700px;
+  background-color: rgb(245, 245, 245);
+  width: 100% ;
   margin: 0 auto;
   height: 100%;
 
   &__container {
     width: 700px;
     margin: 0 auto;
+    background-color: white;
+    margin-bottom: 90px;
+    padding-bottom: 50px;
   
 
     &__header {
@@ -43,9 +54,95 @@
       font-size: 22px;
       margin: 0 auto;
       text-align: center;
-      
     }
+
+    &__form-group {
+      max-width: 343px;
+      margin: 0 auto;
+      padding: 10px 16px 8px;
+
+      &__requier {
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        background-color: #ea352d;
+        display: inline;
+        vertical-align: middle;
+      }
+      &__any {
+        margin: 0 0 0 8px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        color: #fff;
+        font-size: 12px;
+        vertical-align: top;
+        background-color: #979797;
+        display: inline;
+        vertical-align: middle;
+      }
+
+      &__input-form {
+        width: 100%;
+        padding: 10px 0px 8px 0px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+        display: block;
+      }
+
+      &__input {
+        display: flex;
+    
+        &__herf {
+          display: inline-block;
+          width: 100%;
+          padding: 10px 0px 8px 0px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+        }
+      }
+    }  
   }  
+
+  &__log-in {
+    width: 456px;
+    margin: 0 auto;
+    background-color: white;
+    margin-bottom: 20px;
+
+    &__header {
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    &__form-group {
+      max-width: 343px;
+      margin: 0 auto;
+      padding: 10px 16px 8px;
+
+      &__input-form {
+        width: 100%;
+        padding: 10px 0px 8px 0px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+     
+      }
+    }
+  }
+}
+.text-right {
+  text-align: right
 }
 
 
@@ -54,6 +151,7 @@
   height: 220px;
   margin-top: auto;
   text-align: center;
+  background-color: rgb(245, 245, 245);
  
 
   &__menu {
@@ -78,14 +176,11 @@
     margin: 40px auto 0;
     display: block;
     color: #333;
-
   }
 
   &__century {
     color: #333;
     font-size: 13px;
-
-
   }
 }
 
@@ -97,7 +192,7 @@
   border: 1px solid transparent;
   -webkit-transition: all ease-out .3s;
   transition: all ease-out .3s;
-  cursor: pointer;
+  // cursor: pointer;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -106,6 +201,12 @@
 .btn-mail {
   color: #fff;
   background-color: #ea352d;
+}
+.log-in {
+  background: #0099e8;
+  color: #fff;
+  margin-bottom: 70px;
+  
 }
 
 .btn-sns-facebook {
@@ -121,50 +222,14 @@
   color: #333;
 }
 
-// users/index
 
-// users/registration
 
-.form-group {
-  margin-bottom: 20px;
-
-  label {
-  font-weight: 600;
-  display: inline-block;
-  vertical-align: middle;
-  }
-
-  &__requier{
-    margin: 0 0 0 8px;
-    padding: 2px 4px;
-    border-radius: 2px;
-    color: #fff;
-    font-size: 12px;
-    vertical-align: top;
-    background-color: #ea352d;
-    display: inline;
-    vertical-align: middle;
-  }
-  }
-
-.input-form {
-  
-  padding: 10px 16px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
-  line-height: 1.5;
-  font-size: 16px;
-  display: block;
-
-  &__input {
-    display: block;
-
-    &__herf {
-      display: inline-block;
-    }
-  }  
+.label {
+font-weight: 600;
+display: inline-block;
+vertical-align: middle;
 }
+
 
 .btn-red {
   background: #ea352d;
