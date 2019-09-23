@@ -1,8 +1,27 @@
 class UsersController < ApplicationController
+  
+  def sign_up
+  end
 
-  #  before_action :authenticate_user!
+  def registration
+  end
 
-  def index
+  def sms_confirmation
+  end
+
+  def address
+  end
+
+  def credit
+  end
+
+  def complete
+  end
+
+  def log_in
     
   end
+
+
+
 end

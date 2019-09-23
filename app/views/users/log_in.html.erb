@@ -1,0 +1,36 @@
+  <%=render 'partial/header'%>
+  <main class='single-main'>
+    <section class='single-main__log-in'>
+      <p class='single-main__log-in__header'>アカウントをお持ちでない方はこちら</p>
+
+      <div class="btn-default btn-sns log-in" >
+        <%=link_to'新規会員登録',''%>
+      </div>
+      <button id="facebook-login" class="btn-default btn-sns btn-sns-facebook">
+        <%= fa_icon("facebook-square 2x")%>
+        Facebookでログイン
+      </button>
+      <button id="google-login" class="btn-default btn-sns btn-sns-google">
+        <%= fa_icon("google 2x")%>
+        Googleでログイン
+      </button>
+      <div class="single-main__log-in__form-group">
+        <input type="email" value="" name="email" placeholder="メールアドレス" class="single-main__log-in__form-group__input-form">
+      </div>
+      <div class="single-main__log-in__form-group">
+        <input type="password" value="" name="password" placeholder="パスワード" class="single-main__log-in__form-group__input-form">
+        <p>recapthaを追加します</p>
+      </div>  
+      <button type="submit" class="btn-default btn-red">
+        <%=link_to'ログイン',''%>
+      </button>
+      <div class="single-main__container__form-group">
+        <p>
+          <a href="https://www.mercari.com/jp/password/reset/start/" target="_blank">パスワードをお忘れの方</a>
+          <%# 追加実装？ %>
+        </p>
+      </div>
+    </section>
+  </main>
+  <%=render 'partial/footer'%>
+
