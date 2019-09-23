@@ -182,3 +182,48 @@ input {
      }
    }
   }
+
+
+
+.wrapper__main {
+  .main {
+    &__top {
+      &__link {
+
+      }
+      &__slider {
+        &__frame {
+          &__lists {
+            &__slide__visible {
+              &__image {
+
+              }
+            }
+            &__slide__invisible {
+              &__content {
+                &__image {
+                }
+                &__subs {
+                  &__toptexts {
+
+                  }
+                  &__middletexts {
+
+                  }
+                  &__bottomeimages {
+                    &__itunes {
+
+                    }
+                    &__google {
+                      
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
