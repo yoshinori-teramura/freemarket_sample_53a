@@ -109,7 +109,11 @@
           font-size: 16px;
         }
       }
-    }  
+    } 
+    &__msg {
+      text-align: center;
+      
+    } 
   }  
 
   &__log-in {
