@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
   
+  def index
+    
+  end
+
+  def create
+  end
+  
+
   def signup
   end
 
@@ -18,8 +26,7 @@ class UsersController < ApplicationController
   def complete
   end
 
-  def log_in
-    
+  def login 
   end
 
 
