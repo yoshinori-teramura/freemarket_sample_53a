@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   get "users/login" => "users#login"
   get "users/sign_up" => "devise/registrations#new"
 
-  root 'devise/registrations#new'
+  root 'items#index'
 end
