@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  def sign_up
+  def signup
   end
 
   def registration
