@@ -1,0 +1,42 @@
+%body
+  = render 'partial/header'
+  %header
+    %ol.progress
+      %li
+        会員情報
+        .progress__status
+      %li
+        電話番号認証
+        .progress__status
+      %li
+        お届け先住所入力
+        .progress__status
+      %li.active
+        支払い方法
+        .progress__status
+      %li
+        完了
+        .progress__status
+  %main.single-main
+    %section.single-main__container
+      %h2.single-main__container__header 支払い方法
+      .single-main__container__form-group
+        %label{:for => "credit_number"} カード番号
+        %span.single-main__container__form-group__requier 必須
+        %input.single-main__container__form-group__input-form{:name => "number", :placeholder => "半角数字のみ", :type => "number", :value => ""}/
+      .single-main__container__form-group
+        %label{:for => "expiration_date"} 有効期限
+        %span.single-main__container__form-group__requier 必須
+        %input.single-main__container__form-group__input-form{:name => "exporation_date", :placeholder => "", :type => "month", :value => ""}/
+      .single-main__container__form-group
+        %label{:for => "security_code"} セキュリティコード
+        %span.single-main__container__form-group__requier 必須
+        %input.single-main__container__form-group__input-form{:name => "security_code", :placeholder => "カード背面4桁もしくが3桁の番号", :type => "number", :value => ""}/
+      .single-main__container__form-group.text-right
+        %p
+          %a{:href => "", :target => "_blank"}
+            = fa_icon("question-circle")
+            カード裏面の番号とは？
+      %button.btn-default.btn-red{:type => "submit"}
+        = link_to'次へ進む',''
+  = render 'partial/footer'
