@@ -1,3 +1,5 @@
+@import "mixin/common";
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -12,4 +14,118 @@ body {
 
 .global-footer {
   font-weight: 500;
+  color: #fff;
+  padding: 0 20px 10px 20px;
+  background: #212121;
+}
+
+.sitemap {
+  @include clearfix();
+  width: 1020px;
+  margin: 0 auto;
+}
+
+.footer-cell {
+  display: block;
+  float: left;
+  margin-top: 18px;
+  padding: 0 40px 0 0;
+  width: 23%;
+
+  &:first-child {
+    padding: 0 20px 0 0;
+    width: 20%;
+  }
+
+  &--full-width {
+    width: 42%;
+  }
+
+  &__head {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__list {
+    list-style: none;
+
+    &__item {
+      margin: 14px 0 0;
+
+      &__link {
+        display: block;
+        color: #fff;
+        opacity: 0.7;
+        font-size: 12px;
+        line-height: 1.5em;
+      }
+
+    }
+
+    &__social-link {
+      display: inline-block;
+      line-height: 1.5em;
+
+      &__link {
+        &__icon {
+          background: transparent;
+          margin: 16px 18px 0 0;
+        }
+      }
+    }
+  }
+}
+
+.footer-cell-wrapper {
+  float: left;
+  padding-left: 10px;
+  vertical-align: top;
+  width: 50%;
+
+  &:first-of-type {
+    padding: 0 10px 0 0;
+  }
+}
+
+.footer-cell-nav-lang {
+  width: auto;
+  margin-top: 18px;
+  padding: 0;
+
+  &__list__item {
+    display: block;
+    padding-right: 30px;
+  }
+}
+
+.footer-bottom {
+  margin: 30px auto 20px;
+  width: 1020px;
+
+  &__logo {
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.5em;
+    display: inline-block;
+    margin-right: 10px;
+    width: auto;
+
+    &__img {
+      width: 124px;
+      height: 33px;
+    }
+  }
+
+  &__copyright {
+    width: 745px;
+    display: inline-block;
+    margin: 8px 0 0;
+    text-align: center;
+    vertical-align: sub;
+
+    &__text {
+      font-size: 12px;
+    }
+  }
 }
