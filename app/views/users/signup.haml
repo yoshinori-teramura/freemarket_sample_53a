@@ -1,0 +1,16 @@
+= render 'partial/header'
+%main.single-main
+  %section.single-main__container
+    %h2.single-main__container__header 新規会員登録
+    .single-main__container__inner
+      .single-main__container__inner__content
+        .btn-default.btn-sns.btn-mail
+          = fa_icon("envelope 2x")
+          = link_to'メールアドレスで登録','users/registration'
+        %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
+          = fa_icon("facebook-square 2x")
+          Facebookで登録
+        %button#google-login.btn-default.btn-sns.btn-sns-google
+          = fa_icon("google 2x")
+          Googleで登録
+= render 'partial/footer'

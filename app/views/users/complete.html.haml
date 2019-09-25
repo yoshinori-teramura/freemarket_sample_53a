@@ -1,0 +1,30 @@
+%body
+  = render 'partial/header'
+  %header
+    %ol.progress
+      %li
+        会員情報
+        .progress__status
+      %li
+        電話番号認証
+        .progress__status
+      %li
+        お届け先住所入力
+        .progress__status
+      %li
+        支払い方法
+        .progress__status
+      %li.active
+        完了
+        .progress__status
+  %main.single-main
+    %section.single-main__container
+      %h2.single-main__container__header 支払い方法
+      .single-main__container__msg
+        %p
+          ありがとうございます。
+          %br>/
+          会員登録が完了しました。
+      %button.btn-default.btn-red{:type => "submit"}
+        = link_to'メルカリをはじめる',''
+  = render 'partial/footer'

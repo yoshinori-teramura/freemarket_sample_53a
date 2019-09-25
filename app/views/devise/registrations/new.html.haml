@@ -19,26 +19,21 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
-  %div
+  .field
     = f.label :"お名前（全角）"
     = f.text_field :family_name
     = f.text_field :first_name
-  %div
+  .field
     = f.label :"お名前カナ（全角）"
     = f.text_field :family_kana_name
     = f.text_field :first_kana_name
-  %div
+  .field
     = f.label :"生年月日"
     = f.date_field :birthday
-  %div
+  .filed
     = f.label :"携帯電話の番号"
     = f.number_field :tel
-  %div
-    = f.label :"発送元名前漢字＿追加"
-  %div
-    = f.label :"発送元名前かな＿追加"
-  %div
-    = f.label :"郵便番号"
+ 
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"

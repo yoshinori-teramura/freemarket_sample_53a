@@ -24,7 +24,10 @@
 ## addresses
 |column|type|options|
 |------|----|-------|
-<!-- |user_id             |references |null: false, foreign_key: true | -->
+|delivery_family_name|string     |null:false  |
+|delivery_first_name |string     |null:false  |
+|delivery_family_kana_name|string|null:false  |
+|delivery_first_kana_name |string|null:fasle  |
 |postal_code         |integer    |null: false |
 |prefecture          |string     |null: false |
 |city                |string     |null: false |
@@ -41,7 +44,7 @@
 |user_id             |references |null: false, foreign_key: true |
 |number              |integer    |null: false, unique: true |
 |name                |string     |null: false |
-|expiration_date     |integer    |null: false |
+|expiration_date     |date       |null: false |
 
 ### Association
 - belongs_to :user
@@ -107,3 +110,13 @@
 - belongs_to :item
 - belongs_to :user
 
+## buyers table
+|Column|Type|Options|
+|------|----|-------|
+|item_id            |references |null: false, foreign_key: true |
+|user_id            |references |null: false, foreign_key: true |
+|status             |integer    |null:false|
+
+### Association
+- belongs_to :item
+- belongs_to :user
