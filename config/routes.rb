@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
   resources :items
   resources :mypages, only: :index
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   get "users/address" => "users#address"
   get "users/credit" => "users#credit"
   get "users/complete" => "users#complete"
-  get "users/login" => "users#login"
-  get "users/sign_up" => "devise/registrations#new"
+  get "users/log_in" => "users#log_in"
 
-  root 'devise/registrations#new'
+  root 'items#index'
 end
