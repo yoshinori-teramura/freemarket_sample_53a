@@ -15,6 +15,7 @@
     .single-main__log-in__form-group
       %input.single-main__log-in__form-group__input-form{:name => "password", :placeholder => "パスワード", :type => "password", :value => ""}/
       %p recapthaを追加します
+      = recaptcha_tags
     %button.btn-default.btn-red{:type => "submit"}
       = link_to'ログイン',''
     .single-main__container__form-group

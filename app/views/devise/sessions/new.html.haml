@@ -1,17 +1,28 @@
-%h2 Log in
+-# %h2 Log in
+= render 'partial/header'
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+  %main.single-main
+    %section.single-main__log-in
+      %p.single-main__log-in__header アカウントをお持ちでない方はこちら
+      .btn-default.btn-sns.log-in
+        = link_to '新規会員登録', new_user_registration_path
+      %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
+        = fa_icon("facebook-square 2x")
+        Facebookでログイン
+      %button#google-login.btn-default.btn-sns.btn-sns-google
+        = fa_icon("google 2x")
+        Googleでログイン
+
+      .single-main__log-in__form-group
+        = f.email_field :email ,:class => "single-main__container__form-group__input-form", :placeholder => "メールアドレス", :type => "email", :value => "" 
+        = f.email_field :password ,:class => "single-main__container__form-group__input-form", :placeholder => "パスワード", :type => "password", :value => "" 
+        
+        = recaptcha_tags 
+
+        %button.btn-default.btn-red.actions{:type => "submit"}ログイン
+      
+      .single-main__container__form-group
+        %p
+          %a{:href => "https://www.mercari.com/jp/password/reset/start/", :target => "_blank"} パスワードをお忘れの方
+= render 'partial/footer'
+    
