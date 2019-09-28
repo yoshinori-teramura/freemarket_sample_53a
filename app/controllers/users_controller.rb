@@ -11,12 +11,7 @@ class UsersController < ApplicationController
   end
   
 
-  
-
-  def signup
-  end
-
-  def registration
+  def registration_type
   end
 
   def sms_confirmation

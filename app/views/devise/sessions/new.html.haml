@@ -17,7 +17,10 @@
         = f.email_field :email ,:class => "single-main__container__form-group__input-form", :placeholder => "メールアドレス", :type => "email", :value => "" 
         = f.email_field :password ,:class => "single-main__container__form-group__input-form", :placeholder => "パスワード", :type => "password", :value => "" 
         
-        = recaptcha_tags 
+      .single-main__log-in__form-group  
+        =image_tag "https://i.gyazo.com/d1c693a279de98c05670163a3e2079c6.png"
+        %p　イメージです。実装途中
+        -# = recaptcha_tags 
 
         %button.btn-default.btn-red.actions{:type => "submit"}ログイン
       

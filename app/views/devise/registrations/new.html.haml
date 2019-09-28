@@ -4,19 +4,19 @@
   = render "devise/shared/error_messages", resource: resource
   %header
     %ol.progress
-      %li.active
+      %li.progress__box.active
         会員情報
         .progress__status
-      %li
+      %li.progress__box
         電話番号認証
         .progress__status
-      %li
+      %li.progress__box
         お届け先住所入力
         .progress__status
-      %li
+      %li.progress__box
         支払い方法
         .progress__status
-      %li
+      %li.progress__box
         完了
         .progress__status
   %main.single-main
@@ -57,9 +57,7 @@
         = f.label :生年月日
         %span.single-main__container__form-group__requier 必須
         %br/
-        = f.date_field  :birthday
-        = f.number_field :tel
- 
+        = f.date_field  :birthday 
         -# = succeed "\u3000\u5E74" do
         -#   %select{:name => "year"}
         -#     %option{:value => ""} -
@@ -243,6 +241,12 @@
         -#     %option{:value => "29"} 29
         -#     %option{:value => "30"} 30
         -#     %option{:value => "31"} 31
+
+      .single-main__container__form-group
+        = f.label :tel
+        %span.single-main__container__form-group__requier 必須
+        %br/
+        = f.number_field :tel  
         %p.form-info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
       .single-main__container__form-group
         %p.single-text.text-center
@@ -250,7 +254,7 @@
           %a{:href => "https://www.mercari.com/jp/tos_list/", :target => "_blank"}> 利用規約
           に同意したものとみなします
       %button.btn-default.btn-red{:type => "submit"}
-        = link_to'次へ進む','users/sms_confirmation'
+        = link_to'次へ進む',users_sms_confirmation_path
         = f.submit "sign up"
       .single-main__container__form-group.text-right
         %p
@@ -259,39 +263,3 @@
             \#{fa_icon("chevron-right")}
   = render 'partial/footer'
 
--#   .field
--#     = f.label :nickname
--#     = f.text_field :nickname
--#   .field
--#     = f.label :email
--#     %br/
--#     = f.email_field :email, autofocus: true, autocomplete: "email"
--#   .field
--#     = f.label :password
--#     - if @minimum_password_length
--#       %em
--#         (#{@minimum_password_length} characters minimum)
--#     %br/
--#     = f.password_field :password, autocomplete: "new-password"
--#   .field
--#     = f.label :password_confirmation
--#     %br/
--#     = f.password_field :password_confirmation, autocomplete: "new-password"
--#   .field
--#     = f.label :"お名前（全角）"
--#     = f.text_field :family_name
--#     = f.text_field :first_name
--#   .field
--#     = f.label :"お名前カナ（全角）"
--#     = f.text_field :family_kana_name
--#     = f.text_field :first_kana_name
--#   .field
--#     = f.label :"生年月日"
--#     = f.date_field :birthday
--#   .filed
--#     = f.label :"携帯電話の番号"
--#     = f.number_field :tel
- 
--#   .actions
--#     = f.submit "Sign up"
--# = render "devise/shared/links"
