@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :items
   resources :mypages, only: :index
+  resources :sell
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "users/signup" => "users#signup"
   get "users/users/registration" => "users#registration"
