@@ -588,3 +588,37 @@ div {
     }
   }
 }
+
+.display {
+  bottom: 32px;
+  font-size: 22px;
+  height: 160px;
+  right: 32px;
+  width: 160px;
+  position: fixed;
+  text-align: center;
+  z-index: 2;
+  &__link {
+    display: block;
+    &__button {
+      width: 160px;
+      height: 160px;
+      padding-top: 32px;
+      text-align: center;
+      background-color: rgb(234, 53, 45);
+      border-radius: 50%;
+      &__text {
+        font-size: 22px;
+        color: rgb(255, 255, 255);
+      }
+      &__mark {
+        height: 54px;
+        max-width: 100%;
+        max-height: 100%;
+        color: rgb(255, 255, 255);
+        display: block;
+        margin: 8px auto 0px;
+      }
+    }
+  }
+}
