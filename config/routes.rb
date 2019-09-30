@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get 'registration_type'
       get 'registration'
       get 'sms_confirmation' 
+      get 'adress'
+      get 'credit'
       get 'complete' 
     end
   end
