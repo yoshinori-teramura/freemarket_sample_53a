@@ -1,0 +1,74 @@
+-# %h2 Sign up
+=render 'partial/header'
+= form_for @user, url: sms_confirmation_signup_index_path, method: :get do |f|
+  %header
+    %ol.progress
+      %li.progress__box.active
+        会員情報
+        .progress__status
+      %li.progress__box
+        電話番号認証
+        .progress__status
+      %li.progress__box
+        お届け先住所入力
+        .progress__status
+      %li.progress__box
+        支払い方法
+        .progress__status
+      %li.progress__box
+        完了
+        .progress__status
+  %main.single-main
+    %section.single-main__container
+      %h2.single-main__container__header 会員情報入力
+      .single-main__container__form-group
+        = f.label :ニックネーム
+        %span.single-main__container__form-group__requier 必須
+        = f.text_field :nickname, :class => "single-main__container__form-group__input-form", :placeholder => "例) メルカリ太郎", :type => "text", :value => "" 
+      .single-main__container__form-group
+        = f.label :email 
+        %span.single-main__container__form-group__requier 必須
+        = f.email_field :email ,:class => "single-main__container__form-group__input-form", :placeholder => "PC.携帯どちらでも可", :type => "email", :value => "" 
+      .single-main__container__form-group
+        = f.label :パスワード
+        %span.single-main__container__form-group__requier 必須
+        = f.text_field :password, :class => "single-main__container__form-group__input-form", :placeholder => "７文字以上", :type => "password", :value => "" 
+      .single-main__container__form-group
+        = f.label :パスワード（確認）
+        %span.single-main__container__form-group__requier 必須
+        = f.text_field :password_confirmaiton, :class => "single-main__container__form-group__input-form", :placeholder => "７文字以上", :type => "password", :value => "" 
+      .single-main__container__form-group
+        %h3 本人確認
+        %p.single-main__container__form-group__text 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+      .single-main__container__form-group
+        = f.label :お名前（全角）
+        %span.single-main__container__form-group__requier 必須
+        .single-main__container__form-group__input
+          = f.text_field :family_name, :class =>"single-main__container__form-group__input__herf", :placeholder => "例：　橋本", :type => "text", :value => ""
+          = f.text_field :first_name, :class =>"single-main__container__form-group__input__herf", :placeholder => "例：　環奈", :type => "text", :value => ""
+      .single-main__container__form-group
+        = f.label :お名前（カナ）
+        %span.single-main__container__form-group__requier 必須
+        .single-main__container__form-group__input
+          = f.text_field :family_kana_name, :class =>"single-main__container__form-group__input__herf", :placeholder =>"例：　ハシモト", :type => "text", :value => ""
+          = f.text_field :first_kana_name, :class =>"single-main__container__form-group__input__herf", :placeholder =>"例：　カンナ", :type => "text", :value => ""
+      .single-main__container__form-group
+        = f.label :生年月日
+        %span.single-main__container__form-group__requier 必須
+        %br/
+        = f.date_field  :birthday 
+      .single-main__container__form-group
+        %p.form-info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+      .single-main__container__form-group
+        %p.single-text.text-center
+          「次へ進む」のボタンを押すことにより、
+          %a{:href => "https://www.mercari.com/jp/tos_list/", :target => "_blank"}> 利用規約
+          に同意したものとみなします
+        = f.submit '次へ進む',class: 'btn-default btn-red'
+      .single-main__container__form-group.text-right
+        %p
+          %a{:href => "https://www.mercari.com/jp/help_center/article/423/", :target => "_blank"}
+            本人情報の登録について
+            \#{fa_icon("chevron-right")}
+  = render 'partial/footer'
+

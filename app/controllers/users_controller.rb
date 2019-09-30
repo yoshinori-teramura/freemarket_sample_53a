@@ -9,14 +9,11 @@ class UsersController < ApplicationController
 
   def create
   end
+
+  def show
+  end
   
-
-  def registration_type
-  end
-
-  def sms_confirmation
-  end
-
+  
   def address
   end
 
@@ -26,9 +23,7 @@ class UsersController < ApplicationController
   def complete
   end
 
-  def login 
-  end
-
+  
 
 
 end
