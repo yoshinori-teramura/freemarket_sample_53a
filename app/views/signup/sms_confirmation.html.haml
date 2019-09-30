@@ -1,29 +1,30 @@
-%body
-  = render 'partial/header'
+
+= render 'partial/header'
+= form_for @user, url: signup_index_path , method: :post do |f|  
   %header
     %ol.progress
-      %li
+      %li.progress__box
         会員情報
         .progress__status
-      %li.active
+      %li.progress__box.active
         電話番号認証
         .progress__status
-      %li
+      %li.progress__box
         お届け先住所入力
         .progress__status
-      %li
+      %li.progress__box
         支払い方法
         .progress__status
-      %li
+      %li.progress__box
         完了
         .progress__status
   %main.single-main
     %section.single-main__container
       %h2.single-main__container__header 電話番号の確認
       .single-main__container__form-group
-        %label{:for => "tel"} 携帯電話の番号
+        = f.label :携帯電話の番号
         %span.single-main__container__form-group__requier 必須
-        %input.single-main__container__form-group__input-form{:name => "tel", :placeholder => "携帯電話の番号を入力", :type => "tel", :value => ""}/
+        = f.number_field :tel , :class =>"single-main__container__form-group__input-form",:placeholder => "携帯電話の番号を入力", :value => ""
         %p 本人確認のため、携帯電話のSMS（ショートメッセージサービス）を利用して認証を行います。
       %button.btn-default.btn-red{:type => "submit"} SMSを送信する
       .single-main__container__form-group.text-right
@@ -32,4 +33,4 @@
           %a{:href => "/jp/help_center/article/244/", :target => "_blank"}
             電話番号の確認が必要な理由
             \#{fa_icon("chevron-right")}
-  = render 'partial/footer'
+= render 'partial/footer'
