@@ -16,10 +16,16 @@
   }
 }
 .progress {
-  display: block;
+  display: flex;
   text-align: center;
   margin: 0 auto;
   background-color: rgb(245, 245, 245 );
+  justify-content: center;
+
+
+  &__box {
+    padding:30px 40px;
+  }
 
   &__status {
     width: 12px;
@@ -27,7 +33,7 @@
     margin: 8px auto 0;
     background: #ccc;
     border-radius: 50%;
-    display: inline-block
+    
   }
 }
 .active .progress__status{
@@ -196,7 +202,6 @@
   border: 1px solid transparent;
   -webkit-transition: all ease-out .3s;
   transition: all ease-out .3s;
-  // cursor: pointer;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -221,7 +226,7 @@
 
 .btn-sns-google {
   
-  background: #fff url(/jp/assets/img/common/common/google.svg) no-repeat 3px top;
+  background: #fff ;
   border: #979797 solid 1px;
   color: #333;
 }

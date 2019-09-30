@@ -76,3 +76,7 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'haml-rails'
 gem 'erb2haml'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem "recaptcha", require: "recaptcha/rails"
+gem 'pry-rails'
