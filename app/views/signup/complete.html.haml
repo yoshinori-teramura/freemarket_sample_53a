@@ -2,19 +2,19 @@
   = render 'partial/header'
   %header
     %ol.progress
-      %li
+      %li.progress__box
         会員情報
         .progress__status
-      %li
+      %li.progress__box
         電話番号認証
         .progress__status
-      %li
+      %li.progress__box
         お届け先住所入力
         .progress__status
-      %li
+      %li.progress__box
         支払い方法
         .progress__status
-      %li.active
+      %li.progress__box.active
         完了
         .progress__status
   %main.single-main
@@ -26,5 +26,5 @@
           %br>/
           会員登録が完了しました。
       %button.btn-default.btn-red{:type => "submit"}
-        = link_to'メルカリをはじめる',''
+        = link_to'メルカリをはじめる',root_path
   = render 'partial/footer'
