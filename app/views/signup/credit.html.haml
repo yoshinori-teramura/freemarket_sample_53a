@@ -26,6 +26,11 @@
         = f.fields_for :credit do |c|
           = c.number_field :number, :class =>"single-main__container__form-group__input-form", :placeholder => "半角数字のみ"
       .single-main__container__form-group
+        = f.label :名義
+        %span.single-main__container__form-group__requier 必須       
+        = f.fields_for :credit do |c|
+          = c.text_field :name, :class =>"single-main__container__form-group__input-form", :placeholder => ""    
+      .single-main__container__form-group
         = f.label :有効期間
         %span.single-main__container__form-group__requier 必須
         = f.fields_for :credit do |c|

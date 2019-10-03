@@ -24,7 +24,6 @@ class SignupController < ApplicationController
   def credit
     @user = User.new
     @user.build_credit
-    # binding.pry
   end
 
 
@@ -41,8 +40,8 @@ class SignupController < ApplicationController
       birthday: session[:birthday],
       tel: session[:tel]
     )
-    @user.build_adress(user_params[:adress_attributes])
-    @user.build_credit(user_params[:credit_attributes])
+    @user.build_adress(session[:adress_attributes])
+    @user.build_credit(session[:credit_attributes])
     # binding.pry
     if @user.save
       session[:id] = @user.id
@@ -84,7 +83,7 @@ class SignupController < ApplicationController
         :id,
         :user_id,
         :number,
-        :neme,
+        :name,
         :expiration_date])
   end
 
@@ -139,8 +138,10 @@ class SignupController < ApplicationController
       family_kana_name: session[:first_kana_name],
       first_kana_name: session[:first_kana_name],
       birthday: session[:birthday], 
-      tel: session[:tel] 
+      tel: session[:tel]
     )
+    session[:adress_attributes]= user_params[:adress_attributes]
+    @user.build_adress(user_params[:adress_attributes])
     # binding.pry
   end
 
@@ -155,27 +156,11 @@ class SignupController < ApplicationController
       family_kana_name: session[:first_kana_name],
       first_kana_name: session[:first_kana_name],
       birthday: session[:birthday], 
-      tel: session[:tel] 
+      tel: session[:tel]
     )
-    @user.build_adress(user_params[:adress_attributes])
-    # binding.pry
-  end
-
-  def complete
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password],
-      password_confirmation: session[:password_confirmation],
-      family_name: session[:family_name],
-      first_name: session[:first_name],
-      family_kana_name: session[:first_kana_name],
-      first_kana_name: session[:first_kana_name],
-      birthday: session[:birthday], 
-      tel: session[:tel] 
-    )
-    @user.build_adress(user_params[:adress_attributes])
+    session[:credit_attributes] = user_params[:credit_attributes]
     @user.build_credit(user_params[:credit_attributes])
+    # binding.pry
   end
 
 end
