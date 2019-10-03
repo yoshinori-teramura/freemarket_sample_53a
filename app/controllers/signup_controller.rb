@@ -2,7 +2,8 @@ class SignupController < ApplicationController
 
   before_action :save_registration, only: :sms_confirmation 
   before_action :save_sms_confirmation, only: :adress
-  before_action :save_adress, only: :create
+  before_action :save_adress, only: :credit
+  before_action :save_credit, only: :create
 
   def registration_type
   end
