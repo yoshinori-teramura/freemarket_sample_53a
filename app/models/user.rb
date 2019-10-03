@@ -9,5 +9,4 @@ class User < ApplicationRecord
   has_one  :credit
   accepts_nested_attributes_for :adress
   accepts_nested_attributes_for :credit
-         
 end
