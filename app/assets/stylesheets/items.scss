@@ -622,3 +622,39 @@ div {
     }
   }
 }
+
+.banner {
+  color: rgb(255, 255, 255);
+  background: url(https://https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg) center center / cover;
+  background-position: center center;
+  &__content {
+    display: none;
+    background: url(https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1….jpg) center center / cover;
+    background-position: center center;
+    &__link {
+      -webkit-box-align: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.2);
+      color: rgb(255, 255, 255);
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      text-align: center;
+      padding: 15px 0px;
+      &__image {
+        height: 50px;
+        margin-right: 20px;
+        width: 50px;
+      }
+      &__text {
+        display: inline-flex;
+        flex-direction: column;
+        text-align: left;
+        &__text2 {
+          font-size: 20px;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+}
