@@ -625,12 +625,14 @@ div {
 
 .banner {
   color: rgb(255, 255, 255);
-  background: url(https://https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg) center center / cover;
+  background: url(https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg) center center / cover;
   background-position: center center;
+  margin-top: auto;
+  display: block;
+  height: 260px;
+  width: 800px;
   &__content {
-    display: none;
-    background: url(https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1….jpg) center center / cover;
-    background-position: center center;
+  
     &__link {
       -webkit-box-align: center;
       align-items: center;
