@@ -1,6 +1,6 @@
 = render 'partial/header'
 %main.sell-main
-  %section.sell-contaoner-wrapper
+  %section.sell-container-wrapper
     .sell-container
       %h2.sell-container__head 商品の情報を入力
       %form.sell-form
@@ -9,13 +9,13 @@
             出品画像
             -# TODO:mixinに分割
             %span.sell-form-require 必須
-          %p 最大10枚までアップロードできます
+          %p.sell-upload-box__note 最大10枚までアップロードできます
           .sell-dropbox
-            .sell-dropbox__pictureboxes
-              -# TODO:アップロードした画像の表示
-            %ul
-            .sell-dropbox-area
-              %input{type: "file", name: "image1", mutilple: true, class: "sell-dropbox-area__file"}
+            .sell-dropbox__picturebox
+              .sell-dropbox__pictures
+                %ul.sell-dropbox__picture
+            %label.sell-dropbox-area.sell-dropbox-area--item0{for: "image1"}
+              %input{type: "file", id: "image1", name: "image1", mutilple: true, class: "sell-dropbox-area__file"}
               %pre.sell-dropbox-area__text
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
@@ -29,28 +29,27 @@
       .sell-form-review
         %label.sell-form-review__label 商品の説明
         %span.sell-form-require 必須
-        .sell-form-review__textarea-wrapper
-          %textarea{class: "sell-form-review__textarea",
-                    row: "5",
-                    placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
-    .sell-content
+        %textarea{class: "sell-form-review__textarea",
+                  rows: "5",
+                  placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+    .sell-content.sell-content--clearfix
       %h3.sell-content__sub-head 商品の詳細
       .sell-form-box
         .sell-form-selectbox
           %label.sell-form-selectbox__label カテゴリー
           %span.sell-form-require 必須
           .sell-form-selectbox__select-wrapper
-            = fa_icon "arrow-bottom 2x", class: "sell-form-selectbox__icon"
+            = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
             -# TODO:Dummy collection_selectを使用するように
             = select_tag 'category_id', options_for_select(["---", "メンズ", "レディース"], "---"), class: "sell-form-selectbox__select"
         .sell-form-selectbox
           %label.sell-form-selectbox__label 商品の状態
           %span.sell-form-require 必須
           .sell-form-selectbox__select-wrapper
-            = fa_icon "arrow-bottom 2x", class: "sell-form-selectbox__icon"
+            = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
             -# TODO:Dummy collection_selectを使用するように
             = select_tag 'item_state', options_for_select(["---", "新品、未使用", "未使用に近い"], "---") , class: "sell-form-selectbox__select"
-    .sell-content
+    .sell-content.sell-content--clearfix
       %h3.sell-content__sub-head 配送について
       %a.sell-form-question ?
       .sell-form-box
@@ -58,34 +57,34 @@
           %label.sell-form-selectbox__label 配送料の負担
           %span.sell-form-require 必須
           .sell-form-selectbox__select-wrapper
-            = fa_icon "arrow-bottom 2x", class: "sell-form-selectbox__icon"
+            = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
             -# TODO:Dummy collection_selectを使用するように
             = select_tag 'pay-delivery-fee', options_for_select(["---", "送料込み(出品者負担)", "着払い(購入者負担)"], "---"), class: "sell-form-selectbox__select"
         .sell-form-selectbox
           %label.sell-form-selectbox__label 発送元の地域
           %span.sell-form-require 必須
           .sell-form-selectbox__select-wrapper
-            = fa_icon "arrow-bottom 2x", class: "sell-form-selectbox__icon"
+            = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
             -# TODO:Dummy collection_selectを使用するように
             = select_tag 'delivery-area', options_for_select(["---", "北海道", "東京都"], "---"), class: "sell-form-selectbox__select"
         .sell-form-selectbox
           %label.sell-form-selectbox__label 発送までの日数
           %span.sell-form-require 必須
           .sell-form-selectbox__select-wrapper
-            = fa_icon "arrow-bottom 2x", class: "sell-form-selectbox__icon"
+            = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
             -# TODO:Dummy collection_selectを使用するように
             = select_tag 'delivery-days', options_for_select(["---", "1~2日で配送", "2~3日で配送"], "---"), class: "sell-form-selectbox__select"
-    .sell-content
+    .sell-content.sell-content--clearfix
       %h3.sell-content__sub-head 販売価格(300〜9,999,999)
       %a.sell-form-question ?
       .sell-form-box
         %ul.sell-form-price
           %li.sell-form-price__inputform
             .sell-form-price__inputform__inner
-              %label.sell-form-price__inputform__label--left
+              %label.sell-form-price__inputform__label.sell-form-price__inputform__label--left
                 価格
                 %span.sell-form-require 必須
-              .sell-form-price__inputform__input-box--right
+              .sell-form-price__inputform__input-box.sell-form-price__inputform__input-box--right
                 ¥
                 .sell-form-price__inputform__input
                   %input{class: "sell-form-price__inputform__input__inner",
@@ -97,10 +96,18 @@
             .sell-form-price__profit--left 販売利益
             .sell-form-price__profit--right -
     .sell-content.sell-btn-box
-      %div
-        %p 禁止されている出品、行為を必ずご確認ください。
-        %p またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
-        %p また、出品をもちまして加盟店規約に同意したことになります。
+      .sell-btn-box__notes
+        %p.sell-btn-box__note
+          %a.sell-btn-box__note__link> 禁止されている出品、行為
+          を必ずご確認ください。
+        %p.sell-btn-box__note
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          %a.sell-btn-box__note__link> 偽ブランドの販売
+          は犯罪であり処罰される可能性があります。
+        %p.sell-btn-box__note
+          また、出品をもちまして
+          %a.sell-btn-box__note__link> 加盟店規約
+          に同意したことになります。
       %button{type: "submit", class: "sell-btn-box__submit"} 出品する
       %a.sell-btn-box__back 戻る
 
