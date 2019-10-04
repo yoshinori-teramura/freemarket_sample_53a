@@ -2,7 +2,8 @@ class SignupController < ApplicationController
 
   before_action :save_registration, only: :sms_confirmation 
   before_action :save_sms_confirmation, only: :adress
-  before_action :save_adress, only: :create
+  before_action :save_adress, only: :credit
+  before_action :save_credit, only: :create
 
   def registration_type
   end
@@ -20,6 +21,11 @@ class SignupController < ApplicationController
     @user.build_adress
   end
 
+  def credit
+    @user = User.new
+    @user.build_credit
+  end
+
 
   def create
     @user = User.new(
@@ -34,7 +40,8 @@ class SignupController < ApplicationController
       birthday: session[:birthday],
       tel: session[:tel]
     )
-    @user.build_adress(user_params[:adress_attributes])
+    @user.build_adress(session[:adress_attributes])
+    @user.build_credit(session[:credit_attributes])
     # binding.pry
     if @user.save
       session[:id] = @user.id
@@ -71,7 +78,13 @@ class SignupController < ApplicationController
         :city,
         :block,
         :building_name,
-        :delivery_tel])
+        :delivery_tel],
+      credit_attributes:[
+        :id,
+        :user_id,
+        :number,
+        :name,
+        :expiration_date])
   end
 
   def save_registration
@@ -125,11 +138,29 @@ class SignupController < ApplicationController
       family_kana_name: session[:first_kana_name],
       first_kana_name: session[:first_kana_name],
       birthday: session[:birthday], 
-      tel: session[:tel] 
+      tel: session[:tel]
     )
-    
+    session[:adress_attributes]= user_params[:adress_attributes]
     @user.build_adress(user_params[:adress_attributes])
+    # binding.pry
   end
 
+  def save_credit
+    @user = User.new(
+      nickname: session[:nickname],
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      family_name: session[:family_name],
+      first_name: session[:first_name],
+      family_kana_name: session[:first_kana_name],
+      first_kana_name: session[:first_kana_name],
+      birthday: session[:birthday], 
+      tel: session[:tel]
+    )
+    session[:credit_attributes] = user_params[:credit_attributes]
+    @user.build_credit(user_params[:credit_attributes])
+    # binding.pry
+  end
 
 end

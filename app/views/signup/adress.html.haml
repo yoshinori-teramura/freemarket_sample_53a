@@ -1,6 +1,5 @@
-
 = render 'partial/header'
-= form_for @user, url: signup_index_path, method: :post do |f|
+= form_for @user, url: credit_signup_index_path, method: :get do |f|
   %header
     %ol.progress
       %li.progress__box
@@ -34,7 +33,7 @@
         .single-main__container__form-group__requier__input
           = f.fields_for :adress do |a|
             = a.text_field :delivery_family_kana_name ,:class =>"single-main__container__form-group__input__herf", :placeholder => "例：　ハシモト"
-            = a.text_field :delivery_family_kana_name ,:class =>"single-main__container__form-group__input__herf", :placeholder => "例：　カンナ"
+            = a.text_field :delivery_first_kana_name ,:class =>"single-main__container__form-group__input__herf", :placeholder => "例：　カンナ"
       .single-main__container__form-group
         = f.label :郵便番号
         %span.single-main__container__form-group__requier 必須

@@ -1,0 +1,51 @@
+= render 'partial/header'
+= form_for @user, url: signup_index_path, method: :post do |f|
+  %header
+    %ol.progress
+      %li.progress__box
+        会員情報
+        .progress__status
+      %li.progress__box
+        電話番号認証
+        .progress__status
+      %li.progress__box
+        お届け先住所入力
+        .progress__status
+      %li.progress__box.active
+        支払い方法
+        .progress__status
+      %li.progress__box
+        完了
+        .progress__status
+  %main.single-main
+    %section.single-main__container
+      %h2.single-main__container__header 支払い方法
+      .single-main__container__form-group
+        = f.label :カード番号
+        %span.single-main__container__form-group__requier 必須       
+        = f.fields_for :credit do |c|
+          = c.number_field :number, :class =>"single-main__container__form-group__input-form", :placeholder => "半角数字のみ"
+      .single-main__container__form-group
+        = f.label :名義
+        %span.single-main__container__form-group__requier 必須       
+        = f.fields_for :credit do |c|
+          = c.text_field :name, :class =>"single-main__container__form-group__input-form", :placeholder => ""    
+      .single-main__container__form-group
+        = f.label :有効期間
+        %span.single-main__container__form-group__requier 必須
+        = f.fields_for :credit do |c|
+          = c.date_field :expiration_date, :class =>"single-main__container__form-group__input-form", :placeholder => ""
+      -# .single-main__container__form-group
+      -#   = f.label :有効期間
+      -#   %span.single-main__container__form-group__requier 必須
+      -#   .single-main__container__form-group__input-form
+      -#     = f.fields_for :credit do |c|
+      -#       = c.number_field :security_code, :class =>"single-main__container__formgroup__input-form", :placeholder => "カード背面4桁もしくが3桁の番号"
+      .single-main__container__form-group.text-right
+        %p
+          %a{:href => "", :target => "_blank"}
+            = fa_icon("question-circle")
+            カード裏面の番号とは？
+      = f.submit '次へ進む',class: 'btn-default btn-red'
+
+= render 'partial/footer'
