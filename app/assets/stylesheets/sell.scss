@@ -1,0 +1,377 @@
+@mixin sell-form-header() {
+  font-weight: 600;
+  display: inline-block;
+}
+
+@mixin sell-input-default() {
+  width: 100%;
+  margin: 8px 0 0;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+  outline: 0;
+  font-family: inherit;
+}
+
+@mixin sell-textarea-default() {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 104px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 0;
+  outline: 0;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  resize: vertical;
+}
+
+@mixin sell-btn-defalult() {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+  min-height: 1.5em;
+}
+
+.sell-main {
+  display: block;
+  padding-bottom: 40px;
+}
+
+.sell-container-wrapper {
+  width: 700px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.sell-container {
+  &__head {
+    padding: 32px 16px;
+    font-size: 22px;
+    line-height: 1.5;
+    text-align: center;
+  }
+}
+
+.sell-form {
+  border-top: 1px solid #eee;
+}
+
+.sell-form-require {
+  background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.sell-upload-box {
+  width: 620px;
+  padding: 40px;
+
+  &__head {
+    font-size: 16px;
+  }
+
+  &__note {
+    margin: 8px 0 0;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+}
+
+.sell-content {
+  padding: 40px;
+  border-top: 1px solid #eee;
+
+  &--clearfix {
+    @include clearfix();
+  }
+
+  &__sub-head {
+    float: left;
+    color: #888;
+    font-size: 14px;
+  }
+}
+
+.sell-dropbox {
+  @include clearfix();
+
+  display: block;
+  width: 620px;
+  margin: 16px auto 0;
+
+  &__picturebox {
+    display: inline;
+  }
+
+  &__pictures {
+    float: left;
+    display: block;
+  }
+
+  &__picture {
+    display: block;
+    width: 100%;
+  }
+}
+
+.sell-dropbox-area {
+  // TODO:アップロードされたファイル数ごとに幅を変更する
+  padding: 40px;
+  position: relative;
+  min-height: 162px;
+  background: #f5f5f5;
+  border: 1px dashed #ccc;
+  font-size: 0;
+  text-align: center;
+  -webkit-transition: -webkit-box-shadow ease-out .3s;
+  transition: -webkit-box-shadow ease-out .3s;
+  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+  cursor: pointer;
+  float: right;
+  margin-left: 2%;
+
+  &__file {
+    border: 0;
+    outline: 0;
+    font-family: inherit;
+    display: none;
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    right: 16px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    pointer-events: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  &--item0 {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.sell-form-name {
+  margin: 0;
+
+  &__label {
+    @include sell-form-header();
+  }
+
+  &__input {
+    @include sell-input-default();
+  }
+}
+
+.sell-form-review {
+  margin: 40px 0 0;
+
+  &__label {
+    @include sell-form-header();
+  }
+
+  &__textarea {
+    margin: 8px 0 0;
+    @include sell-textarea-default();
+  }
+}
+
+.sell-form-box {
+  float: right;
+  width: 400px;
+  margin: 0;
+}
+
+.sell-form-selectbox {
+  margin: 40px 0 0;
+
+  &:first-child {
+    margin: 0;
+  }
+
+  &__head {
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  &__select-wrapper {
+    margin: 8px 0 0;
+    position: relative;
+    background: #fff;
+  }
+
+  &__icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    z-index: 2;
+    color: #888;
+    // font-size: 8px;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+
+  &__select {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+.sell-form-question {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0099e8;
+  color: #fff;
+  line-height: 14px;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.sell-form-price {
+  @mixin list {
+    padding: 24px 0;
+    border-top: 1px solid #ccc;
+  }
+
+  list-style: none;
+
+  &__inputform {
+    padding: 0 0 24px;
+    margin: 0;
+
+    &__inner {
+      @include clearfix();
+    }
+
+    &__label {
+      display: inline-block;
+
+      &--left {
+        width: 50%;
+        line-height: 48px;
+        font-weight: 600;
+        float: left;
+      }
+    }
+
+    &__input-box {
+      text-align: right;
+
+      &--right {
+        width: 50%;
+        float: right;
+      }
+    }
+
+    &__input {
+      display: inline-block;
+      width: 80%;
+      margin: 0 0 0 5%;
+
+      &__inner {
+         @include sell-input-default();
+         margin: 0 !important;
+         text-align: right;
+      }
+    }
+  }
+
+  &__tax {
+    @include list();
+    @include clearfix();
+
+    &--left {
+      float: left;
+    }
+    &--right {
+      float: right;
+    }
+  }
+
+  &__profit {
+    @include list();
+    @include clearfix();
+    font-weight: 600;
+
+    &--left {
+      float: left;
+    }
+    &--right {
+      float: right;
+    }
+  }
+
+}
+
+.sell-btn-box {
+
+  &__note {
+    line-height: 1.5;
+    font-size: 14px;
+
+    &__link {
+      color: #0099e8;
+      text-decoration: none;
+    }
+  }
+
+  &__submit {
+    @include sell-btn-defalult();
+    margin: 40px 0 0;
+    background: #ea352d;
+    border: 1px solid #ea352d !important;
+    color: #fff;
+  }
+
+  &__back {
+    @include sell-btn-defalult();
+    width: 45% !important;
+    margin: 24px auto 0;
+    background: #aaa;
+    border: 1px solid #aaa !important;
+    color: #fff;
+  }
+}
