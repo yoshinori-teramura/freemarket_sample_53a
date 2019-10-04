@@ -1,18 +1,971 @@
 = render 'devise/shared/header'
-%p#notice= notice
-%h1 Items
-%table
-  %thead
-    %tr
-      %th Description
-      %th{:colspan => "3"}
-  %tbody
-    - @items.each do |item|
-      %tr
-        %td= item.description
-        %td= image_tag item.image.url if item.image.present?
-        %td= link_to 'Show', item
-        %td= link_to 'Edit', edit_item_path(item)
-        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Item', new_item_path
+
+.wrapper__main
+  .main
+    .main__top
+      %a.main__top__link{:href => "/items/featured/camp/"}
+      .main__top__slider
+        .main__top__slider__frame
+          %ul.main__top__slider__frame__lists
+            %li.main__top__slider__frame__lists__slide__visible
+              %a{:href => "/items/featured/camp/"}
+                .main__top__slider__frame__lists__slide__visible__image
+            %li.main__top__slider__frame__lists__slide__invisible
+              .main__top__slider__frame__lists__slide__invisible__box
+                .main__top__slider__frame__lists__slide__invisible__box__content
+                  %img.main__top__slider__frame__lists__slide__invisible__box__content__image{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/top-banner-main-device-1f627e51e488f6ca35feaa6a08b79736.png"}
+                  .main__top__slider__frame__lists__slide__invisible__box__content__subs
+                    .main__top__slider__frame__lists__slide__invisible__box__content__subs__toptexts
+                      スマホでかんたん
+                      %br
+                      フリマアプリ
+                    %p.main__top__slider__frame__lists__slide__invisible__box__content__subs__middletexts
+                      メルカリはスマホカメラからすぐに出品できる
+                      %br
+                      購入時も安心な独自システムのアプリです
+                    .main__top__slider__frame__lists__slide__invisible__box__content__subs__bottomeimages
+                      %a{:href => "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8", :target => "_blank"}
+                        %img.main__top__slider__frame__lists__slide__invisible__box__content__subs__bottomeimages__itunes{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg"}
+                      %a{:href => "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja", :target => "_blank"}
+                        %img.main__top__slider__frame__lists__slide__invisible__box__content__subs__bottomeimages__google{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg"}
+      .main__top__slider__arrow--left
+        = fa_icon 'angle-left 4x'
+      .main__top__slider__arrow--right
+        = fa_icon 'angle-right 4x'
+      .main__top__slider__dots
+        = fa_icon 'circle'
+        = fa_icon 'circle'
+    .main__popularCategory
+      %h2.main__popularCategory__title.h2
+        人気のカテゴリー
+      .main__popularCategory__content
+        %ul.main__popularCategory__content__topics
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              レディース
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              メンズ
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              家電・スマホ・カメラ
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              おもちゃ・ホビー・グッズ
+    .main__popularities
+      .main__popularities__items
+        .main__popularities__items__onecategory
+          %h3.main__popularities__items__onecategory__title.h3
+            レディース新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+
+        .main__popularities__items__onecategory.not--first
+          %h3.main__popularities__items__onecategory__title.h3
+            メンズ新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+        .main__popularities__items__onecategory.not--first
+          %h3.main__popularities__items__onecategory__title.h3
+            家電・スマホ・カメラ新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+        .main__popularities__items__onecategory.not--first
+          %h3.main__popularities__items__onecategory__title.h3
+            おもちゃ・ホビー・グッズ新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}  
+    
+    
+    
+    
+    .main__popularCategory
+      %h2.main__popularCategory__title.h2
+        人気のブランド
+      .main__popularCategory__content
+        %ul.main__popularCategory__content__topics
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              シャネル
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              ルイヴィトン
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              シュプリーム
+          %li.main__popularCategory__content__topics__1topic
+            %a.main__popularCategory__content__topics__1topic__link
+              ナイキ
+    .main__popularities
+      .main__popularities__items
+        .main__popularities__items__onecategory
+          %h3.main__popularities__items__onecategory__title.h3
+            シャネル新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+
+        .main__popularities__items__onecategory.not--first
+          %h3.main__popularities__items__onecategory__title.h3
+            ルイヴィトン新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+        .main__popularities__items__onecategory.not--first
+          %h3.main__popularities__items__onecategory__title.h3
+            シュプリーム新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+        .main__popularities__items__onecategory.not--first
+          %h3.main__popularities__items__onecategory__title.h3
+            ナイキ新着アイテム
+          %a.main__popularities__items__onecategory__more{:href => "/items/category/1/"}
+            もっと見る
+            = fa_icon 'angle-right 2x'
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+            .main__popularities__items__onecategorylist__boxes__onebox
+              %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
+                %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                  %figurecaption
+                    %span
+                      レディースハンドバッグ
+                  .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                    %span
+                      ¥6,50000
+                    %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}  
+
+
+.display
+  %a.display__link
+    .display__link__button
+      .display__link__button__text
+        出品
+      .display__link__button__mark
+        = fa_icon 'camera 3x'
+/%p#notice= notice
+/%h1 Items
+/%table
+/  %thead
+/    %tr
+/      %th Description
+/      %th{:colspan => "3"}
+/  %tbody
+/    - @items.each do |item|
+/      %tr
+/        %td= item.description
+/        %td= image_tag item.image.url if item.image.present?
+/        %td= link_to 'Show', item
+/        %td= link_to 'Edit', edit_item_path(item)
+/        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+/%br/
+/= link_to 'New Item', new_item_path
