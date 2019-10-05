@@ -1,5 +1,6 @@
 class SignupController < ApplicationController
-
+  
+  #次の画面に遷移する前に情報を保存する
   before_action :save_registration, only: :sms_confirmation 
   before_action :save_sms_confirmation, only: :adress
   before_action :save_adress, only: :credit
@@ -74,7 +75,7 @@ class SignupController < ApplicationController
         :delivery_family_kana_name,
         :delivery_first_kana_name,
         :postal_code,
-        :prefecture,
+        :prefecture_id,
         :city,
         :block,
         :building_name,
@@ -83,8 +84,8 @@ class SignupController < ApplicationController
         :id,
         :user_id,
         :number,
-        :name,
-        :expiration_date])
+        :expiration_date,
+        :security_code])
   end
 
   def save_registration
@@ -142,7 +143,7 @@ class SignupController < ApplicationController
     )
     session[:adress_attributes]= user_params[:adress_attributes]
     @user.build_adress(user_params[:adress_attributes])
-    # binding.pry
+
   end
 
   def save_credit
@@ -160,7 +161,7 @@ class SignupController < ApplicationController
     )
     session[:credit_attributes] = user_params[:credit_attributes]
     @user.build_credit(user_params[:credit_attributes])
-    # binding.pry
+
   end
 
 end
