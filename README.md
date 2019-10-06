@@ -43,8 +43,8 @@
 |-----|----|-------|
 |user_id             |references |null: false, foreign_key: true |
 |number              |integer    |null: false, unique: true |
-|name                |string     |null: false |
 |expiration_date     |date       |null: false |
+|security_code       |integer    |null: false |
 
 ### Association
 - belongs_to :user
