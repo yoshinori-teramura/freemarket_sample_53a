@@ -633,28 +633,52 @@ div {
   width: 800px;
   &__content {
   
-    &__link {
-      -webkit-box-align: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.2);
-      color: rgb(255, 255, 255);
+    &__images {
       display: flex;
-      -webkit-box-pack: center;
-      justify-content: center;
-      text-align: center;
-      padding: 15px 0px;
-      &__image {
-        height: 50px;
-        margin-right: 20px;
-        width: 50px;
-      }
-      &__text {
-        display: inline-flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      width: 750px;
+      margin: 0px auto;
+      &__left {
+        display: flex;
         flex-direction: column;
-        text-align: left;
+        -webkit-box-pack: center;
+        justify-content: center;
+        &__text {
+          color: rgb(255, 255, 255);
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
         &__text2 {
-          font-size: 20px;
-          margin-top: 8px;
+          color: rgb(255, 255, 255);
+          font-size: 35px;
+          margin-bottom: 20px;
+        }
+        &__apps {
+          &__mercari {
+            height: 68px;
+            margin-right: 20px;
+            width: 68px;
+          }
+          &__link {
+            &__appstore {
+              height: 40px;
+              margin-right: 8px;
+              width: 144px;
+
+            }
+            &__googleplay {
+              height: 40px;
+              width: 144px;
+            }
+          }
+        } 
+      }
+      &__right {
+        &__image {
+          height: 260px;
+          width: 300px;
         }
       }
     }
