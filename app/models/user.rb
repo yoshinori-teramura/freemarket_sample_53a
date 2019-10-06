@@ -2,11 +2,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,:omniauthable ,omniauth_providers: [:google_oauth2]
   
   has_many :items
-  has_one :adress
+  has_one  :adress
   has_one  :credit
+  has_many :sns_credential
   accepts_nested_attributes_for :adress
   accepts_nested_attributes_for :credit
 
@@ -20,4 +21,38 @@ class User < ApplicationRecord
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
     }
+
+
+  protected
+  def self.find_oauth(auth)
+    uid = auth.uid
+    provider = auth.provider
+    snscredential = SnsCredential.where(uid: uid, provider: provider).first
+    if snscredential.present?
+      user = User.where(id: snscredential.user_id).first
+    else
+      user = User.where(email: auth.info.email).first
+      if user.present?
+        SnsCredential.create(
+          uid: uid,
+          provider: provider,
+          user_id: user.id
+          )
+      else
+        user = User.create(
+          nickname: auth.info.name,
+          email:    auth.info.email,
+          password: Devise.friendly_token[0, 20],
+          telephone: "08000000000"
+          )
+        SnsCredential.create(
+          uid: uid,
+          provider: provider,
+          user_id: user.id
+          )
+      end
+    end
+    return user
+  end
+
 end

@@ -12,5 +12,5 @@
           Facebookで登録
         %button#google-login.btn-default.btn-sns.btn-sns-google
           = fa_icon("google 2x")
-          Googleで登録
+          = link_to 'Googleで登録', user_google_oauth2_omniauth_callback_path
 = render 'partial/footer'
