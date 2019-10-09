@@ -3,11 +3,10 @@
   %section.sell-container-wrapper
     .sell-container
       %h2.sell-container__head 商品の情報を入力
-      %form.sell-form
+      = form_for @item , url: '/sell', method: :post, html: {class: "sell-form"} do |f|
         .sell-upload-box
           %h3.sell-upload-box__head
             出品画像
-            -# TODO:mixinに分割
             %span.sell-form-require 必須
           %p.sell-upload-box__note 最大10枚までアップロードできます
           .sell-dropbox
@@ -21,17 +20,19 @@
                 またはクリックしてファイルをアップロード
         .sell-content
           .sell-form-name
-            %label.sell-form-name__label 商品名
+            = f.label "商品名", {class: "sell-form-name__label"}
             %span.sell-form-require 必須
             .sell-form-name__input-wrapper
               %input{class: "sell-form-name__input",
-                    placeholder: "商品名（必須40文字まで）"}
+                    placeholder: "商品名（必須40文字まで）",
+                    required: true}
           .sell-form-review
-            %label.sell-form-review__label 商品の説明
+            = f.label "商品の説明", {class: "sell-form-review__label"}
             %span.sell-form-require 必須
-            %textarea{class: "sell-form-review__textarea",
-                      rows: "5",
-                      placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+            = f.text_area(:description, {class: "sell-form-review__textarea",
+            rows: "5",
+            required: true,
+            placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"})
         .sell-content.sell-content--clearfix
           %h3.sell-content__sub-head 商品の詳細
           .sell-form-box
@@ -106,7 +107,8 @@
                     ¥
                     .sell-form-price__inputform__input
                       %input{class: "sell-form-price__inputform__input__inner",
-                            placeholder: "例) 300"}
+                            placeholder: "例) 300",
+                            required: true}
               %li.sell-form-price__tax
                 .sell-form-price__tax--left 販売手数料 (10％)
                 .sell-form-price__tax--right -
