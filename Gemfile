@@ -81,3 +81,4 @@ gem 'devise-i18n-views'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'pry-rails'
 gem 'active_hash'
+gem 'jquery-rails'
