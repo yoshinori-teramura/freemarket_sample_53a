@@ -29,3 +29,4 @@
 public/uploads/*
 
 config/secrets.yml
+/.env
