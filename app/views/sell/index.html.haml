@@ -42,6 +42,24 @@
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 -# TODO:Dummy collection_selectを使用するように
                 = select_tag 'category_id', options_for_select(["---", "メンズ", "レディース"], "---"), class: "sell-form-selectbox__select"
+              -# TODO:親カテゴリーが選択された時のみ表示
+              .sell-form-selectbox__select-wrapper
+                = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+                -# TODO:Dummy collection_selectを使用するように
+                = select_tag 'category_id2', options_for_select(["---", "トップス", "パンツ"], "---"), class: "sell-form-selectbox__select"
+              -# TODO:親カテゴリーが選択された時のみ表示
+              .sell-form-selectbox__select-wrapper
+                = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+                -# TODO:Dummy collection_selectを使用するように
+                = select_tag 'category_id3', options_for_select(["---", "Tシャツ", "ポロシャツ"], "---"), class: "sell-form-selectbox__select"
+            -# TODO:サイズがある場合のみ表示
+            .sell-form-selectbox
+              %label.sell-form-selectbox__label サイズ
+              %span.sell-form-require 必須
+              .sell-form-selectbox__select-wrapper
+                = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+                -# TODO:Dummy collection_selectを使用するように
+                = select_tag 'item_size', options_for_select(["---", "S", "M", "L"], "---"), class: "sell-form-selectbox__select"
             .sell-form-selectbox
               %label.sell-form-selectbox__label 商品の状態
               %span.sell-form-require 必須
