@@ -13,8 +13,8 @@
             .sell-dropbox__picturebox
               .sell-dropbox__pictures
                 %ul.sell-dropbox__picture
-            %label.sell-dropbox-area.sell-dropbox-area--item0{for: "image1"}
-              %input{type: "file", id: "image1", name: "image1", mutilple: true, class: "sell-dropbox-area__file"}
+            = f.label(:image, for: "image", class: "sell-dropbox-area sell-dropbox-area--item0") do
+              = f.file_field(:image, id: "image", class: "sell-dropbox-area__file")
               %pre.sell-dropbox-area__text
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
@@ -47,12 +47,12 @@
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'category_id2', options_for_select(["---", "トップス", "パンツ"], "---"), class: "sell-form-selectbox__select"
+                = select_tag 'category_child_id', options_for_select(["---", "トップス", "パンツ"], "---"), class: "sell-form-selectbox__select"
               -# TODO:親カテゴリーが選択された時のみ表示
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'category_id3', options_for_select(["---", "Tシャツ", "ポロシャツ"], "---"), class: "sell-form-selectbox__select"
+                = select_tag 'category_grandchild_id', options_for_select(["---", "Tシャツ", "ポロシャツ"], "---"), class: "sell-form-selectbox__select"
             -# TODO:サイズがある場合のみ表示
             .sell-form-selectbox
               %label.sell-form-selectbox__label サイズ
