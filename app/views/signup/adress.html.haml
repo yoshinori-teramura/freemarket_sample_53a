@@ -20,6 +20,7 @@
   %main.single-main
     %section.single-main__container
       %h2.single-main__container__header 住所入力
+      -# adress情報はfields_forにてモデルを分ける
       .single-main__container__form-group
         = f.label :お名前（全角）
         %span.single-main__container__form-group__requier 必須
@@ -44,6 +45,7 @@
         %span.single-main__container__form-group__requier 必須
         = f.fields_for :adress do |a|
           = a.select :prefecture_id, User.address_prefectures.keys, {}, {class: 'single-main__container__form-group__input-form'}
+          -# ↑userモデルにenumを指定してセレクト選択
       .single-main__container__form-group
         = f.label :市区町村
         %span.single-main__container__form-group__requier 必須
