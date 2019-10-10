@@ -43,7 +43,6 @@ class SignupController < ApplicationController
     )
     @user.build_adress(session[:adress_attributes])
     @user.build_credit(session[:credit_attributes])
-    # binding.pry
     if @user.save
       session[:id] = @user.id
       redirect_to complete_signup_index_path
@@ -97,7 +96,7 @@ class SignupController < ApplicationController
     session[:first_name] = user_params[:first_name]
     session[:family_kana_name] = user_params[:family_kana_name]
     session[:first_kana_name] = user_params[:first_kana_name]
-    session[:birthday] = user_params[:birthday]
+    session[:birthday] = Date.new(user_params["birthday(1i)"].to_i, user_params["birthday(2i)"].to_i, user_params["birthday(3i)"].to_i)
     @user = User.new(
       nickname: session[:nickname], 
       email: session[:email],
