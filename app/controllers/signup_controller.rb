@@ -1,5 +1,5 @@
 class SignupController < ApplicationController
-  
+  # before_action :authenticate_user!
   #次の画面に遷移する前に情報を保存する
   before_action :save_registration, only: :sms_confirmation 
   before_action :save_sms_confirmation, only: :adress
