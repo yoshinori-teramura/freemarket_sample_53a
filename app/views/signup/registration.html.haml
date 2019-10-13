@@ -1,6 +1,7 @@
 -# %h2 Sign up
 =render 'partial/header'
 = form_for @user, url: sms_confirmation_signup_index_path, method: :get do |f|
+  -# = render "devise/shared/error_messages", resource: resource
   %header
     %ol.progress
       %li.progress__box.active
