@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_one  :sns_credential
   accepts_nested_attributes_for :adress
   accepts_nested_attributes_for :credit
+  # accepts_nested_attributes_for :sns_credential
 
   enum address_prefecture: {
     選択してください:0,北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -22,6 +23,10 @@ class User < ApplicationRecord
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
     }
+
+
+  # validation
+  validates :nickname, presence: true  
 
 
   protected
@@ -62,6 +67,7 @@ class User < ApplicationRecord
     uid = auth.uid
     provider = auth.provider
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
+    binding.pry
     if snscredential.present?
       user = with_sns_data(auth, snscredential)[:user]
       sns = snscredential
