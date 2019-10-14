@@ -20,6 +20,7 @@
   %main.single-main
     %section.single-main__container
       %h2.single-main__container__header 住所入力
+      -# adress情報はfields_forにてモデルを分ける
       .single-main__container__form-group
         = f.label :お名前（全角）
         %span.single-main__container__form-group__requier 必須
@@ -43,78 +44,27 @@
         = f.label :都道府県
         %span.single-main__container__form-group__requier 必須
         = f.fields_for :adress do |a|
-          = a.text_field  :prefecture , :class => "single-main__container__form-group__input-form", :placeholder => "例)： 東京都"
-          
-          -# = f.fields_for :adress do |a|
-          -#   = c= f.select method, choices, {} :prefecture
-          -#   %select{:name => "pref_id"}
-          -#     %option{:selected => "selected", :value => ""} 都道府県
-          -#     %option{:value => "1"} 北海道
-          -#     %option{:value => "2"} 青森県
-          -#     %option{:value => "3"} 岩手県
-          -#     %option{:value => "4"} 宮城県
-          -#     %option{:value => "5"} 秋田県
-          -#     %option{:value => "6"} 山形県
-          -#     %option{:value => "7"} 福島県
-          -#     %option{:value => "8"} 茨城県
-          -#     %option{:value => "9"} 栃木県
-          -#     %option{:value => "10"} 群馬県
-          -#     %option{:value => "11"} 埼玉県
-          -#     %option{:value => "12"} 千葉県
-          -#     %option{:value => "13"} 東京都
-          -#     %option{:value => "14"} 神奈川県
-          -#     %option{:value => "15"} 新潟県
-          -#     %option{:value => "16"} 富山県
-          -#     %option{:value => "17"} 石川県
-          -#     %option{:value => "18"} 福井県
-          -#     %option{:value => "19"} 山梨県
-          -#     %option{:value => "20"} 長野県
-          -#     %option{:value => "21"} 岐阜県
-          -#     %option{:value => "22"} 静岡県
-          -#     %option{:value => "23"} 愛知県
-          -#     %option{:value => "24"} 三重県
-          -#     %option{:value => "25"} 滋賀県
-          -#     %option{:value => "26"} 京都府
-          -#     %option{:value => "27"} 大阪府
-          -#     %option{:value => "28"} 兵庫県
-          -#     %option{:value => "29"} 奈良県
-          -#     %option{:value => "30"} 和歌山県
-          -#     %option{:value => "31"} 鳥取県
-          -#     %option{:value => "32"} 島根県
-          -#     %option{:value => "33"} 岡山県
-          -#     %option{:value => "34"} 広島県
-          -#     %option{:value => "35"} 山口県
-          -#     %option{:value => "36"} 徳島県
-          -#     %option{:value => "37"} 香川県
-          -#     %option{:value => "38"} 愛媛県
-          -#     %option{:value => "39"} 高知県
-          -#     %option{:value => "40"} 福岡県
-          -#     %option{:value => "41"} 佐賀県
-          -#     %option{:value => "42"} 長崎県
-          -#     %option{:value => "43"} 熊本県
-          -#     %option{:value => "44"} 大分県
-          -#     %option{:value => "45"} 宮崎県
-          -#     %option{:value => "46"} 鹿児島県
-          -#     %option{:value => "47"} 沖縄県
+          = a.select :prefecture_id, User.address_prefectures.keys, {}, {class: 'single-main__container__form-group__input-form'}
+          -# ↑userモデルにenumを指定してセレクト選択
       .single-main__container__form-group
         = f.label :市区町村
         %span.single-main__container__form-group__requier 必須
         = f.fields_for :adress do |a|
-          = a.text_field :city , :class => "single-main__container__form-group__input-form", :placeholder => "例)：　　"
+          = a.text_field :city , :class => "single-main__container__form-group__input-form", :placeholder => "例)：　世田谷区"
       .single-main__container__form-group
         = f.label :番地
         %span.single-main__container__form-group__requier 必須
         = f.fields_for :adress do |a|
-          = a.text_field :block , :class => "single-main__container__form-group__input-form", :placeholder => "例)："
+          = a.text_field :block , :class => "single-main__container__form-group__input-form", :placeholder => "例)：　世田谷1-2-3"
       .single-main__container__form-group
         = f.label :建物名
         %span.single-main__container__form-group__any 任意
         = f.fields_for :adress do |a|
-          = a.text_field :building_name, :class => "single-main__container__form-group__input-form", :placeholder => "例)："
+          = a.text_field :building_name, :class => "single-main__container__form-group__input-form", :placeholder => "例)：　oooビル4034"
       .single-main__container__form-group
         = f.label :電話
         %span.single-main__container__form-group__any 任意
         = f.fields_for :adress do |a|
-          = a.text_field :delivery_tel , :class => "single-main__container__form-group__input-form", :placeholder => "例)："
+          = a.text_field :delivery_tel , :class => "single-main__container__form-group__input-form", :placeholder => "例)：　08012345678"
       = f.submit '次へ進む', class: 'btn-default btn-red'
 = render 'partial/footer'

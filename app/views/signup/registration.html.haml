@@ -56,10 +56,14 @@
         = f.label :生年月日
         %span.single-main__container__form-group__requier 必須
         %br/
-        = f.date_field  :birthday 
+        = f.date_select :birthday ,start_year:Time.now.year, end_year:1970 ,prompt:"--",:class =>"single-main__container__form-group__input__herf"
+        -# Todo:date＿selectのclss指定
       .single-main__container__form-group
         %p.form-info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
       .single-main__container__form-group
+        =image_tag "https://i.gyazo.com/d1c693a279de98c05670163a3e2079c6.png"
+        %p　イメージです。実装途中
+        -# = recaptcha_tags 
         %p.single-text.text-center
           「次へ進む」のボタンを押すことにより、
           %a{:href => "https://www.mercari.com/jp/tos_list/", :target => "_blank"}> 利用規約

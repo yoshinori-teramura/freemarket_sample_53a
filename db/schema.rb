@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_135738) do
+ActiveRecord::Schema.define(version: 2019_10_05_105137) do
 
   create_table "adresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code", null: false
-    t.string "prefecture", null: false
     t.string "city", null: false
     t.string "block", null: false
     t.string "building_name"
@@ -24,14 +23,15 @@ ActiveRecord::Schema.define(version: 2019_09_30_135738) do
     t.string "delivery_family_kana_name"
     t.integer "delivery_tel"
     t.bigint "user_id"
+    t.integer "prefecture_id", default: 0
     t.index ["user_id"], name: "index_adresses_on_user_id"
   end
 
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "number", null: false
-    t.string "name", null: false
     t.date "expiration_date", null: false
+    t.integer "security_code", null: false
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2019_09_30_135738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+  end
+
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -64,4 +73,5 @@ ActiveRecord::Schema.define(version: 2019_09_30_135738) do
 
   add_foreign_key "adresses", "users"
   add_foreign_key "credits", "users"
+  add_foreign_key "sns_credentials", "users"
 end

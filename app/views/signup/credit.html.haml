@@ -24,28 +24,22 @@
         = f.label :カード番号
         %span.single-main__container__form-group__requier 必須       
         = f.fields_for :credit do |c|
-          = c.number_field :number, :class =>"single-main__container__form-group__input-form", :placeholder => "半角数字のみ"
-      .single-main__container__form-group
-        = f.label :名義
-        %span.single-main__container__form-group__requier 必須       
-        = f.fields_for :credit do |c|
-          = c.text_field :name, :class =>"single-main__container__form-group__input-form", :placeholder => ""    
+          = c.number_field :number, :class =>"single-main__container__form-group__input-form", :placeholder => "半角数字のみ"   
       .single-main__container__form-group
         = f.label :有効期間
         %span.single-main__container__form-group__requier 必須
+        %br/
         = f.fields_for :credit do |c|
-          = c.date_field :expiration_date, :class =>"single-main__container__form-group__input-form", :placeholder => ""
-      -# .single-main__container__form-group
-      -#   = f.label :有効期間
-      -#   %span.single-main__container__form-group__requier 必須
-      -#   .single-main__container__form-group__input-form
-      -#     = f.fields_for :credit do |c|
-      -#       = c.number_field :security_code, :class =>"single-main__container__formgroup__input-form", :placeholder => "カード背面4桁もしくが3桁の番号"
+          = c.date_select  :expiration_date, :class =>"single-main__container__form-group__input-form", discard_day:true ,start_year:Time.now.year-2000, end_year:Time.now.year-2000+10
+      .single-main__container__form-group
+        = f.label :セキュリティコード
+        %span.single-main__container__form-group__requier 必須
+        = f.fields_for :credit do |c|
+          = c.number_field :security_code, :class =>"single-main__container__form-group__input-form", :placeholder => "カード背面4桁もしくが3桁の番号"
       .single-main__container__form-group.text-right
         %p
           %a{:href => "", :target => "_blank"}
             = fa_icon("question-circle")
             カード裏面の番号とは？
       = f.submit '次へ進む',class: 'btn-default btn-red'
-
 = render 'partial/footer'

@@ -29,6 +29,5 @@
           %a.header__bottom__right__login__link{:href => "/users/sign_in/"}
             ログイン
         .header__bottom__right__logout
-          %a.header__bottom__right__login__link
-          = link_to 'ログアウト',destroy_user_session_path, method: :delete
+          = link_to 'ログアウト',destroy_user_session_path, method: :delete, :class => "header__bottom__right__login__link"
           

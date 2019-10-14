@@ -19,6 +19,7 @@
 - has_one :credit
 - has_one :address
 - has_many :item_likes
+= has_one :sns_credntials
 
 
 ## addresses
@@ -43,8 +44,8 @@
 |-----|----|-------|
 |user_id             |references |null: false, foreign_key: true |
 |number              |integer    |null: false, unique: true |
-|name                |string     |null: false |
 |expiration_date     |date       |null: false |
+|security_code       |integer    |null: false |
 
 ### Association
 - belongs_to :user
@@ -119,4 +120,15 @@
 
 ### Association
 - belongs_to :item
+- belongs_to :user
+
+## sns_credentials table
+|Column|Type|Options|
+|------|----|-------|
+|user_id            |references |null: false, foreign_key: true |
+|provider           |string     |
+|uid                |string     |
+
+
+### Association
 - belongs_to :user

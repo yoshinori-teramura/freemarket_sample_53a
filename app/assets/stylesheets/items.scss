@@ -622,3 +622,65 @@ div {
     }
   }
 }
+
+.banner {
+  color: rgb(255, 255, 255);
+  background: url(https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg) center center / cover;
+  background-position: center center;
+  margin-top: auto;
+  display: block;
+  height: 260px;
+  width: 800px;
+  &__content {
+  
+    &__images {
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      width: 750px;
+      margin: 0px auto;
+      &__left {
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+        &__text {
+          color: rgb(255, 255, 255);
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+        &__text2 {
+          color: rgb(255, 255, 255);
+          font-size: 35px;
+          margin-bottom: 20px;
+        }
+        &__apps {
+          &__mercari {
+            height: 68px;
+            margin-right: 20px;
+            width: 68px;
+          }
+          &__link {
+            &__appstore {
+              height: 40px;
+              margin-right: 8px;
+              width: 144px;
+
+            }
+            &__googleplay {
+              height: 40px;
+              width: 144px;
+            }
+          }
+        } 
+      }
+      &__right {
+        &__image {
+          height: 260px;
+          width: 300px;
+        }
+      }
+    }
+  }
+}
