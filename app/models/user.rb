@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
-  
-  has_many :items
+
+  # has_many :items
   has_one  :adress
   has_one  :credit
   has_one  :sns_credential
@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
 
   # validation
-  validates :nickname, presence: true  
+  validates :nickname, presence: true
 
 
   protected
