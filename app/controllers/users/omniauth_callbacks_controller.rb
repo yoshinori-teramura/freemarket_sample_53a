@@ -8,19 +8,28 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
   def callback_for(provider)
-    @omniauth = request.env['omniauth.auth']
+    # providerからデータを取得
+    @sns_credential = SnsCredential.from_omniauth(request.env["omniauth.auth"])
     binding.pry
-    info = User.find_oauth(@omniauth)
-    binding.pry
-    @user = info[:user]
-    if @user.persisted? 
+    session[:nickname] = request.env["omniauth.auth"].info.name
+    session[:email] = request.env["omniauth.auth"].info.email
+    session[:password] = Devise.friendly_token[0,20] # deviseで任意のパスワードを生成
+    session[:provider] = @sns_credential.provider
+    session[:uid] = @sns_credential.uid
+
+    # @omniauth = request.env['omniauth.auth']
+    # info = User.find_oauth(@omniauth)
+    # # binding.pry
+    # @user = info[:user]
+    if @sns_credential.persisted?    #@user.persisted? 
       sign_in_and_redirect @user, event: :authentication
       
     else 
-      @sns = info[:sns]
-      session[:provider] = @sns[:provider]
-      session[:uid] = @sns[:uid]
-      render template: "signup/registration" 
+      # @sns = info[:sns]
+      # session[:provider] = @sns[:provider]
+      # session[:uid] = @sns[:uid]
+      binding.pry
+      redirect_to registration_signup_index_path
     end
   end
 

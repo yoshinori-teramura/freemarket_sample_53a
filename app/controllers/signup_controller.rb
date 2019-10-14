@@ -7,6 +7,7 @@ class SignupController < ApplicationController
   before_action :save_credit, only: :create
 
   def registration_type
+  
   end
 
   def registration
@@ -43,6 +44,8 @@ class SignupController < ApplicationController
     )
     @user.build_adress(session[:adress_attributes])
     @user.build_credit(session[:credit_attributes])
+    @sns_credential = SnsCredential.new(provider: session[:provider], uid: session[:uid])
+    binding.pry
     if @user.save
       session[:id] = @user.id
       redirect_to complete_signup_index_path
