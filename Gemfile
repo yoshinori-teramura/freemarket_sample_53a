@@ -83,4 +83,6 @@ gem 'active_hash'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+gem 'jquery-rails'
 gem 'omniauth-facebook'
+
