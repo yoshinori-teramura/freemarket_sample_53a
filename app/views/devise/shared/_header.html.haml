@@ -21,6 +21,23 @@
             %svg.header__bottom__left__brand__link__svg{"aria-hidden" => "true", :height => "16", :viewbox => "0 0 23 16", :width => "23"}
               %path{:d => "M6.315 0L4.473 1.806 2.833.019.73 1.977l1.69 1.84L1.198 5.02c-1.594 1.594-1.594 4.188-.01 5.772L6.3 16h13.272a3.08 3.08 0 0 0 3.077-3.077V3.076A3.08 3.08 0 0 0 19.57 0H6.315zm13.46 12.925a.211.211 0 0 1-.205.205H7.504L3.227 8.771a1.226 1.226 0 0 1-.01-1.71L4.38 5.92l1.28 1.371a2.68 2.68 0 1 0 2.13-1.93L6.433 3.907 7.49 2.87h12.082a.211.211 0 0 1 .206.205v9.848h-.002z", :fill => "currentColor", "fill-rule" => "nonzero"}
             %span.header__bottom__left__brand__link__text ブランドから探す
+     - if user_signed_in?
+      %ul.header__bottom__right
+        %li.header__bottom__right__icon
+          %a.header__bottom__right__icon__link{:href => "/mypage/notices/"}
+            = fa_icon 'bell 2x'
+            お知らせ
+        %li.header__bottom__right__icon
+          %a.header__bottom__right__icon__link{:href => "/mypage/todo/"}
+            = fa_icon 'check 2x'
+            やることリスト
+        %li.header__bottom__right__icon
+          %a.header__bottom__right__icon__link{:href => "/mypage/"}
+            = fa_icon 'smile 2x'
+            マイページ
+        %li.header__bottom__right__logout
+          = link_to 'ログアウト',destroy_user_session_path, method: :delete, :class => "header__bottom__right__login__link"
+     - else
       .header__bottom__right
         .header__bottom__right__signup
           %a.header__bottom__right__signup__link{:href => "/signup/registration_type/"}
@@ -28,6 +45,4 @@
         .header__bottom__right__login
           %a.header__bottom__right__login__link{:href => "/users/sign_in/"}
             ログイン
-        .header__bottom__right__logout
-          = link_to 'ログアウト',destroy_user_session_path, method: :delete, :class => "header__bottom__right__login__link"
-          
+        
