@@ -211,6 +211,20 @@ div {
             transition: all 0.3s ease-out 0s;           
           }
         }
+        &__icon {
+          height: 44px;
+          position: relative;
+          padding: 0px 7px;
+          &__link {
+            -webkit-box-align: center;
+            align-items: center;
+            display: flex;
+            font-size: 14px;
+            height: 32px;
+            transform: scale(1);
+            transition: all 0.3s ease-out 0s;
+          }
+        }
       }
      }
    }
