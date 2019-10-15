@@ -211,6 +211,20 @@ div {
             transition: all 0.3s ease-out 0s;           
           }
         }
+        &__icon {
+          height: 44px;
+          position: relative;
+          padding: 0px 7px;
+          &__link {
+            -webkit-box-align: center;
+            align-items: center;
+            display: flex;
+            font-size: 14px;
+            height: 32px;
+            transform: scale(1);
+            transition: all 0.3s ease-out 0s;
+          }
+        }
       }
      }
    }
@@ -219,6 +233,7 @@ div {
 
 
 .wrapper__main {
+  height: auto;
   max-width: 700px;
   padding: 0px; //同じパターン？
   width: 100%;
@@ -226,7 +241,7 @@ div {
   .main {
     position: relative;
     &__top {
-      height: 290px; //同じパターン？
+      height: auto; //同じパターン？
       left: 50%;
       margin-left: -50vw;
       position: relative;
@@ -261,15 +276,15 @@ div {
             display: block;
             margin: 0px;
             padding: 0px;
-            height: 290px;
-            width: 1704px;
+            height: 290px; //290?
+            width: 100%; //元は1704px
             cursor: pointer;
             box-sizing: border-box;
             touch-action: pan-y pinch-zoom;
             &__slide__visible {
               box-sizing: border-box;
               display: inline-block;
-              height: auto;
+              height: 290px;
               left: 0px;
               list-style-type: none;
               margin: auto 0px;
@@ -278,7 +293,7 @@ div {
               transform: scale(1);
               transition: transform 0.4s linear 0s;
               vertical-align: top;
-              width: 852px;
+              width: 100%; //852px?
               &__image {
                 height: 290px; //同じパターン？
                 position: relative;
@@ -630,7 +645,7 @@ div {
   margin-top: auto;
   display: block;
   height: 260px;
-  width: 800px;
+  width: 100%;
   &__content {
   
     &__images {
