@@ -64,7 +64,8 @@ class SignupController < ApplicationController
       :email,
       :password,
       :password_confirmation, 
-      :family_name, :first_name, 
+      :family_name, 
+      :first_name, 
       :family_kana_name, 
       :first_kana_name, 
       :birthday,
@@ -110,8 +111,9 @@ class SignupController < ApplicationController
       family_kana_name: session[:first_kana_name],
       first_kana_name: session[:first_kana_name],
       birthday: session[:birthday], 
-      tel: 12345678901, 
+      tel: 12345678901 
     )
+    binding.pry
   end
 
   def save_sms_confirmation

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_105137) do
+ActiveRecord::Schema.define(version: 2019_10_17_094008) do
 
   create_table "adresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code", null: false
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2019_10_05_105137) do
 
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "number", null: false
     t.date "expiration_date", null: false
     t.integer "security_code", null: false
+    t.string "number", null: false
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_10_05_105137) do
     t.string "family_kana_name", null: false
     t.string "first_kana_name", null: false
     t.date "birthday", null: false
-    t.integer "tel", null: false
+    t.string "tel", null: false
     t.text "profile"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
