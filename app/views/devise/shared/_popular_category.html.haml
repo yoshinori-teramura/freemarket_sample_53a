@@ -25,16 +25,19 @@
         = fa_icon 'angle-right 2x'
     .main__popularities__items__onecategorylist
       .main__popularities__items__onecategorylist__boxes
-        .main__popularities__items__onecategorylist__boxes__onebox
-          %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
-            %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
-              %figurecaption
-                %span
-                  レディースハンドバッグ
-              .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
-                %span
-                  ¥6,50000
-                %img{:alt => "", :src => "https://static.mercdn.net/thumb/photos/m98171323217_1.jpg?1569671408"}
+
+        - @items.each do |item|
+          .main__popularities__items__onecategorylist__boxes__onebox
+            %a.main__popularities__items__onecategorylist__boxes__onebox__link{href: "/items/#{item.id}"}
+              %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
+                %figurecaption
+                  %span
+                    id:#{item.id} each文
+                .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
+                  %span
+                    items.price
+                  = image_tag item.image.url if item.image.present?
+
         .main__popularities__items__onecategorylist__boxes__onebox
           %a.main__popularities__items__onecategorylist__boxes__onebox__link{:href => "/items/1/"}
             %figure.main__popularities__items__onecategorylist__boxes__onebox__link__figure
