@@ -1,8 +1,19 @@
 %p#notice= notice
 %p
-  %strong Description:
-  = @item.description
+  %strong name:
+  = @item.name
+%p
+  %strong image:
   = image_tag @item.image.url if @item.image.present?
+%p
+  %strong description:
+  = @item.description
+%p
+  %strong price:
+  = @item.price
+
 = link_to 'Edit', edit_item_path(@item)
 |
 = link_to 'Back', items_path
+|
+= link_to 'Destroy', item_path, method: :delete
