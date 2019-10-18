@@ -10,7 +10,7 @@
 |family_kana_name    |string  |null: false |
 |first_kana_name     |string  |null: false |
 |birthday            |datetime|null: false |
-|tel                 |integer |null: false, unique: true | 
+|tel                 |string  |null: false, unique: true | 
 |profile             |text    |
 |credit              |references  |null: false, foreign_key: true |
 
@@ -43,7 +43,7 @@
 |colum|type|options|
 |-----|----|-------|
 |user_id             |references |null: false, foreign_key: true |
-|number              |integer    |null: false, unique: true |
+|number              |string     |null: false, unique: true |
 |expiration_date     |date       |null: false |
 |security_code       |integer    |null: false |
 
