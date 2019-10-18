@@ -8,12 +8,12 @@ class SellController < ApplicationController
     @item = Item.new(item_params)
     @item.save
     # FIXME: 仮置き
-    redirect_to :root
+    redirect_to :root, notice: 'Item was successfully created.'
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:description, :image)
+    params.require(:item).permit(:name, :description, :image, :price)
   end
 end
