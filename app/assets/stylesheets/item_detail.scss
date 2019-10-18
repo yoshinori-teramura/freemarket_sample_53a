@@ -396,10 +396,10 @@
   }
 
   &__facebook {
-    @include sns-icon(#fff, #385185, 26px);
+    @include sns-icon(#fff, #385185, 35px);
   }
 
   &__twitter {
-    @include sns-icon(#fff, #5d9dc9, 24px);
+    @include sns-icon(#fff, #5d9dc9, 35px);
   }
 }
