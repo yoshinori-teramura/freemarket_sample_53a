@@ -1,5 +1,5 @@
 = render 'partial/header'
-= form_for @user, url: adress_signup_index_path , method: :get do |f|  
+= form_for @user, html: { id: :sms_confirmation }, url: adress_signup_index_path , method: :get do |f|  
   %header
     %ol.progress
       %li.progress__box
@@ -23,7 +23,7 @@
       .single-main__container__form-group
         = f.label :携帯電話の番号
         %span.single-main__container__form-group__requier 必須
-        = f.number_field :tel , :class =>"single-main__container__form-group__input-form",:placeholder => "携帯電話の番号を入力", :value => ""
+        = f.text_field :tel , :class =>"single-main__container__form-group__input-form",:placeholder => "携帯電話の番号を入力", :value => ""
         %p 本人確認のため、携帯電話のSMS（ショートメッセージサービス）を利用して認証を行います。
       %button.btn-default.btn-red{:type => "submit"} SMSを送信する
       .single-main__container__form-group.text-right

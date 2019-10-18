@@ -7,11 +7,12 @@ class SignupController < ApplicationController
   before_action :save_credit, only: :create
 
   def registration_type
-  
   end
 
   def registration
     @user = User.new 
+    @user.sns_credentials.build
+    #has_manyの関係性のbuild:インスタンス名.アソシエーション.build
   end
 
   def sms_confirmation
@@ -21,11 +22,13 @@ class SignupController < ApplicationController
   def adress
     @user = User.new
     @user.build_adress
+    #has_oneの関係性のbuild:インスタンス名.build_アソシエーション名
   end
 
   def credit
     @user = User.new
     @user.build_credit
+    #has_oneの関係性のbuild:インスタンス名.build_アソシエーション名
   end
 
 
@@ -42,10 +45,10 @@ class SignupController < ApplicationController
       birthday: session[:birthday],
       tel: session[:tel]
     )
+    #以下、アソシエーションモデルをまとめて保存
     @user.build_adress(session[:adress_attributes])
     @user.build_credit(session[:credit_attributes])
-    @sns_credential = SnsCredential.new(provider: session[:provider], uid: session[:uid])
-    binding.pry
+    @user.sns_credentials.build(session[:sns_credentials_attributes])
     if @user.save
       session[:id] = @user.id
       redirect_to complete_signup_index_path
@@ -64,7 +67,8 @@ class SignupController < ApplicationController
       :email,
       :password,
       :password_confirmation, 
-      :family_name, :first_name, 
+      :family_name, 
+      :first_name, 
       :family_kana_name, 
       :first_kana_name, 
       :birthday,
@@ -87,7 +91,10 @@ class SignupController < ApplicationController
         :user_id,
         :number,
         :expiration_date,
-        :security_code])
+        :security_code],
+      sns_credentials_attributes:[
+        :provider,
+        :uid])
   end
 
   def save_registration
@@ -110,7 +117,7 @@ class SignupController < ApplicationController
       family_kana_name: session[:first_kana_name],
       first_kana_name: session[:first_kana_name],
       birthday: session[:birthday], 
-      tel: 12345678901, 
+      tel: 12345678901 
     )
   end
 
@@ -143,9 +150,7 @@ class SignupController < ApplicationController
       birthday: session[:birthday], 
       tel: session[:tel]
     )
-    session[:adress_attributes]= user_params[:adress_attributes]
-    @user.build_adress(user_params[:adress_attributes])
-
+    session[:adress_attributes]= user_params[:adress_attributes]    # @user.build_adress(user_params[:adress_attributes])
   end
 
   def save_credit
@@ -161,9 +166,6 @@ class SignupController < ApplicationController
       birthday: session[:birthday], 
       tel: session[:tel]
     )
-    session[:credit_attributes] = user_params[:credit_attributes]
-    @user.build_credit(user_params[:credit_attributes])
-
+    session[:credit_attributes] = user_params[:credit_attributes]    # @user.build_credit(user_params[:credit_attributes])
   end
-
 end
