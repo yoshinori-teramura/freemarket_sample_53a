@@ -94,7 +94,25 @@
 
 -# コメント(TODO:ログイン状態で分岐する)
 .item-comments
+
 %ul.item-pager
+  %li.item-pager__prev
+    %a.item-pager__prev__link
+      = fa_icon 'angle-left', class: 'item-pager__prev__link__icon'
+      前の商品名
+  %li.item-pager__next
+    %a.item-pager__next__link
+      次の商品名
+      = fa_icon 'angle-right', class: 'item-pager__next__link__icon'
+
 .item-sns-container
+  %ul.sns-box
+    %li.sns-box__facebook
+      %a.sns-box__facebook__link
+        = fa_icon 'facebook-square 2x', class: 'sns-box__facebook__link__icon'
+    %li.sns-box__twitter
+      %a.sns-box__twitter__link
+        = fa_icon 'twitter-square 2x', class: 'sns-box__twitter__link__icon'
+    -# NOTE: このバージョンのFontawesomeに他のSNSアイコンがないため省略
 .items-in-user-profile
 -# TODO:パンくずリスト
