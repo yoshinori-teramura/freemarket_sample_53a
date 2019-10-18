@@ -65,18 +65,15 @@
 |price             |integer  |null: false |
 |trade_status      |integer  |null: false |
 
-
 ### association
 - has_many :photos
-- belongs_to :item_likes
+- belongs_to :favorite
 - belongs_to :user
-- belongs_to :categorys
-- belongs_to :brands
-
+- belongs_to :category
+- belongs_to :brand
 
 
 ## photos table
-
 |Column|Type|Options|
 |------|----|-------|
 |item_id            |references    |null: false, foreign_key: true    |
@@ -85,7 +82,7 @@
 ### Association
 - belongs_to :item
 
-## categorys table
+## categories table
 |Column|Type|Options|
 |------|----|-------|
 |name  |string      |null: false, unique: true  |
@@ -101,7 +98,7 @@
 ### Association
 - has_many :items
 
-## item_likes table
+## favorites table
 |Column|Type|Options|
 |------|----|-------|
 |item_id            |references |null: false, foreign_key: true |
