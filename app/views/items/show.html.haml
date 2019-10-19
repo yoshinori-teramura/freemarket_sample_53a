@@ -6,6 +6,8 @@
 -# |
 -# = link_to 'Back', items_path
 
+= render 'devise/shared/header'
+
 %section.item-container
   %h1.item-name (商品名)
   .item-main-content
@@ -137,3 +139,4 @@
       = render partial: 'itembox', locals: { item: @item }
       = render partial: 'itembox', locals: { item: @item }
 -# TODO:パンくずリスト
+= render 'devise/shared/footer'
