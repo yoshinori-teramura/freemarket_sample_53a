@@ -71,7 +71,7 @@ div {
 .wrapper__head {
   background-color: rgb(255, 255, 255);
   .header {
-    width: 700px;
+    width: 1020px;
     margin: 0 auto;
     padding: 8px 0px 0px;
     &__top {
@@ -179,6 +179,8 @@ div {
       }
       &__right {
         display: flex;
+        font-size: 0;
+        @include clearfix();
         &__signup {
           text-align: center;
           &__link {
@@ -214,15 +216,34 @@ div {
         &__icon {
           height: 44px;
           position: relative;
-          padding: 0px 7px;
+          padding: 0 7px;
+          cursor: pointer;
+          &:hover {
+            text-decoration: none;
+            opacity: 1;
+            color: #0099e8;
+            .header__bottom__right__icon__link__i {
+              color: #0099e8 !important;
+            }
+          }
           &__link {
             -webkit-box-align: center;
             align-items: center;
             display: flex;
             font-size: 14px;
             height: 32px;
-            transform: scale(1);
-            transition: all 0.3s ease-out 0s;
+            // transform: scale(1);
+            // transition: all 0.3s ease-out 0s;
+            &__i {
+              color: #ccc;
+              font-size: 20px;
+              vertical-align: middle;
+            }
+            &__text {
+              margin-left: 10px;
+              font-size: 14px;
+              vertical-align: middle;
+            }
           }
         }
       }
