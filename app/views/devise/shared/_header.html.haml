@@ -24,16 +24,20 @@
       - if user_signed_in?
         %ul.header__bottom__right
           %li.header__bottom__right__icon
-            %a.header__bottom__right__icon__link{:href => "/mypage/notices/"}
-              = fa_icon 'bell 2x'
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'heart-o'
+              いいね！一覧
+          %li.header__bottom__right__icon
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'bell'
               お知らせ
           %li.header__bottom__right__icon
-            %a.header__bottom__right__icon__link{:href => "/mypage/todo/"}
-              = fa_icon 'check 2x'
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'check'
               やることリスト
           %li.header__bottom__right__icon
-            %a.header__bottom__right__icon__link{:href => "/mypage/"}
-              = fa_icon 'smile 2x'
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'smile'
               マイページ
           %li.header__bottom__right__logout
             = link_to 'ログアウト',destroy_user_session_path, method: :delete, :class => "header__bottom__right__login__link"
@@ -45,4 +49,3 @@
           .header__bottom__right__login
             %a.header__bottom__right__login__link{:href => "/users/sign_in/"}
               ログイン
-        
