@@ -99,13 +99,15 @@
 
 %ul.item-pager
   %li.item-pager__prev
-    %a.item-pager__prev__link
-      = fa_icon 'angle-left', class: 'item-pager__prev__link__icon'
-      前の商品名
+    -if @item.previous
+      = link_to item_path(@item.previous), class: 'item-pager__prev__link' do
+        = fa_icon 'angle-left', class: 'item-pager__prev__link__icon'
+        = @item.previous.name
   %li.item-pager__next
-    %a.item-pager__next__link
-      次の商品名
-      = fa_icon 'angle-right', class: 'item-pager__next__link__icon'
+    -if @item.next
+      = link_to item_path(@item.next), class: 'item-pager__next__link' do
+        = @item.next.name
+        = fa_icon 'angle-right', class: 'item-pager__next__link__icon'
 
 .item-sns-container
   %ul.sns-box
