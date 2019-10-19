@@ -3,9 +3,11 @@
     %figure.item-box__link__photo
       = image_tag item.image.url, class: 'item-box__link__photo__img'
     .item-box__body
-      %h3.item-box__body__name (商品名)
+      %h3.item-box__body__name
+        = item.name
       .item-box__body__num
-        .item-box__body__num__price ¥3,000
+        .item-box__body__num__price
+          = to_yen(item.price)
         .item-box__body__num__like
           = fa_icon 'heart-o', class: 'item-box__body__num__like__icon'
           %span 1

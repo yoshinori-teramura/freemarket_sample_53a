@@ -21,7 +21,8 @@
 = render 'devise/shared/header'
 
 %section.item-container
-  %h1.item-name (商品名)
+  %h1.item-name
+    = @item.name
   .item-main-content
     .item-photo-box
       .item-main-photo
@@ -85,7 +86,8 @@
           %th.item-detail__th 発送日の目安
           %td.item-detail__td 1~2日で発送
   .item-price-box
-    %span.item-price-box__price ¥3,000
+    %span.item-price-box__price
+      = to_yen(@item.price)
     %span.item-price-box__tax (税込)
     %span.item-price-box__shipping-fee 送料込み
   %a.item-buy-btn 購入画面に進む
@@ -151,4 +153,5 @@
       = render partial: 'itembox', locals: { item: @item }
       = render partial: 'itembox', locals: { item: @item }
 -# TODO:パンくずリスト
+= render 'devise/shared/aside'
 = render 'devise/shared/footer'
