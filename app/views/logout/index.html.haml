@@ -1,0 +1,12 @@
+= render 'devise/shared/header'
+%main.mypage-container
+  = render 'mypages/sidemenu'
+  .mypage-content
+    .logout-container
+      .logout-box
+        .logout-box__inner
+          = link_to('ログアウト', destroy_user_session_path,
+              method: :delete,
+              class: 'logout-button')
+= render 'devise/shared/aside'
+= render 'devise/shared/footer'
