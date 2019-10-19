@@ -80,7 +80,7 @@ class SignupController < ApplicationController
     params.require(:user).permit(:nickname,
       :email,
       :password,
-      :password_confirmation,
+      :password_confirmaiton,
       :family_name, 
       :first_name, 
       :family_kana_name, 
