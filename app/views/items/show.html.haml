@@ -73,7 +73,7 @@
   %a.item-buy-btn 購入画面に進む
   .item-description
     %p.item-description__text
-    = @item.description
+      = html_escape(@item.description) if @item.description.present?
   .item-button-container
     .item-button-container__inner.item-button-container__inner--left
       %button.item-button-like{type: 'button'}
