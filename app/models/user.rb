@@ -64,7 +64,7 @@ class User < ApplicationRecord
   #   取得してきたメールアドレスと同じメールアドレスがuserDBに保存されていれば、そのuser情報でログインし、omniauthで取得した情報も保存。
   #   取得してきたメールアドレスと同じメールアドレスがuserDBに保存されていなければ、
   #   omniauthで取得した,nameとemailをUserの新規インスタンスに渡してuidとproviderの情報をSNS_credeの新規インスタンスに渡して、新規登録画面へ
-  
+
   #   user = User.where(id: snscredential.user_id).first
   #   unless user.present?
   #     user = User.new(
@@ -83,7 +83,6 @@ class User < ApplicationRecord
     # 例　=>"google_oauth2"
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
     # 取得してきた値と同じものがsns_credentialテーブルに保存されていれば、値を取得してsns_credentialに代入
-    binding.pry
     if snscredential.present?
       # sns_credentialテーブルから値が取得できているか？
       
@@ -91,7 +90,6 @@ class User < ApplicationRecord
       sns = snscredential
 
       #TODO:sns_credentialsDBに値が保存されていれば、userDBに値があるはず。。。sns_credentialsDBのみの登録がある場合は考えなくても良い？ user = with_sns_data(auth, snscredential)[:user]
-      binding.pry
     else
       user = without_sns_data(auth)[:user]
       sns = without_sns_data(auth)[:sns]
