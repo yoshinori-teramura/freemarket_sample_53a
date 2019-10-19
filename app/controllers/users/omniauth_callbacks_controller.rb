@@ -15,12 +15,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # request.envにてHTTPリクエストの値を取得
     info = User.find_oauth(@omniauth)
     @user = info[:user]
-    if @user.persisted? 
+    if @user.persisted?
+      #persisted?:Active Record object がDB に保存済みかどうかを判定するメソッド
+      # @user情報がすでにDBに保存されていればその情報でログイン
       sign_in_and_redirect @user, event: :authentication
-      
-    else 
+      binding.pry
+    else
+      session[:sns_nickname] = info[:user].nickname
+      session[:sns_email] = info[:user].email
+      #providerから取得したnickname/email情報をsessionに渡す
       session[:sns_credentials_attributes] = info[:sns]
-      # binding.pry
+      #providerから取得したuid/provider情報をsessionに渡す
       redirect_to registration_signup_index_path
     end
   end
