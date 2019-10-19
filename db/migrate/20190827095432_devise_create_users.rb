@@ -10,7 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :family_kana_name,   null: false
       t.string :first_kana_name,    null: false
       t.date   :birthday,           null: false
-      t.integer :tel,               null: false, unique: true
+      t.string :tel,               null: false, unique: true
       t.text   :profile             
       # t.references :credit,         null: false, foreign_key: true 
       t.string :email,              null: false, default: ""

@@ -4,14 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
-
-  # has_many :items
+                        #omniauth_providers: にてfacebook googleのprovider情報の取得
+  
+  has_many :items
   has_one  :adress
   has_one  :credit
-  has_one  :sns_credential
+  has_many  :sns_credentials
+  #accepts_nested_attributes_for モデル同士が関連づけされているときにネストさせることで一度にまとめてレコードの更新ができる。
   accepts_nested_attributes_for :adress
   accepts_nested_attributes_for :credit
-  # accepts_nested_attributes_for :sns_credential
+  accepts_nested_attributes_for :sns_credentials
 
   enum address_prefecture: {
     選択してください:0,北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -23,17 +25,14 @@ class User < ApplicationRecord
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
     }
-
-
-  # validation
-  validates :nickname, presence: true
-
-
+  
   protected
   def self.without_sns_data(auth)
+    # 値が取得されていない。つまりomniauthでの新規登録の場合
     user = User.where(email: auth.info.email).first
-
+    # Userテーブルのメールアドレスと取得してきた値が同じメールアドレスであれば、userに代入　：メールアドレスで登録があるかの確認
       if user.present?
+        # Userテーブルから値が取得できているか？
         sns = SnsCredential.create(
           uid: auth.uid,
           provider: auth.provider,
@@ -42,12 +41,14 @@ class User < ApplicationRecord
       else
         user = User.new(
           nickname: auth.info.name,
-          email: auth.info.email,
+          email: auth.info.email
         )
+        # 新規userインスタンスにnicknameとemailを保存
         sns = SnsCredential.new(
           uid: auth.uid,
           provider: auth.provider
         )
+        # 新規sns_credentialインスタンスにuidとproviderを保存
       end
       return { user: user ,sns: sns}
     end
@@ -64,11 +65,15 @@ class User < ApplicationRecord
    end
 
    def self.find_oauth(auth)
+    # request.envにてHTTPリクエストの値を取得し振り分け
     uid = auth.uid
+    # =>"103727882963069126588"
     provider = auth.provider
+    # =>"google_oauth2"
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
-    binding.pry
+    # 取得してきた値と同じものがsns_credentialテーブルに保存されていれば、値を取得してsns_credentialに代入
     if snscredential.present?
+      # sns_credentialテーブルから値が取得できているか？
       user = with_sns_data(auth, snscredential)[:user]
       sns = snscredential
     else

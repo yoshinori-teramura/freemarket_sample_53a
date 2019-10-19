@@ -23,9 +23,9 @@
             = f.label "商品名", {class: "sell-form-name__label"}
             %span.sell-form-require 必須
             .sell-form-name__input-wrapper
-              %input{class: "sell-form-name__input",
+              = f.text_field(:name, {class: "sell-form-name__input",
                     placeholder: "商品名（必須40文字まで）",
-                    required: true}
+                    required: true})
           .sell-form-review
             = f.label "商品の説明", {class: "sell-form-review__label"}
             %span.sell-form-require 必須
@@ -107,10 +107,10 @@
                   .sell-form-price__inputform__input-box.sell-form-price__inputform__input-box--right
                     ¥
                     .sell-form-price__inputform__input
-                      %input{id: "sell_input_price",
+                      = f.text_field(:price, {id: "sell_input_price",
                             class: "sell-form-price__inputform__input__inner",
                             placeholder: "例) 300",
-                            required: true}
+                            required: true})
               %li.sell-form-price__tax
                 .sell-form-price__tax--left 販売手数料 (10％)
                 .sell-form-price__tax--right -
