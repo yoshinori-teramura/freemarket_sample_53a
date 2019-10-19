@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function () {
   //フォーム指定
   $('#registration').validate({
     errorClass: 'valid-err',
