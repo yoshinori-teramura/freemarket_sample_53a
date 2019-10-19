@@ -521,3 +521,64 @@
   }
 
 }
+
+.item-comment-container {
+  width: 700px;
+  margin: 8px auto;
+}
+
+.item-comment {
+  padding: 24px;
+  background: #fff;
+
+  &__form {
+
+    &__warning {
+      padding: 8px;
+      font-size: 14px;
+      background: #fff6de;
+    }
+
+    &__message {
+      margin: 8px 0 0;
+      display: block;
+      width: 100%;
+      min-height: 104px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+      border-radius: 0;
+      outline: 0;
+      -webkit-appearance: none;
+      resize: vertical;
+      overflow: auto;
+    }
+
+    &__button {
+      width: 100%;
+      margin: 8px 0 0;
+      font-size: 0;
+      text-align: center;
+      background: #aaa;
+      border: 1px solid #aaa;
+      color: #fff;
+      display: block;
+      line-height: 48px;
+      -webkit-transition: all ease-out .3s;
+      transition: all ease-out .3s;
+      cursor: pointer;
+      min-height: 1.5em;
+      -webkit-appearance: button;
+      overflow: visible;
+      outline: 0;
+
+      &__text {
+        font-size: 14px;
+        vertical-align: middle;
+      }
+    }
+
+  }
+}

@@ -94,8 +94,16 @@
   |
   = link_to 'Destroy', item_path, method: :delete
 
--# コメント(TODO:ログイン状態で分岐する)
-.item-comments
+- if user_signed_in?
+  .item-comment-container
+    .item-comment
+      .item-comment__form
+        %p.item-comment__form__warning
+          相手のことを考え丁寧なコメントを心がけましょう。
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %textarea.item-comment__form__message
+        %button.item-comment__form__button
+          %span.item-comment__form__button__text コメントする
 
 %ul.item-pager
   %li.item-pager__prev
