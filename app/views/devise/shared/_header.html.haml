@@ -24,17 +24,22 @@
       - if user_signed_in?
         %ul.header__bottom__right
           %li.header__bottom__right__icon
-            %a.header__bottom__right__icon__link{:href => "/mypage/notices/"}
-              = fa_icon 'bell 2x'
-              お知らせ
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'heart-o', class: 'header__bottom__right__icon__link__i'
+              %span.header__bottom__right__icon__link__text いいね！一覧
           %li.header__bottom__right__icon
-            %a.header__bottom__right__icon__link{:href => "/mypage/todo/"}
-              = fa_icon 'check 2x'
-              やることリスト
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'bell', class: 'header__bottom__right__icon__link__i'
+              %span.header__bottom__right__icon__link__text お知らせ
           %li.header__bottom__right__icon
-            %a.header__bottom__right__icon__link{:href => "/mypage/"}
-              = fa_icon 'smile 2x'
-              マイページ
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'check', class: 'header__bottom__right__icon__link__i'
+              %span.header__bottom__right__icon__link__text やることリスト
+          %li.header__bottom__right__icon
+            %a.header__bottom__right__icon__link{:href => "/mypages/"}
+              = fa_icon 'smile-o', class: 'header__bottom__right__icon__link__i'
+              %span.header__bottom__right__icon__link__text マイページ
+          -# TODO:あとで消す
           %li.header__bottom__right__logout
             = link_to 'ログアウト',destroy_user_session_path, method: :delete, :class => "header__bottom__right__login__link"
       - else
@@ -45,4 +50,3 @@
           .header__bottom__right__login
             %a.header__bottom__right__login__link{:href => "/users/sign_in/"}
               ログイン
-        
