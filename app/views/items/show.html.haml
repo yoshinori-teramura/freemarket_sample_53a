@@ -115,7 +115,25 @@
         = fa_icon 'twitter', class: 'sns-box__twitter__link__icon'
     -# NOTE: このバージョンのFontawesomeに他のSNSアイコンがないため省略
 
-.items-in-user-profile
-
-
+.item-box-containers
+  %section.item-box-cotainer
+    %h2.item-box-container__head
+      %a.item-box-container__head__link (ユーザー)さんのその他の作品
+    .item-box-container__content
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+  %section.item-box-cotainer
+    %h2.item-box-container__head
+      %a.item-box-container__head__link (ブランド名)の(孫カテゴリ名) その他の作品
+    .item-box-container__content
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
 -# TODO:パンくずリスト
