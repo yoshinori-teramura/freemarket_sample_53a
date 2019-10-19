@@ -43,39 +43,53 @@ class User < ApplicationRecord
           nickname: auth.info.name,
           email: auth.info.email
         )
-        # 新規userインスタンスにnicknameとemailを保存
+        # 新規userインスタンス作成しnicknameとemailを保存
         sns = SnsCredential.new(
           uid: auth.uid,
           provider: auth.provider
         )
-        # 新規sns_credentialインスタンスにuidとproviderを保存
+        # 新規sns_credentialインスタンス作成しuidとproviderを保存
       end
       return { user: user ,sns: sns}
     end
 
-   def self.with_sns_data(auth, snscredential)
-    user = User.where(id: snscredential.user_id).first
-    unless user.present?
-      user = User.new(
-        nickname: auth.info.name,
-        email: auth.info.email,
-      )
-    end
-    return {user: user}
-   end
+  #  def self.with_sns_data(auth, snscredential)
+  # callbackが呼ばれた際の処理逃れ
+  # omniauthで情報の取得
+  # 取得して来た情報と一致する情報がsns_credentialsDBに値が保存されいるのか？
+  # 分岐1
+  # 保存されていれば、そのままsns_credentialsDBのuser_idと一致するuser情報でログイン
+  # 保存されていなければ、
+  #   分岐2
+  #   取得してきたメールアドレスと同じメールアドレスがuserDBに保存されていれば、そのuser情報でログインし、omniauthで取得した情報も保存。
+  #   取得してきたメールアドレスと同じメールアドレスがuserDBに保存されていなければ、
+  #   omniauthで取得した,nameとemailをUserの新規インスタンスに渡してuidとproviderの情報をSNS_credeの新規インスタンスに渡して、新規登録画面へ
+
+  #   user = User.where(id: snscredential.user_id).first
+  #   unless user.present?
+  #     user = User.new(
+  #       nickname: auth.info.name,
+  #       email: auth.info.email,
+  #     )
+  #   end
+  #   return {user: user}
+  #  end
 
    def self.find_oauth(auth)
     # request.envにてHTTPリクエストの値を取得し振り分け
     uid = auth.uid
-    # =>"103727882963069126588"
+    # 例　=>"103727882963069126588"
     provider = auth.provider
-    # =>"google_oauth2"
+    # 例　=>"google_oauth2"
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
     # 取得してきた値と同じものがsns_credentialテーブルに保存されていれば、値を取得してsns_credentialに代入
     if snscredential.present?
       # sns_credentialテーブルから値が取得できているか？
-      user = with_sns_data(auth, snscredential)[:user]
+      
+      user = User.where(id: snscredential.user_id).first
       sns = snscredential
+
+      #TODO:sns_credentialsDBに値が保存されていれば、userDBに値があるはず。。。sns_credentialsDBのみの登録がある場合は考えなくても良い？ user = with_sns_data(auth, snscredential)[:user]
     else
       user = without_sns_data(auth)[:user]
       sns = without_sns_data(auth)[:sns]

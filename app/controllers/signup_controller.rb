@@ -7,12 +7,23 @@ class SignupController < ApplicationController
   before_action :save_credit, only: :create
 
   def registration_type
+    reset_session
+    #sessionで保持している値のリセット
   end
 
   def registration
-    @user = User.new 
-    @user.sns_credentials.build
+
+    password = Devise.friendly_token.first(6)
+    #ランダムでpasswordの作成
+    if session[:sns_credentials_attributes].present?
+      @user = User.new(nickname: session[:sns_nickname],email: session[:sns_email], password: password)
+      #googleやfacebookからのログインでprovider情報を取得して来ていれば、nickname／email/password情報の保持
+      @user.sns_credentials.build
     #has_manyの関係性のbuild:インスタンス名.アソシエーション.build
+    else
+      @user = User.new
+      #メールからの登録であれば、新規インスタンスの作成
+    end
   end
 
   def sms_confirmation
@@ -48,7 +59,10 @@ class SignupController < ApplicationController
     #以下、アソシエーションモデルをまとめて保存
     @user.build_adress(session[:adress_attributes])
     @user.build_credit(session[:credit_attributes])
-    @user.sns_credentials.build(session[:sns_credentials_attributes])
+    if session[:sns_credentials_attributes].present?
+      @user.sns_credentials.build(session[:sns_credentials_attributes])
+      #googleやfacebookからのログインでprovider情報を取得して来ていれば、sns_credentialsテーブルへ保存
+    end
     if @user.save
       session[:id] = @user.id
       redirect_to complete_signup_index_path

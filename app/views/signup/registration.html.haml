@@ -24,19 +24,19 @@
       .single-main__container__form-group
         = f.label :ニックネーム
         %span.single-main__container__form-group__requier 必須
-        = f.text_field :nickname, :class => "single-main__container__form-group__input-form", :placeholder => "例) メルカリ太郎", :type => "text", :value => "" 
+        = f.text_field :nickname, :class => "single-main__container__form-group__input-form", :placeholder => "例) メルカリ太郎", :type => "text", :value => "#{@user.nickname}"
       .single-main__container__form-group
         = f.label :email 
         %span.single-main__container__form-group__requier 必須
-        = f.email_field :email ,:class => "single-main__container__form-group__input-form", :placeholder => "PC.携帯どちらでも可", :type => "email", :value => "" 
+        = f.email_field :email ,:class => "single-main__container__form-group__input-form", :placeholder => "PC.携帯どちらでも可", :type => "email", :value => "#{@user.email}" 
       .single-main__container__form-group
         = f.label :パスワード
         %span.single-main__container__form-group__requier 必須
-        = f.text_field :password, :class => "single-main__container__form-group__input-form", :placeholder => "６文字以上", :type => "password", :value => "" 
+        = f.text_field :password, :class => "single-main__container__form-group__input-form", :placeholder => "６文字以上", :type => "password", :value => "#{@user.password}" 
       .single-main__container__form-group
         = f.label :パスワード（確認）
         %span.single-main__container__form-group__requier 必須
-        = f.text_field :password_confirmaiton, :class => "single-main__container__form-group__input-form", :placeholder => "６文字以上", :type => "password", :value => "" 
+        = f.text_field :password_confirmaiton, :class => "single-main__container__form-group__input-form", :placeholder => "６文字以上", :type => "password", :value => "#{@user.password}" 
       .single-main__container__form-group
         %h3 本人確認
         %p.single-main__container__form-group__text 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
@@ -59,9 +59,8 @@
         %span.single-main__container__form-group__requier 必須
         %br/
         .single-main__container__form-group__input
-          = f.date_select :birthday , {}, :class =>"single-main__container__form-group__input__herf", start_year:Time.now.year, end_year:1970   #,prompt:""
+          = f.date_select :birthday , {start_year:Time.now.year, end_year:1970}, :class =>"single-main__container__form-group__input__herf"   #,prompt:""
         -# #validate_birthday
-        -# Todo:date＿selectのclss指定
       .single-main__container__form-group
         %p.form-info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
       .single-main__container__form-group
