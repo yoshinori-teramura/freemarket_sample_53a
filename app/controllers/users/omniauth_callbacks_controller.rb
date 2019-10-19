@@ -19,7 +19,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #persisted?:Active Record object がDB に保存済みかどうかを判定するメソッド
       # @user情報がすでにDBに保存されていればその情報でログイン
       sign_in_and_redirect @user, event: :authentication
-      binding.pry
     else
       session[:sns_nickname] = info[:user].nickname
       session[:sns_email] = info[:user].email
