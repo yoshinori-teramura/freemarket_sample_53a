@@ -4,12 +4,13 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
-  } 
+  }
   resources :items
   resources :mypages, only: :index
+  resources :logout, only: :index
   resources :sell
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+
   resources :signup do          #新規登録用コントローラー
     collection do
       get 'registration_type'   #新規登録を、メールor Facebook or google選択画面

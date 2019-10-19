@@ -1,0 +1,28 @@
+.logout-container {
+  margin: 0;
+  background: #fff;
+}
+
+.logout-box {
+  padding: 64px;
+  border: 1px solid #f5f5f5;
+  &__inner {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+.logout-button {
+  margin: 0;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
