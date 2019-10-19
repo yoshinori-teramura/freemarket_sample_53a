@@ -1,19 +1,148 @@
-%p#notice= notice
-%p
-  %strong name:
-  = @item.name
-%p
-  %strong image:
-  = image_tag @item.image.url if @item.image.present?
-%p
-  %strong description:
-  = @item.description
-%p
-  %strong price:
-  = @item.price
+= render 'devise/shared/header'
 
-= link_to 'Edit', edit_item_path(@item)
-|
-= link_to 'Back', items_path
-|
-= link_to 'Destroy', item_path, method: :delete
+%section.item-container
+  %h1.item-name
+    = @item.name
+  .item-main-content
+    .item-photo-box
+      .item-main-photo
+        .item-main-photo__inner
+          = image_tag @item.image.url, class: 'item-main-photo__inner__img'
+      .item-thumnails
+        .item-thumnail.item-thumnail--active
+          .item-thumnail__inner
+            = image_tag @item.image.url, class: 'item-thumnail__inner__img'
+    %table.item-detail
+      %tbody
+        %tr.item-detail__tr
+          %th.item-detail__th 出品者
+          %td.item-detail__td
+            %a.item-detail__username ユーザ名
+            .item-detail-user-ratings
+              .item-detail-user-rating
+                = fa_icon 'smile-o', class: 'item-detail-user-rating__icon item-detail-user-rating__icon--good'
+                %span 0
+              .item-detail-user-rating
+                = fa_icon 'meh-o', class: 'item-detail-user-rating__icon item-detail-user-rating__icon--normal'
+                %span 0
+              .item-detail-user-rating
+                = fa_icon 'frown-o', class: 'item-detail-user-rating__icon item-detail-user-rating__icon--bad'
+                %span 0
+        %tr.item-detail__tr
+          %th.item-detail__th カテゴリー
+          %td.item-detail__td
+            %a.item-detail__category
+              .item-detail__category__name
+                カテゴリー名
+            %a.item-detail__category
+              .item-detail__category__name
+                = fa_icon 'angle-right'
+                子カテゴリー名
+            %a.item-detail__category
+              .item-detail__category__name
+                = fa_icon 'angle-right'
+                孫カテゴリー名
+        %tr.item-detail__tr
+          %th.item-detail__th ブランド
+          %td.item-detail__td
+            %a.item-detail__bland ブランド名
+        %tr.item-detail__tr
+          %th.item-detail__th 商品のサイズ
+          %td.item-detail__td M
+        %tr.item-detail__tr
+          %th.item-detail__th 商品の状態
+          %td.item-detail__td 目立った傷や汚れなし
+        %tr.item-detail__tr
+          %th.item-detail__th 配送料の負担
+          %td.item-detail__td 送料込み(出品者負担)
+        %tr.item-detail__tr
+          %th.item-detail__th 配送の方法
+          %td.item-detail__td 普通郵便(定形、定形外)
+        %tr.item-detail__tr
+          %th.item-detail__th 配送元地域
+          %td.item-detail__td
+            %a.item-detail__area 埼玉県
+        %tr.item-detail__tr
+          %th.item-detail__th 発送日の目安
+          %td.item-detail__td 1~2日で発送
+  .item-price-box
+    %span.item-price-box__price
+      = to_yen(@item.price)
+    %span.item-price-box__tax (税込)
+    %span.item-price-box__shipping-fee 送料込み
+  %a.item-buy-btn 購入画面に進む
+  .item-description
+    %p.item-description__text
+    = @item.description
+  .item-button-container
+    .item-button-container__inner.item-button-container__inner--left
+      %button.item-button-like{type: 'button'}
+        = fa_icon 'heart-o', class: 'item-button-like__icon'
+        %span.item-button-like__text いいね!
+        %span.item-button-like__number 3
+      %a.item-button-report
+        = fa_icon 'flag-o', class: 'item-button-report__icon'
+        %span.item-button-report__text 不適切な商品の報告
+    .item-button-container__inner.item-button-container__inner--right
+      %a.item-button-link{target: '_blank'}
+        = fa_icon 'lock', class: 'item-button-link__icon'
+        %span.item-button-link__text あんしん・あんぜんへの取り組み
+  -# TODO:あとで消す
+  = link_to 'Edit', edit_item_path(@item)
+  |
+  = link_to 'Back', items_path
+  |
+  = link_to 'Destroy', item_path, method: :delete
+
+- if user_signed_in?
+  .item-comment-container
+    .item-comment
+      .item-comment__form
+        %p.item-comment__form__warning
+          相手のことを考え丁寧なコメントを心がけましょう。
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %textarea.item-comment__form__message
+        %button.item-comment__form__button
+          %span.item-comment__form__button__text コメントする
+
+%ul.item-pager
+  %li.item-pager__prev
+    -if @item.previous
+      = link_to item_path(@item.previous), class: 'item-pager__prev__link' do
+        = fa_icon 'angle-left', class: 'item-pager__prev__link__icon'
+        = @item.previous.name
+  %li.item-pager__next
+    -if @item.next
+      = link_to item_path(@item.next), class: 'item-pager__next__link' do
+        = @item.next.name
+        = fa_icon 'angle-right', class: 'item-pager__next__link__icon'
+
+.item-sns-container
+  %ul.sns-box
+    %li.sns-box__facebook
+      %a.sns-box__facebook__link
+        = fa_icon 'facebook-square', class: 'sns-box__facebook__link__icon'
+    %li.sns-box__twitter
+      %a.sns-box__twitter__link
+        = fa_icon 'twitter', class: 'sns-box__twitter__link__icon'
+    -# NOTE: このバージョンのFontawesomeに他のSNSアイコンがないため省略
+
+.item-box-containers
+  %section.item-box-cotainer
+    %h2.item-box-container__head
+      %a.item-box-container__head__link (ユーザー)さんのその他の作品
+    .item-box-container__content
+      = render partial: 'itembox', collection: @other_items, as: :item
+  %section.item-box-cotainer
+    %h2.item-box-container__head
+      %a.item-box-container__head__link (ブランド名)の(孫カテゴリ名) その他の作品
+    .item-box-container__content
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+      = render partial: 'itembox', locals: { item: @item }
+-# TODO:パンくずリスト
+= render 'devise/shared/aside'
+= render 'devise/shared/footer'

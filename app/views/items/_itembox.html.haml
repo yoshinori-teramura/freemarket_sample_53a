@@ -1,0 +1,13 @@
+%section.item-box
+  = link_to item_path(item.id), class: 'item-box__link' do
+    %figure.item-box__link__photo
+      = image_tag item.image.url, class: 'item-box__link__photo__img'
+    .item-box__body
+      %h3.item-box__body__name
+        = item.name
+      .item-box__body__num
+        .item-box__body__num__price
+          = to_yen(item.price)
+        .item-box__body__num__like
+          = fa_icon 'heart-o', class: 'item-box__body__num__like__icon'
+          %span 1

@@ -35,7 +35,7 @@
                     #{item.name}
                 .main__popularities__items__onecategorylist__boxes__onebox__link__figure__image
                   %span
-                    ¥#{item.price}
+                    = to_yen(item.price)
                   = image_tag item.image.url if item.image.present?
 
         .main__popularities__items__onecategorylist__boxes__onebox
