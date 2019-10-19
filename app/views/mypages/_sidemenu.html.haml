@@ -94,6 +94,6 @@
           電話番号の確認
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(logout_index_path, class: 'navi-item__link') do
           ログアウト
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
