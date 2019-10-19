@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_125347) do
     t.string "family_kana_name", null: false
     t.string "first_kana_name", null: false
     t.date "birthday", null: false
-    t.string "tel", null: false
+    t.integer "tel", null: false
     t.text "profile"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
