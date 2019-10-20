@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :mypages, only: :index
   resources :logout, only: :index
   resources :sell
+  resources :buy
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :signup do          #新規登録用コントローラー
