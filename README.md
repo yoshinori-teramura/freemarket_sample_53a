@@ -10,7 +10,7 @@
 |family_kana_name    |string  |null: false |
 |first_kana_name     |string  |null: false |
 |birthday            |datetime|null: false |
-|tel                 |string  |null: false, unique: true | 
+|tel                 |string  |null: false, unique: true |
 |profile             |text    |
 |credit              |references  |null: false, foreign_key: true |
 
@@ -86,6 +86,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |name  |string      |null: false, unique: true  |
+|ancestry|string    ||
 
 ### Association
 - has_many :items
