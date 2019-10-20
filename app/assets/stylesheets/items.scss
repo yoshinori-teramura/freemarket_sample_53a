@@ -189,28 +189,7 @@ $mercari_white: rgb(255, 255, 255);
       &__left {
         display: flex;
         margin-left: -3px;
-        &__category {
-          cursor: pointer;
-          height: 44px;
-          position: relative;
-          z-index: 3;
-          padding: 0px 10px;
-          &__link {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 36px;
-            white-space: nowrap;
-            &__svg {
-              max-width: 100%;
-              max-height: 100%;
-              color: $mercari_red;
-              height: 12px;
-              margin-right: 4px;
-            }
-          }
-        }
-        &__brand {
+        &__list {
           cursor: pointer;
           height: 44px;
           position: relative;
