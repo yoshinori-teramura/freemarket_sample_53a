@@ -57,13 +57,15 @@
 |name              |string  |null: false |
 |description       |text    |null: false |
 |category_id       |references |null: false, foreign_key: true |
-|brand_id          |references |null: false, foreign_key: true |
+|brand_id          |references |foreign_key: true |
 |item_status       |integer  |null: false |
 |shipping_charge   |integer  |null: false |
-|delivery_region   |string   |null: false |
+|delivery_region   |integer  |null: false |
+|delivery_type     |integer  |null: false |
 |delivery_days     |integer  |null: false |
 |price             |integer  |null: false |
 |trade_status      |integer  |null: false |
+|image             |string   ||
 
 ### association
 - has_many :photos
