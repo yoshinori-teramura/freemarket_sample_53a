@@ -31,7 +31,7 @@
         %br/
         .single-main__container__form-group__input
           = f.fields_for :credit do |c|
-            = c.date_select  :expiration_date , { start_year:Time.now.year-2000, end_year:Time.now.year-2000+10,discard_day:true } , :class =>"single-main__container__form-group__input-form", discard_day:true
+            = c.date_select  :expiration_date , { start_year:Time.now.year-2000, end_year:Time.now.year-2000+10, discard_day:true ,prompt:"--"} , :class =>"single-main__container__form-group__input-form"
       .single-main__container__form-group
         = f.label :セキュリティコード
         %span.single-main__container__form-group__requier 必須

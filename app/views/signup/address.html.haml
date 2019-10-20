@@ -44,8 +44,7 @@
         = f.label :都道府県
         %span.single-main__container__form-group__requier 必須
         = f.fields_for :address do |a|
-          = a.select :prefecture_id, User.address_prefectures.keys, {}, {class: 'single-main__container__form-group__input-form'}
-          -# ↑userモデルにenumを指定してセレクト選択
+          = a.select :prefecture_id, User.address_prefectures.keys, {}, {class: 'single-main__container__form-group__input-form'} 
       .single-main__container__form-group
         = f.label :市区町村
         %span.single-main__container__form-group__requier 必須

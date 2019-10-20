@@ -1,3 +1,8 @@
+$.validator.addMethod("selectCheck", function(value, element, origin) {
+  return origin != value;
+  }, "選択してください");
+  
+
 $(document).on('turbolinks:load', function () {
   //フォーム指定
   $('#registration').validate({
@@ -111,6 +116,9 @@ $(function(){
         required: true,
         rangelength:[7,7]
       },
+      "user[address_attributes][prefecture_id]":{
+        selectCheck: "--"
+      },
       "user[address_attributes][city]":{
         required:true
       },
@@ -144,9 +152,11 @@ $(function(){
         rangelength:[16,16]
       },
       "user[credit_attributes][expiration_date(1i)":{
+        selectCheck: "--",
         required: true
       },
       "user[credit_attributes][expiration_date(2i)":{
+        selectCheck: "--",
         required: true
       },
       "user[credit_attributes][security_code]":{
