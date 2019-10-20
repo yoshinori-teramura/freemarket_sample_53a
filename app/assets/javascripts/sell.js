@@ -4,8 +4,9 @@ $(document).on('turbolinks:load', function () {
   // 読み込み時、非表示
   switchCategoryChildren(false);
   switchCategoryGrandchildren(false);
-  switchItemSize(false);
+  // switchItemSize(false);
   switchDeliveryType(false);
+  switchBrand(false);
 
   /**
    * 戻るボタン押下処理
@@ -55,8 +56,9 @@ $(document).on('turbolinks:load', function () {
    * カテゴリ選択処理
    */
   $('#category_id').on('change', function (e) {
+    var selectedValue = $(this).val()
 
-    if ($(this).val() === SELECT_NONE) {
+    if (selectedValue === SELECT_NONE) {
       // 子カテゴリ
       switchCategoryChildren(false);
       // 孫カテゴリ
@@ -67,14 +69,14 @@ $(document).on('turbolinks:load', function () {
     }
 
     // 子カテゴリ
-    switchCategoryChildren(true);
+    switchCategoryChildren(true, selectedValue);
 
     // 孫カテゴリ
     switchCategoryGrandchildren(false);
 
-    // サイズ
-    resetOptions('#item_size');
-    switchItemSize(false);
+    // // サイズ
+    // resetOptions('#item_size');
+    // switchItemSize(false);
   });
 
 
@@ -82,8 +84,9 @@ $(document).on('turbolinks:load', function () {
    * 子カテゴリ選択処理
    */
   $('#category_child_id').on('change', function (e) {
+    var selectedValue = $(this).val()
 
-    if ($(this).val() === SELECT_NONE) {
+    if (selectedValue === SELECT_NONE) {
       // 孫カテゴリ
       switchCategoryGrandchildren(false);
       // サイズ
@@ -92,24 +95,12 @@ $(document).on('turbolinks:load', function () {
     }
 
     // 孫カテゴリ
-    switchCategoryGrandchildren(true);
+    switchCategoryGrandchildren(true, selectedValue);
 
-    // サイズ: 子カテゴリと紐づく
-    var item_sizes = [{
-        "id": "2",
-        "name": "S"
-      },
-      {
-        "id": "3",
-        "name": "M"
-      },
-      {
-        "id": "4",
-        "name": "L"
-      }
-    ];
-    resetOptions('#item_size', item_sizes); //値を設定するのみ
-    switchItemSize(false);
+    // // サイズ: 子カテゴリと紐づく
+    // var item_sizes = [{"id": "2", "name": "S"}];
+    // resetOptions('#item_size', item_sizes);
+    // switchItemSize(false);
   });
 
 
@@ -122,8 +113,11 @@ $(document).on('turbolinks:load', function () {
       return;
     }
 
-    // サイズ
-    switchItemSize(true);
+    // // サイズ
+    // switchItemSize(true);
+
+    // ブランド
+    switchBrand(true);
   });
 
   /**
@@ -162,6 +156,7 @@ $(document).on('turbolinks:load', function () {
    */
   function resetOptions(selector, values = null) {
     $(selector + ' > option').remove();
+    // 選択なし
     $(selector).append($('<option>').html(SELECT_NONE).val(SELECT_NONE));
     if (values !== null) {
       values.forEach(function (val) {
@@ -173,25 +168,32 @@ $(document).on('turbolinks:load', function () {
   /**
    * 子カテゴリの表示を切り替える
    * @param {Boolean} isVisible 表示するか
+   * @param {Number} category_id カテゴリ
    */
-  function switchCategoryChildren(isVisible) {
+  function switchCategoryChildren(isVisible, category_id = 0) {
     if (isVisible) {
-      // TODO:非同期で子カテゴリの値を取得する
-      var values = [{
-          "id": "30",
-          "name": "トップス"
-        },
-        {
-          "id": "31",
-          "name": "ジャケット/アウター"
-        },
-        {
-          "id": "32",
-          "name": "パンツ"
-        }
-      ];
-      resetOptions('#category_child_id', values);
-      $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+      if (category_id === 0) {
+        resetOptions('#category_child_id');
+        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+        return;
+      }
+
+      $.ajax({
+        url: 'sell/get_category_children',
+        type: 'GET',
+        data: { category_id: category_id },
+        dataType: 'json'
+      })
+      .done(function(categories){
+        resetOptions('#category_child_id', categories);
+        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+      })
+      .fail(function(){
+        console.log('category not found');
+        resetOptions('#category_child_id');
+        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      })
+
     } else {
       resetOptions('#category_child_id');
       $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
@@ -201,25 +203,32 @@ $(document).on('turbolinks:load', function () {
   /**
    * 孫カテゴリの表示を切り替える
    * @param {Boolean} isVisible 表示するか
+   * @param {Number}  category_id 子カテゴリ
    */
-  function switchCategoryGrandchildren(isVisible) {
+  function switchCategoryGrandchildren(isVisible, category_id = 0) {
     if (isVisible) {
-      // TODO:非同期で孫カテゴリの値を取得する
-      var values = [{
-          "id": "302",
-          "name": "Tシャツ/カットソー"
-        },
-        {
-          "id": "304",
-          "name": "シャツ"
-        },
-        {
-          "id": "305",
-          "name": "ポロシャツ"
-        }
-      ];
-      resetOptions('#category_grandchild_id', values);
-      $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+      if (category_id === 0) {
+        resetOptions('#category_grandchild_id');
+        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+        return;
+      }
+
+      $.ajax({
+        url: 'sell/get_category_grandchildren',
+        type: 'GET',
+        data: { category_id: category_id },
+        dataType: 'json'
+      })
+      .done(function(categories){
+        resetOptions('#category_grandchild_id', categories);
+        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+      })
+      .fail(function(){
+        console.log('category not found');
+        resetOptions('#category_grandchild_id');
+        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      })
+
     } else {
       resetOptions('#category_grandchild_id');
       $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
@@ -247,6 +256,18 @@ $(document).on('turbolinks:load', function () {
       $('#delivery_type').parents('.sell-form-selectbox').show();
     } else {
       $('#delivery_type').parents('.sell-form-selectbox').hide();
+    }
+  }
+
+  /**
+   * ブランドの表示を切り替える
+   * @param {Boolean} isVisible 表示するか
+   */
+  function switchBrand(isVisible) {
+    if (isVisible) {
+      $('#brand_name').parents('.sell-form-text').show();
+    } else {
+      $('#brand_name').parents('.sell-form-text').hide();
     }
   }
 

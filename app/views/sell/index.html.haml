@@ -41,19 +41,25 @@
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = f.select(:category_id, @categories, {}, {class: "sell-form-selectbox__select", id: "category_id"})
+                = f.select(:category_id, @categories, {:selected => @category_id}, {class: "sell-form-selectbox__select", id: "category_id"})
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 = select_tag 'category_child_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 = select_tag 'category_grandchild_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
-            .sell-form-selectbox
-              %label.sell-form-selectbox__label サイズ
-              %span.sell-form-require 必須
-              .sell-form-selectbox__select-wrapper
-                = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = select_tag 'item_size', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+            -# .sell-form-selectbox
+            -#   %label.sell-form-selectbox__label サイズ
+            -#   %span.sell-form-require 必須
+            -#   .sell-form-selectbox__select-wrapper
+            -#     = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+            -#     = select_tag 'item_size', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+            .sell-form-text
+              %label.sell-form-text__label ブランド
+              %span.sell-form-optional 任意
+              .sell-form-text__input-wrapper
+                = f.fields_for :brand do |b|
+                  = b.text_field(:name , {class: "sell-form-text__input", placeholder: "例)シャネル", id: "brand_name"})
             .sell-form-selectbox
               %label.sell-form-selectbox__label 商品の状態
               %span.sell-form-require 必須
