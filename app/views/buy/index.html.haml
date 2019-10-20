@@ -1,0 +1,64 @@
+.wrapper
+  %header.header
+    %h1.header__box
+      %a.header__box__link{:href => "/items"}
+        = image_tag 'mercari_icon_banner.png', alt: 'mercari', class: 'header__box__link__logo'
+  %main.main
+    %section.main__box
+      %h2.main__box__title 購入内容の確認
+      %section.main__box__purchase
+        .main__box__purchase__inner
+          %h3.main__box__purchase__inner__image
+            %img.lazyload{:alt => "", "data-src" => "https://static.mercdn.net/thumb/photos/m66900357794_1.jpg?1571553431"}/
+          %p.main__box__purchase__inner__text 話せる!!社会人の気づかい英会話 : 1駅3分集中! : 通勤解速トレーニング!
+          %form.main__box__purchase__inner__form{:action => "https://www.mercari.com/jp/transaction/buy/done/m66900357794/", :method => "POST", :novalidate => "novalidate"}
+            %p.main__box__purchase__inner__form__price
+              ¥1,800
+              %span.main__box__purchase__inner__form__price__shippingfee 送料込み
+            %ul.main__box__purchase__inner__form__point
+              %li.main__box__purchase__inner__form__point__parent
+                .main__box__purchase__inner__form__point__toggle
+                  ポイントはありません
+            %ul.main__box__purchase__inner__form__table
+              %li.main__box__purchase__inner__form__table__cell
+                .main__box__purchase__inner__form__table__cell__text 支払い金額
+                .main__box__purchase__inner__form__table__cell__price
+                  %span{"data-buy-pay" => "1800"} ¥1,800
+      %section.main__box__user
+        .main__box__user__inner
+          %h3.main__box__user__inner__text 配送先
+          %address.main__box__user__inner__info
+            〒223-0061
+            %br/
+            神奈川県 横浜市港北区
+            日吉2-16-9
+            %br/
+            宮園 信一郎
+          %p.main__box__user__inner__space
+          %a.main__box__user__inner__fix{:href => "https://www.mercari.com/jp/transaction/address/m66900357794/?_s=U2FsdGVkX19-Ch0-TcplbkSbEgMguQUV2ujtGVXzyO7G411-oVQNHKqUBkS8d3lVszLT5b_skwN1pXON35QwzHF842fk9IZNxunoDIvNzTWTF73_ogUXaiZoom8QUx2s"}
+            %span 変更する
+            %i.icon-arrow-right
+      %section.main__box__user{"data-buy" => "pay-method"}
+        .main__box__user__inner
+          %h3.main__box__user__inner__text 支払い方法
+          %p.main__box__user__inner__info
+            %br/
+            \/
+            %figure
+              %img{:alt => "", :height => "", :src => "", :width => ""}/
+          %a.main__box__user__inner__fix{:href => "https://www.mercari.com/jp/transaction/card/m66900357794/?_s=U2FsdGVkX19-Ch0-TcplbkSbEgMguQUV2ujtGVXzyO7G411-oVQNHKqUBkS8d3lVszLT5b_skwN1pXON35QwzHF842fk9IZNxunoDIvNzTWTF73_ogUXaiZoom8QUx2s"}
+            %span 変更する
+            %i.icon-arrow-right
+  %footer.footer
+    %nav
+      %ul.clearfix
+        %li
+          %a{:href => "https://www.mercari.com/jp/privacy/"} プライバシーポリシー
+        %li
+          %a{:href => "https://www.mercari.com/jp/tos/"} メルカリ利用規約
+        %li
+          %a{:href => "https://www.mercari.com/jp/tokutei/"} 特定商取引に関する表記
+    %a.footer__logo{:href => "https://www.mercari.com/jp/"}
+      %img{:alt => "mercari", :height => "65", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", :width => "80"}/
+    %p
+      %small © 2019 Mercari
