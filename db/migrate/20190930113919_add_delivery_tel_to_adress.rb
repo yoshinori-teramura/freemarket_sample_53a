@@ -1,5 +1,5 @@
 class AddDeliveryTelToAdress < ActiveRecord::Migration[5.2]
   def change
-    add_column :adresses, :delivery_tel, :integer
+    add_column :addresses, :delivery_tel, :integer
   end
 end

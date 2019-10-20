@@ -91,37 +91,37 @@ $(function(){
 
 $(function(){
   //フォーム指定
-  $('#adress').validate({
+  $('#address').validate({
     errorClass: 'valid-err',
     //検証ルール設定
     rules: {
-      "user[adress_attributes][delivery_family_name]":{
+      "user[address_attributes][delivery_family_name]":{
         required: true
       },
-      "user[adress_attributes][delivery_first_name]":{
+      "user[address_attributes][delivery_first_name]":{
         required: true
       },
-      "user[adress_attributes][delivery_first_kana_name]":{
+      "user[address_attributes][delivery_first_kana_name]":{
         required: true
       },
-      "user[adress_attributes][delivery_family_kana_name]":{
+      "user[address_attributes][delivery_family_kana_name]":{
         required: true
       },
-      "user[adress_attributes][postal_code]":{
+      "user[address_attributes][postal_code]":{
         required: true,
         rangelength:[7,7]
       },
-      "user[adress_attributes][city]":{
+      "user[address_attributes][city]":{
         required:true
       },
-      "user[adress_attributes][block]":{
+      "user[address_attributes][block]":{
         required:true
       }
     },
 
     //エラーメッセージ設定
     messages: {
-      "user[adress_attributes][postal_code]":{
+      "user[address_attributes][postal_code]":{
         required:'郵便番号を入力してください',
         rangelength: '7文字で入力してください'
       }

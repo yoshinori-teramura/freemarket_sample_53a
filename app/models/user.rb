@@ -7,11 +7,11 @@ class User < ApplicationRecord
                         #omniauth_providers: にてfacebook googleのprovider情報の取得
   
   has_many :items
-  has_one  :adress
+  has_one  :address
   has_one  :credit
   has_many  :sns_credentials
   #accepts_nested_attributes_for モデル同士が関連づけされているときにネストさせることで一度にまとめてレコードの更新ができる。
-  accepts_nested_attributes_for :adress
+  accepts_nested_attributes_for :address
   accepts_nested_attributes_for :credit
   accepts_nested_attributes_for :sns_credentials
 
