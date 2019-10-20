@@ -1,5 +1,5 @@
 class RemovePrefectureFromAdresses < ActiveRecord::Migration[5.2]
   def change
-    remove_column :adresses, :prefecture, :string
+    remove_column :addresses, :prefecture, :string
   end
 end

@@ -2,8 +2,8 @@ class SignupController < ApplicationController
   # before_action :authenticate_user!
   #次の画面に遷移する前に情報を保存する
   before_action :save_registration, only: :sms_confirmation 
-  before_action :save_sms_confirmation, only: :adress
-  before_action :save_adress, only: :credit
+  before_action :save_sms_confirmation, only: :address
+  before_action :save_address, only: :credit
   before_action :save_credit, only: :create
 
   def registration_type
@@ -30,9 +30,9 @@ class SignupController < ApplicationController
     @user = User.new
   end
 
-  def adress
+  def address
     @user = User.new
-    @user.build_adress
+    @user.build_address
     #has_oneの関係性のbuild:インスタンス名.build_アソシエーション名
   end
 
@@ -57,7 +57,7 @@ class SignupController < ApplicationController
       tel: session[:tel]
     )
     #以下、アソシエーションモデルをまとめて保存
-    @user.build_adress(session[:adress_attributes])
+    @user.build_address(session[:address_attributes])
     @user.build_credit(session[:credit_attributes])
     if session[:sns_credentials_attributes].present?
       @user.sns_credentials.build(session[:sns_credentials_attributes])
@@ -87,7 +87,7 @@ class SignupController < ApplicationController
       :first_kana_name, 
       :birthday,
       :tel,
-      adress_attributes:[
+      address_attributes:[
         :id,
         :user_id,
         :delivery_family_name,
@@ -151,7 +151,7 @@ class SignupController < ApplicationController
      )
   end
 
-  def save_adress
+  def save_address
     @user = User.new(
       nickname: session[:nickname],
       email: session[:email],
@@ -164,7 +164,7 @@ class SignupController < ApplicationController
       birthday: session[:birthday], 
       tel: session[:tel]
     )
-    session[:adress_attributes]= user_params[:adress_attributes]    # @user.build_adress(user_params[:adress_attributes])
+    session[:address_attributes]= user_params[:address_attributes]    # @user.build_address(user_params[:address_attributes])
   end
 
   def save_credit

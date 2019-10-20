@@ -1,5 +1,5 @@
 = render 'partial/header'
-= form_for @user, html: { id: :adress }, url: credit_signup_index_path, method: :get do |f|
+= form_for @user, html: { id: :address }, url: credit_signup_index_path, method: :get do |f|
   %header
     %ol.progress
       %li.progress__box
@@ -20,51 +20,51 @@
   %main.single-main
     %section.single-main__container
       %h2.single-main__container__header 住所入力
-      -# adress情報はfields_forにてモデルを分ける
+      -# address情報はfields_forにてモデルを分ける
       .single-main__container__form-group
         = f.label :お名前（全角）
         %span.single-main__container__form-group__requier 必須
         .single-main__container__form-group__requier__input
-          = f.fields_for :adress do |a|
+          = f.fields_for :address do |a|
             = a.text_field :delivery_family_name, :class =>"single-main__container__form-group__input__herf", :placeholder => "例：　橋本"
             = a.text_field :delivery_first_name ,:class =>"single-main__container__form-group__input__herf", :placeholder => "例：　環奈"
       .single-main__container__form-group
         = f.label :お名前（カナ）
         %span.single-main__container__form-group__requier 必須
         .single-main__container__form-group__requier__input
-          = f.fields_for :adress do |a|
+          = f.fields_for :address do |a|
             = a.text_field :delivery_family_kana_name ,:class =>"single-main__container__form-group__input__herf", :placeholder => "例：　ハシモト"
             = a.text_field :delivery_first_kana_name ,:class =>"single-main__container__form-group__input__herf", :placeholder => "例：　カンナ"
       .single-main__container__form-group
         = f.label :郵便番号
         %span.single-main__container__form-group__requier 必須
-        = f.fields_for :adress do |a|
+        = f.fields_for :address do |a|
           = a.number_field :postal_code , :class => "single-main__container__form-group__input-form", :placeholder => "例)： 123456"
       .single-main__container__form-group
         = f.label :都道府県
         %span.single-main__container__form-group__requier 必須
-        = f.fields_for :adress do |a|
+        = f.fields_for :address do |a|
           = a.select :prefecture_id, User.address_prefectures.keys, {}, {class: 'single-main__container__form-group__input-form'}
           -# ↑userモデルにenumを指定してセレクト選択
       .single-main__container__form-group
         = f.label :市区町村
         %span.single-main__container__form-group__requier 必須
-        = f.fields_for :adress do |a|
+        = f.fields_for :address do |a|
           = a.text_field :city , :class => "single-main__container__form-group__input-form", :placeholder => "例)：　世田谷区"
       .single-main__container__form-group
         = f.label :番地
         %span.single-main__container__form-group__requier 必須
-        = f.fields_for :adress do |a|
+        = f.fields_for :address do |a|
           = a.text_field :block , :class => "single-main__container__form-group__input-form", :placeholder => "例)：　世田谷1-2-3"
       .single-main__container__form-group
         = f.label :建物名
         %span.single-main__container__form-group__any 任意
-        = f.fields_for :adress do |a|
+        = f.fields_for :address do |a|
           = a.text_field :building_name, :class => "single-main__container__form-group__input-form", :placeholder => "例)：　oooビル4034"
       .single-main__container__form-group
         = f.label :電話
         %span.single-main__container__form-group__any 任意
-        = f.fields_for :adress do |a|
+        = f.fields_for :address do |a|
           = a.text_field :delivery_tel , :class => "single-main__container__form-group__input-form", :placeholder => "例)：　08012345678"
       = f.submit '次へ進む', class: 'btn-default btn-red'
 = render 'partial/footer'
