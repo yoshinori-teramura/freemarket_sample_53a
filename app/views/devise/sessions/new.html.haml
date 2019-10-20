@@ -8,7 +8,7 @@
         = link_to '新規会員登録',  registration_signup_index_path
       %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
         = fa_icon("facebook-square 2x")
-        Facebookでログイン
+        = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path
       %button#google-login.btn-default.btn-sns.btn-sns-google
         = fa_icon("google 2x")
         = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path
