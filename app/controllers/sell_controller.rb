@@ -27,6 +27,17 @@ class SellController < ApplicationController
     @category_grandchildren = Category.find("#{params[:category_id]}").children
   end
 
+  def get_delivery_types
+    shipping_charge_id = params[:shipping_charge_id].to_i
+    if Item.shipping_charges["送料込み(出品者負担)"] == shipping_charge_id then
+      @delivery_types = Item.delivery_soryokomi_types.to_a
+    elsif Item.shipping_charges["着払い(購入者負担)"] == shipping_charge_id then
+      @delivery_types = Item.delivery_chakubarai_types.to_a
+    else
+      @delivery_types = [['---', 0]]
+    end
+  end
+
   private
 
   def item_params

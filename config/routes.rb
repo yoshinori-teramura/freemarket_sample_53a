@@ -12,10 +12,9 @@ Rails.application.routes.draw do
     collection do
         get 'get_category_children', defaults: {format: 'json'}
         get 'get_category_grandchildren', defaults: {format: 'json'}
+        get 'get_delivery_types', defaults: {format: 'json'}
     end
   end
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :signup do          #新規登録用コントローラー
     collection do

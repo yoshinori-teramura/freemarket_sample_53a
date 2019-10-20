@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function () {
-  var SELECT_NONE = '---';
+  var SELECT_NONE = 0;
 
   // 読み込み時、非表示
   switchCategoryChildren(false);
@@ -58,7 +58,7 @@ $(document).on('turbolinks:load', function () {
   $('#category_id').on('change', function (e) {
     var selectedValue = $(this).val()
 
-    if (selectedValue === SELECT_NONE) {
+    if (selectedValue == SELECT_NONE) {
       // 子カテゴリ
       switchCategoryChildren(false);
       // 孫カテゴリ
@@ -86,7 +86,7 @@ $(document).on('turbolinks:load', function () {
   $('#category_child_id').on('change', function (e) {
     var selectedValue = $(this).val()
 
-    if (selectedValue === SELECT_NONE) {
+    if (selectedValue == SELECT_NONE) {
       // 孫カテゴリ
       switchCategoryGrandchildren(false);
       // サイズ
@@ -109,7 +109,7 @@ $(document).on('turbolinks:load', function () {
    */
   $('#category_grandchild_id').on('change', function (e) {
 
-    if ($(this).val() === SELECT_NONE) {
+    if ($(this).val() == SELECT_NONE) {
       return;
     }
 
@@ -123,30 +123,29 @@ $(document).on('turbolinks:load', function () {
   /**
    * 配送料の負担選択処理
    */
-  $('#pay_delivery_fee').on('change', function (e) {
-
-    if ($(this).val() === SELECT_NONE) {
-      resetOptions('delivery_type');
+  $('#shipping_charge').on('change', function (e) {
+    var selectedValue = $(this).val();
+    if (selectedValue == SELECT_NONE) {
+      resetOptions('#delivery_type');
       switchDeliveryType(false);
       return;
     }
 
-    // TODO: 送料込みか着払いかで値が変わるようにする
-    var values = [{
-        "id": "5",
-        "name": "未定"
-      },
-      {
-        "id": "6",
-        "name": "レターパック"
-      },
-      {
-        "id": "7",
-        "name": "ゆうメール"
-      }
-    ];
-    resetOptions('delivery_type', values);
-    switchDeliveryType(true);
+    $.ajax({
+      url: 'sell/get_delivery_types',
+      type: 'GET',
+      data: { shipping_charge_id: selectedValue },
+      dataType: 'json'
+    })
+    .done(function(types){
+      resetOptions('#delivery_type', types);
+      switchDeliveryType(true);
+    })
+    .fail(function(){
+      console.log('delivery_type not found');
+      resetOptions('#delivery_type');
+      switchDeliveryType(false);
+    })
   });
 
   /**
@@ -157,7 +156,7 @@ $(document).on('turbolinks:load', function () {
   function resetOptions(selector, values = null) {
     $(selector + ' > option').remove();
     // 選択なし
-    $(selector).append($('<option>').html(SELECT_NONE).val(SELECT_NONE));
+    $(selector).append($('<option>').html('---').val(SELECT_NONE));
     if (values !== null) {
       values.forEach(function (val) {
         $(selector).append($('<option>').html(val.name).val(val.id));
