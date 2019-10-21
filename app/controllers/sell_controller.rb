@@ -1,4 +1,5 @@
 class SellController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @item = Item.new
@@ -11,8 +12,31 @@ class SellController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.save
+
+    # TODO:トランザクション
+    item = Item.new(
+      name: item_params[:name],
+      description: item_params[:description],
+      image: item_params[:image],
+      price: item_params[:price],
+      category_id: item_params[:category_id],
+      shipping_charge: item_params[:shipping_charge],
+      derivery_region: item_params[:derivery_region],
+      derivery_days: item_params[:derivery_days],
+      delivery_type: item_params[:delivery_type],
+      item_status: item_params[:item_status],
+      user_id: current_user.id,
+      trade_status: Item.trade_statuses[:showing])
+
+    brand_name = item_params[:brand_id][:name]
+    if brand_name.present?
+      brand = Brand.find_or_initialize_by(name: brand_name)
+      brand.save unless brand.id?
+      item.brand_id = brand.id
+    end
+
+    item.save
+
     # TODO:出品完了ページへ遷移
     redirect_to :root, notice: 'Item was successfully created.'
   end
@@ -41,7 +65,18 @@ class SellController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :image, :price)
+    params.require(:item)
+          .permit(:name,
+                  :description,
+                  :image,
+                  :price,
+                  :category_id,
+                  :shipping_charge,
+                  :derivery_region,
+                  :derivery_days,
+                  :delivery_type,
+                  :item_status,
+                  brand_id: [:name])
   end
 
   def get_categories(grandchild_id)

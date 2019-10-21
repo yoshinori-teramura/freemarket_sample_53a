@@ -37,6 +37,7 @@
           %h3.sell-content__sub-head 商品の詳細
           .sell-form-box
             .sell-form-selectbox
+              -# TODO: hiddenでcategory_idを持たせるようにする
               %label.sell-form-selectbox__label カテゴリー
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
@@ -58,7 +59,7 @@
               %label.sell-form-text__label ブランド
               %span.sell-form-optional 任意
               .sell-form-text__input-wrapper
-                = f.fields_for :brand do |b|
+                = f.fields_for :brand_id do |b|
                   = b.text_field(:name , {class: "sell-form-text__input", placeholder: "例)シャネル", id: "brand_name"})
             .sell-form-selectbox
               %label.sell-form-selectbox__label 商品の状態
@@ -81,7 +82,7 @@
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = select_tag 'delivery_type', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+                = f.select(:delivery_type, [0, "---"], {}, class: "sell-form-selectbox__select", id: 'delivery_type')
             .sell-form-selectbox
               %label.sell-form-selectbox__label 発送元の地域
               %span.sell-form-require 必須
