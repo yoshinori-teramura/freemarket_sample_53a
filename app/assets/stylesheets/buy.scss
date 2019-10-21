@@ -1,3 +1,170 @@
 // Place all the styles related to the buy controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.icon-arrow-right {
+  vertical-align: middle;
+  margin: 0 0 0 8px;
+  font-size: 10px;
+  display: inline-block;
+  font-family: 'icon-font';
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  padding: 0 0 220px;
+  .header {
+    height: 128px;
+    text-align: center;
+    &__box {
+      margin: 40px 0 0;
+      display: inline-block;
+      &__link {
+        width: 185px;
+        height: 49px;
+        line-height: 49px;
+
+      }
+    }
+  }
+  .main {
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    &__box {
+      width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      &__title {
+        padding: 16px;
+        font-size: 22px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      &__purchase {
+        margin: 0;
+        text-align: center;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        &__inner {
+          display: flex;
+          flex-wrap: wrap;
+          max-width: 320px;
+          margin: 0 auto;
+          &__image {
+            font-size: 22px;
+          }
+          &__text {
+            width: calc(100% - 80px);
+            margin: 0 0 0 16px;
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: 600;
+          }
+          &__form {
+            width: 100%;
+            &__price {
+              margin: 8px 0 0;
+              line-height: 1.5;
+              font-size: 22px;
+              font-weight: 600;
+              &__shipping {
+                margin: 0 0 0 8px;
+                font-size: 14px;
+                font-weight: 400;
+                display: inline-block;
+              }
+            }
+            &__point {
+              background: #ccc;
+              margin: 16px 0 0;
+              &__parent {
+                &__toggle {
+                  cursor: default;
+                  padding: 16px;
+                  border: 1px solid #ccc;
+                  position: relative;
+                }
+              }
+            }
+            &__table {
+              display: table;
+              border-collapse: collapse;
+              width: 100%;
+              &__cell {
+                border: 0;
+                font-size: 18px;
+                &__text {
+                  text-align: left;
+                  display: table-cell;
+                  padding: 16px 0;
+                }
+                &__price {
+                  display: table-cell;
+                  padding: 16px 0;
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
+      &__user {
+        -webkit-transition: all ease-out .3s;
+        transition: all ease-out .3s;
+        margin: 40px 0 0;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        &__inner {
+          max-width: 320px;
+          margin: 0 auto;
+          &__text {
+            margin: 0;
+            font-size: 14px;
+          }
+          &__info {
+            display: block;
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          &__space {
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          &__fix {
+            display: block;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    width: 456px;
+    height: 220px;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding: 40px 0;
+    text-align: center;
+    &___logo {
+      display: block;
+      color: #333;
+      width: 80px;
+      height: 65px;
+      margin: 40px auto 0;
+    }
+  }
+}
