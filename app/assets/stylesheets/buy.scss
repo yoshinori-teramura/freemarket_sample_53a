@@ -20,6 +20,32 @@ a {
   color: #0099e8;
   text-decoration: none;
 }
+
+button {
+  -webkit-appearance: button;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: buttontext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  background-color: buttonface;
+  box-sizing: border-box;
+  margin: 0em;
+  font: 400 11px system-ui;
+  padding: 1px 7px 2px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-image: initial;
+}
+
 img {
   vertical-align: middle;
 }
@@ -32,6 +58,32 @@ body {
   font-size: 14px;
   color: #333;
   line-height: 1;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+ul {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
 }
 
 h2 {
@@ -138,6 +190,7 @@ h2 {
                 &__toggle {
                   cursor: default;
                   padding: 16px;
+                  padding-right: 40px;
                   border: 1px solid #ccc;
                   position: relative;
                 }
@@ -150,16 +203,40 @@ h2 {
               &__cell {
                 border: 0;
                 font-size: 18px;
+                // display: table-row;
                 &__text {
                   text-align: left;
                   display: table-cell;
                   padding: 16px 0;
+                  font-weight: 600;
+                  width: 169px;
                 }
                 &__price {
                   display: table-cell;
                   padding: 16px 0;
                   text-align: right;
+                  width: 151px;
+                  span {
+                    font-size: 28px;
+                  }
                 }
+              }
+              &__button {
+                margin: 8px 0 0;
+                background: #ea352d;
+                border: 1px solid #ea352d;
+                color: #fff;
+                display: block;
+                width: 320px;
+                line-height: 48px;
+                font-size: 14px;
+                border: 1px solid transparent;
+                -webkit-transition: all ease-out .3s;
+                transition: all ease-out .3s;
+                cursor: pointer;
+                text-align: center;
+                font-weight: 600;
+                min-height: 1.5em;
               }
             }
           }

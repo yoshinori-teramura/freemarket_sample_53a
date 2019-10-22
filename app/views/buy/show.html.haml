@@ -10,10 +10,11 @@
         .main__box__purchase__inner
           %h3.main__box__purchase__inner__image
             = image_tag @items.image.url , class: 'main__box__purchase__inner__image__one' if @items.image.present?
-          %p.main__box__purchase__inner__text 話せる!!社会人の気づかい英会話 : 1駅3分集中! : 通勤解速トレーニング!
+          %p.main__box__purchase__inner__text 
+            =(@items.name)
           %form.main__box__purchase__inner__form{:action => "https://www.mercari.com/jp/transaction/buy/done/m66900357794/", :method => "POST", :novalidate => "novalidate"}
             %p.main__box__purchase__inner__form__price
-              ¥1,800
+              = to_yen(@items.price)
               %span.main__box__purchase__inner__form__price__shipping 送料込み
             %ul.main__box__purchase__inner__form__point
               %li.main__box__purchase__inner__form__point__parent
@@ -23,7 +24,8 @@
               %li.main__box__purchase__inner__form__table__cell
                 .main__box__purchase__inner__form__table__cell__text 支払い金額
                 .main__box__purchase__inner__form__table__cell__price
-                  %span{"data-buy-pay" => "1800"} ¥1,800
+                  %span= to_yen(@items.price)
+              %button.main__box__purchase__inner__form__table__button{:type => "submit"} 購入する
       %section.main__box__user
         .main__box__user__inner
           %h3.main__box__user__inner__text 配送先
