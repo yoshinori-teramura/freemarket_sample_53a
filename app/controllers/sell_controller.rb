@@ -19,12 +19,12 @@ class SellController < ApplicationController
         description: item_params[:description],
         image: item_params[:image],
         price: item_params[:price],
-        category_id: item_params[:category_id],
-        shipping_charge: item_params[:shipping_charge],
-        delivery_region: item_params[:delivery_region],
-        delivery_days: item_params[:delivery_days],
-        delivery_type: item_params[:delivery_type],
-        item_status: item_params[:item_status],
+        category_id: item_params[:category_id].to_i,
+        shipping_charge: item_params[:shipping_charge].to_i,
+        delivery_region: item_params[:delivery_region].to_i,
+        delivery_days: item_params[:delivery_days].to_i,
+        delivery_type: item_params[:delivery_type].to_i,
+        item_status: item_params[:item_status].to_i,
         user_id: current_user.id,
         trade_status: Item.trade_statuses[:showing])
 
@@ -42,6 +42,7 @@ class SellController < ApplicationController
     redirect_to :root, notice: 'Item was successfully created.'
 
     rescue => e
+      puts e
       redirect_to :root, notice: 'Item was successfully created.'
   end
 
