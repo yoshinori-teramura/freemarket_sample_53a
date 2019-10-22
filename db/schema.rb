@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_034206) do
+ActiveRecord::Schema.define(version: 2019_10_20_062057) do
 
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "adresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code", null: false
     t.string "city", null: false
     t.string "block", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_034206) do
     t.integer "delivery_tel"
     t.bigint "user_id"
     t.integer "prefecture_id", default: 0
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.index ["user_id"], name: "index_adresses_on_user_id"
   end
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -57,13 +57,14 @@ ActiveRecord::Schema.define(version: 2019_10_22_034206) do
     t.integer "price"
     t.bigint "user_id"
     t.bigint "category_id"
+    t.bigint "brand_id"
     t.integer "shipping_charge"
-    t.integer "delivery_region"
-    t.integer "delivery_days"
+    t.integer "derivery_region"
+    t.integer "derivery_days"
     t.integer "delivery_type"
     t.integer "item_status"
     t.integer "trade_status"
-    t.integer "brand_id"
+    t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -84,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_034206) do
     t.string "family_kana_name", null: false
     t.string "first_kana_name", null: false
     t.date "birthday", null: false
-    t.string "tel", null: false
+    t.integer "tel", null: false
     t.text "profile"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -97,8 +98,9 @@ ActiveRecord::Schema.define(version: 2019_10_22_034206) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "users"
+  add_foreign_key "adresses", "users"
   add_foreign_key "credits", "users"
+  add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
   add_foreign_key "sns_credentials", "users"
