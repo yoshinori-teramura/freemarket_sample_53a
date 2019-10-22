@@ -6,7 +6,18 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :items
-  resources :mypages, only: :index
+  resources :mypages do    
+    member do
+      get 'profile'
+      get 'deliver_address'
+      get 'email_password'
+      get 'identification'
+      get 'sms_confirmation'  
+      patch 'update_user'
+      patch 'update_address'
+    end
+  end
+
   resources :logout, only: :index
   resources :sell
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

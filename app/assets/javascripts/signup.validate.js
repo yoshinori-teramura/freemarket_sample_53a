@@ -65,8 +65,7 @@ $(document).on('turbolinks:load', function () {
     }
   });
 });
-
-$(function(){
+$(document).on('turbolinks:load', function () {
   //フォーム指定
   $('#sms_confirmation').validate({
     errorClass: 'valid-err',
@@ -94,7 +93,7 @@ $(function(){
   });
 });
 
-$(function(){
+$(document).on('turbolinks:load', function () {
   //フォーム指定
   $('#address').validate({
     errorClass: 'valid-err',
@@ -142,7 +141,7 @@ $(function(){
   });
 });
 
-$(function(){
+$(document).on('turbolinks:load', function () {
   $('#credit').validate({
     errorClass: 'valid-err',
     rules:{
@@ -151,12 +150,10 @@ $(function(){
         number:true,
         rangelength:[16,16]
       },
-      "user[credit_attributes][expiration_date(1i)":{
-        selectCheck: "--",
+      "user[credit_attributes][expiration_date(1i)]":{
         required: true
       },
-      "user[credit_attributes][expiration_date(2i)":{
-        selectCheck: "--",
+      "user[credit_attributes][expiration_date(2i)]":{
         required: true
       },
       "user[credit_attributes][security_code]":{
@@ -164,8 +161,10 @@ $(function(){
         rangelength:[3,4]
       }
 
+    },
+    errorPlacement: function(error, element){
+      error.insertAfter(element);
     }
-  })
-
-})
+  });
+});
 
