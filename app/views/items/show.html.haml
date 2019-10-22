@@ -159,7 +159,7 @@
       .item-box-container__content
         = render partial: 'itembox', collection: @same_category_items, as: :item
 -# TODO:パンくずリスト
-- breadcrumb :item, @item
-= render 'partial/breadcrumbs'
+  - breadcrumb :item, @item
+  = render 'partial/breadcrumbs'
 = render 'devise/shared/aside'
 = render 'devise/shared/footer'
