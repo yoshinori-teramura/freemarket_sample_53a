@@ -46,11 +46,6 @@ class SellController < ApplicationController
     @category_children = Category.find("#{params[:category_id]}").children
   end
 
-  def get_category_grandchildren
-    # 選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
-    @category_grandchildren = Category.find("#{params[:category_id]}").children
-  end
-
   def get_delivery_types
     shipping_charge_id = params[:shipping_charge_id].to_i
     if Item.shipping_charges["送料込み(出品者負担)"] == shipping_charge_id then
@@ -79,8 +74,4 @@ class SellController < ApplicationController
                   brand_id: [:name])
   end
 
-  def get_categories(grandchild_id)
-    @cetegory_child_id = Category.find(grandchild_id).parent_id
-    @cetegory_id = Category.find(@cetegory_child_id).parent_id
-  end
 end

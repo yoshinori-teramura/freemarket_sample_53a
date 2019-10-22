@@ -182,12 +182,7 @@ $(document).on('turbolinks:load', function () {
         return;
       }
 
-      $.ajax({
-        url: 'sell/get_category_children',
-        type: 'GET',
-        data: { category_id: category_id },
-        dataType: 'json'
-      })
+      getCategoriesAsync(category_id)
       .done(function(categories){
         resetOptions('#category_child_id', categories);
         $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
@@ -217,12 +212,7 @@ $(document).on('turbolinks:load', function () {
         return;
       }
 
-      $.ajax({
-        url: 'sell/get_category_grandchildren',
-        type: 'GET',
-        data: { category_id: category_id },
-        dataType: 'json'
-      })
+      getCategoriesAsync(category_id)
       .done(function(categories){
         resetOptions('#category_grandchild_id', categories);
         $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
@@ -237,6 +227,19 @@ $(document).on('turbolinks:load', function () {
       resetOptions('#category_grandchild_id');
       $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
     }
+  }
+
+  /**
+   * 子孫カテゴリを非同期で取得
+   * @param {Number} category_id カテゴリID
+   */
+  function getCategoriesAsync(category_id) {
+    return  $.ajax({
+      url: 'sell/get_category_children',
+      type: 'GET',
+      data: { category_id: category_id },
+      dataType: 'json'
+    })
   }
 
   /**
