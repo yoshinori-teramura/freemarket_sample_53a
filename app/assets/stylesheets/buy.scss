@@ -1,6 +1,13 @@
 // Place all the styles related to the buy controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+a {
+  color: #0099e8;
+  text-decoration: none;
+}
+img {
+  vertical-align: middle;
+}
 
 .icon-arrow-right {
   vertical-align: middle;
@@ -26,10 +33,12 @@
       margin: 40px 0 0;
       display: inline-block;
       &__link {
-        width: 185px;
-        height: 49px;
+        
         line-height: 49px;
-
+        &__logo {
+          width: 185px;
+          height: 49px;
+        }
       }
     }
   }
