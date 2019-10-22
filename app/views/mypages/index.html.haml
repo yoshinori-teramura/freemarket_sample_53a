@@ -1,12 +1,16 @@
 = render 'devise/shared/header'
 %main.mypage-container
   = render 'sidemenu'
+    - if flash[:notice]
+    .flash
+      = flash[:notice]
   .mypage-content
     %section.mypage-user
       %a.mypage-user__link{:href => ""}
         %figure.mypage-user__icon
           = image_tag "member_photo_noimage_thumb.png", size: "60x60"
-        %h2.mypage-user__name.bold user_name
+        %h2.mypage-user__name.bold 
+        = current_user.nickname
         .mypage-user__status
           .mypage-user__status__review
             評価
