@@ -144,7 +144,7 @@
       = render partial: 'itembox', locals: { item: @item }
       = render partial: 'itembox', locals: { item: @item }
 -# TODO:パンくずリスト
-  - breadcrumb :item, @item
-  = render 'partial/breadcrumbs'
+- breadcrumb :item, @item
+= render 'partial/breadcrumbs'
 = render 'devise/shared/aside'
 = render 'devise/shared/footer'
