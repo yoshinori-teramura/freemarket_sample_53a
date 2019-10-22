@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   resources :items
   resources :mypages, only: :index
   resources :logout, only: :index
-  resources :sell
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :sell do
+    collection do
+        get 'get_category_children', defaults: {format: 'json'}
+        get 'get_delivery_types', defaults: {format: 'json'}
+    end
+  end
 
   resources :signup do          #新規登録用コントローラー
     collection do
