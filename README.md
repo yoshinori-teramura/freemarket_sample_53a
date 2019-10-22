@@ -72,7 +72,7 @@
 - belongs_to :favorite
 - belongs_to :user
 - belongs_to :category
-
+- belongs_to :brand, optional: ture
 
 ## photos table
 |Column|Type|Options|
@@ -98,6 +98,7 @@
 |name  |string      |null: false, unique: true  |
 
 ### Association
+- has_many :items
 
 ## favorites table
 |Column|Type|Options|

@@ -5,6 +5,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
+  belongs_to :brand, optional: true
 
   # 商品の状態
   enum item_statuses: {
