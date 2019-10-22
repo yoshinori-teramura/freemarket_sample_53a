@@ -9,8 +9,8 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, length: {maximum: 40}
   validates :description, presence: true, length: {maximum: 1000}
-  validates :item_status, :shipping_charge, :derivery_region,
-            :delivery_type, :derivery_days, :trade_status, :image,
+  validates :item_status, :shipping_charge, :delivery_region,
+            :delivery_type, :delivery_days, :trade_status, :image,
             presence: true
   validates_with ItemPriceValidator
 

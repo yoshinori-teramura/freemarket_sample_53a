@@ -88,13 +88,13 @@
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = f.select(:derivery_region, Item.delivery_regions, {}, {class: "sell-form-selectbox__select"})
+                = f.select(:delivery_region, Item.delivery_regions, {}, {class: "sell-form-selectbox__select"})
             .sell-form-selectbox
               %label.sell-form-selectbox__label 発送までの日数
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = f.select(:derivery_days, Item.delivery_terms, {}, {class: "sell-form-selectbox__select"})
+                = f.select(:delivery_days, Item.delivery_terms, {}, {class: "sell-form-selectbox__select"})
         .sell-content.sell-content--clearfix
           %h3.sell-content__sub-head 販売価格(300〜9,999,999)
           %a.sell-form-question ?
