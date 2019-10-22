@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_10_22_034206) do
 
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "adresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code", null: false
     t.string "city", null: false
     t.string "block", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_034206) do
     t.integer "delivery_tel"
     t.bigint "user_id"
     t.integer "prefecture_id", default: 0
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.index ["user_id"], name: "index_adresses_on_user_id"
   end
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_034206) do
     t.string "family_kana_name", null: false
     t.string "first_kana_name", null: false
     t.date "birthday", null: false
-    t.string "tel", null: false
+    t.integer "tel", null: false
     t.text "profile"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_034206) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "users"
+  add_foreign_key "adresses", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
