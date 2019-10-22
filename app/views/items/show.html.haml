@@ -17,7 +17,8 @@
         %tr.item-detail__tr
           %th.item-detail__th 出品者
           %td.item-detail__td
-            %a.item-detail__username ユーザ名
+            %a.item-detail__username
+              = @item.user.nickname if @item.user.present?
             .item-detail-user-ratings
               .item-detail-user-rating
                 = fa_icon 'smile-o', class: 'item-detail-user-rating__icon item-detail-user-rating__icon--good'
@@ -33,43 +34,58 @@
           %td.item-detail__td
             %a.item-detail__category
               .item-detail__category__name
-                カテゴリー名
-            %a.item-detail__category
-              .item-detail__category__name
-                = fa_icon 'angle-right'
-                子カテゴリー名
-            %a.item-detail__category
-              .item-detail__category__name
-                = fa_icon 'angle-right'
-                孫カテゴリー名
+                = @item.category.root.name
+            - if @item.category.parent.present?
+              %a.item-detail__category
+                .item-detail__category__name
+                  = fa_icon 'angle-right'
+                  = @item.category.parent.name
+            - if @item.category.ancestry.present?
+              %a.item-detail__category
+                .item-detail__category__name
+                  = fa_icon 'angle-right'
+                  = @item.category.name
         %tr.item-detail__tr
           %th.item-detail__th ブランド
           %td.item-detail__td
-            %a.item-detail__bland ブランド名
-        %tr.item-detail__tr
-          %th.item-detail__th 商品のサイズ
-          %td.item-detail__td M
+            %a.item-detail__bland
+              = @item.brand.name if @item.brand.present?
+        -# %tr.item-detail__tr
+        -#   %th.item-detail__th 商品のサイズ
+        -#   %td.item-detail__td M
         %tr.item-detail__tr
           %th.item-detail__th 商品の状態
-          %td.item-detail__td 目立った傷や汚れなし
+          %td.item-detail__td
+            = @item.item_status
         %tr.item-detail__tr
           %th.item-detail__th 配送料の負担
-          %td.item-detail__td 送料込み(出品者負担)
+          %td.item-detail__td
+            = @item.shipping_charge
         %tr.item-detail__tr
           %th.item-detail__th 配送の方法
-          %td.item-detail__td 普通郵便(定形、定形外)
+          %td.item-detail__td
+            - if @item.shipping_charge == "送料込み(出品者負担)"
+              = Item.delivery_soryokomi_types.key(@item.delivery_type)
+            - elsif @item.shipping_charge == "着払い(購入者負担)"
+              = Item.delivery_chakubarai_types.key(@item.delivery_type)
         %tr.item-detail__tr
           %th.item-detail__th 配送元地域
           %td.item-detail__td
-            %a.item-detail__area 埼玉県
+            %a.item-detail__area
+              = @item.delivery_region
         %tr.item-detail__tr
           %th.item-detail__th 発送日の目安
-          %td.item-detail__td 1~2日で発送
+          %td.item-detail__td
+            = Item.delivery_terms.key(@item.delivery_days)
   .item-price-box
     %span.item-price-box__price
       = to_yen(@item.price)
     %span.item-price-box__tax (税込)
-    %span.item-price-box__shipping-fee 送料込み
+    %span.item-price-box__shipping-fee
+      - if @item.shipping_charge == "送料込み(出品者負担)"
+        送料込み
+      - elsif @item.shipping_charge == "着払い(購入者負担)"
+        送料別
   %a.item-buy-btn 購入画面に進む
   .item-description
     %p.item-description__text
@@ -130,19 +146,18 @@
 .item-box-containers
   %section.item-box-cotainer
     %h2.item-box-container__head
-      %a.item-box-container__head__link (ユーザー)さんのその他の作品
+      %a.item-box-container__head__link
+        = "#{@item.user.nickname}さんのその他の作品"
     .item-box-container__content
       = render partial: 'itembox', collection: @other_items, as: :item
-  %section.item-box-cotainer
-    %h2.item-box-container__head
-      %a.item-box-container__head__link (ブランド名)の(孫カテゴリ名) その他の作品
-    .item-box-container__content
-      = render partial: 'itembox', locals: { item: @item }
-      = render partial: 'itembox', locals: { item: @item }
-      = render partial: 'itembox', locals: { item: @item }
-      = render partial: 'itembox', locals: { item: @item }
-      = render partial: 'itembox', locals: { item: @item }
-      = render partial: 'itembox', locals: { item: @item }
+
+  - if @same_category_items.count > 0
+    %section.item-box-cotainer
+      %h2.item-box-container__head
+        %a.item-box-container__head__link
+          = "#{@item.category.name}のその他の作品"
+      .item-box-container__content
+        = render partial: 'itembox', collection: @same_category_items, as: :item
 -# TODO:パンくずリスト
 - breadcrumb :item, @item
 = render 'partial/breadcrumbs'
