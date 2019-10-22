@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function () {
   var SELECT_NONE = 0;
+  var itemCategoryId = $('#item_category_id');
 
   // 読み込み時、非表示
   switchCategoryChildren(false);
@@ -57,14 +58,15 @@ $(document).on('turbolinks:load', function () {
    */
   $('#category_id').on('change', function (e) {
     var selectedValue = $(this).val()
+    itemCategoryId.val(selectedValue);
 
     if (selectedValue == SELECT_NONE) {
       // 子カテゴリ
       switchCategoryChildren(false);
       // 孫カテゴリ
       switchCategoryGrandchildren(false);
-      // サイズ
-      resetOptions('#item_size');
+      // // サイズ
+      // resetOptions('#item_size');
       return;
     }
 
@@ -85,12 +87,13 @@ $(document).on('turbolinks:load', function () {
    */
   $('#category_child_id').on('change', function (e) {
     var selectedValue = $(this).val()
+    itemCategoryId.val(selectedValue);
 
     if (selectedValue == SELECT_NONE) {
       // 孫カテゴリ
       switchCategoryGrandchildren(false);
-      // サイズ
-      resetOptions('#item_size');
+      // // サイズ
+      // resetOptions('#item_size');
       return;
     }
 
@@ -108,8 +111,10 @@ $(document).on('turbolinks:load', function () {
    * 孫カテゴリ選択処理
    */
   $('#category_grandchild_id').on('change', function (e) {
+    var selectedValue = $(this).val()
+    itemCategoryId.val(selectedValue);
 
-    if ($(this).val() == SELECT_NONE) {
+    if (selectedValue == SELECT_NONE) {
       return;
     }
 

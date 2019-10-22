@@ -37,12 +37,12 @@
           %h3.sell-content__sub-head 商品の詳細
           .sell-form-box
             .sell-form-selectbox
-              -# TODO: hiddenでcategory_idを持たせるようにする
+              = f.hidden_field :category_id, {id: 'item_category_id'}
               %label.sell-form-selectbox__label カテゴリー
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = f.select(:category_id, @categories, {:selected => @category_id}, {class: "sell-form-selectbox__select", id: "category_id"})
+                = select_tag 'category_id', options_for_select(@categories, :selected => @item.category_id), class: "sell-form-selectbox__select"
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 = select_tag 'category_child_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
