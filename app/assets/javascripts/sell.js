@@ -56,7 +56,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * カテゴリ選択処理
    */
-  $('#category_id').on('change', function (e) {
+  $('#category_root_id').on('change', function (e) {
     var selectedValue = $(this).val()
     itemCategoryId.val(selectedValue);
 

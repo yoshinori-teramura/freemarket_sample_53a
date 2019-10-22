@@ -42,7 +42,7 @@
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = select_tag 'category_id', options_for_select(@categories, :selected => @item.category_id), class: "sell-form-selectbox__select"
+                = select_tag 'category_root_id', options_for_select(@categories, :selected => @item.category_id), class: "sell-form-selectbox__select"
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 = select_tag 'category_child_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
