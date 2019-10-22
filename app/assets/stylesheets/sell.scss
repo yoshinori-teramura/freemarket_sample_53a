@@ -1,5 +1,4 @@
 @mixin sell-form-header() {
-  font-weight: 600;
   display: inline-block;
 }
 
@@ -73,6 +72,16 @@
 
 .sell-form-require {
   background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.sell-form-optional {
+  background: #ccc;
   margin: 0 0 0 8px;
   padding: 2px 4px;
   border-radius: 2px;
@@ -182,6 +191,19 @@
   margin: 0;
 
   &__label {
+    font-weight: 600;
+    @include sell-form-header();
+  }
+
+  &__input {
+    @include sell-input-default();
+  }
+}
+
+.sell-form-text {
+  margin: 40px 0 0;
+
+  &__label {
     @include sell-form-header();
   }
 
@@ -194,6 +216,7 @@
   margin: 40px 0 0;
 
   &__label {
+    font-weight: 600;
     @include sell-form-header();
   }
 

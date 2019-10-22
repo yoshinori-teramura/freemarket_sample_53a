@@ -1,11 +1,13 @@
 $(document).on('turbolinks:load', function () {
-  var SELECT_NONE = '---';
+  var SELECT_NONE = 0;
+  var itemCategoryId = $('#item_category_id');
 
   // 読み込み時、非表示
   switchCategoryChildren(false);
   switchCategoryGrandchildren(false);
-  switchItemSize(false);
+  // switchItemSize(false);
   switchDeliveryType(false);
+  switchBrand(false);
 
   /**
    * 戻るボタン押下処理
@@ -54,27 +56,29 @@ $(document).on('turbolinks:load', function () {
   /**
    * カテゴリ選択処理
    */
-  $('#category_id').on('change', function (e) {
+  $('#category_root_id').on('change', function (e) {
+    var selectedValue = $(this).val()
+    itemCategoryId.val(selectedValue);
 
-    if ($(this).val() === SELECT_NONE) {
+    if (selectedValue == SELECT_NONE) {
       // 子カテゴリ
       switchCategoryChildren(false);
       // 孫カテゴリ
       switchCategoryGrandchildren(false);
-      // サイズ
-      resetOptions('#item_size');
+      // // サイズ
+      // resetOptions('#item_size');
       return;
     }
 
     // 子カテゴリ
-    switchCategoryChildren(true);
+    switchCategoryChildren(true, selectedValue);
 
     // 孫カテゴリ
     switchCategoryGrandchildren(false);
 
-    // サイズ
-    resetOptions('#item_size');
-    switchItemSize(false);
+    // // サイズ
+    // resetOptions('#item_size');
+    // switchItemSize(false);
   });
 
 
@@ -82,34 +86,24 @@ $(document).on('turbolinks:load', function () {
    * 子カテゴリ選択処理
    */
   $('#category_child_id').on('change', function (e) {
+    var selectedValue = $(this).val()
+    itemCategoryId.val(selectedValue);
 
-    if ($(this).val() === SELECT_NONE) {
+    if (selectedValue == SELECT_NONE) {
       // 孫カテゴリ
       switchCategoryGrandchildren(false);
-      // サイズ
-      resetOptions('#item_size');
+      // // サイズ
+      // resetOptions('#item_size');
       return;
     }
 
     // 孫カテゴリ
-    switchCategoryGrandchildren(true);
+    switchCategoryGrandchildren(true, selectedValue);
 
-    // サイズ: 子カテゴリと紐づく
-    var item_sizes = [{
-        "id": "2",
-        "name": "S"
-      },
-      {
-        "id": "3",
-        "name": "M"
-      },
-      {
-        "id": "4",
-        "name": "L"
-      }
-    ];
-    resetOptions('#item_size', item_sizes); //値を設定するのみ
-    switchItemSize(false);
+    // // サイズ: 子カテゴリと紐づく
+    // var item_sizes = [{"id": "2", "name": "S"}];
+    // resetOptions('#item_size', item_sizes);
+    // switchItemSize(false);
   });
 
 
@@ -117,42 +111,46 @@ $(document).on('turbolinks:load', function () {
    * 孫カテゴリ選択処理
    */
   $('#category_grandchild_id').on('change', function (e) {
+    var selectedValue = $(this).val()
+    itemCategoryId.val(selectedValue);
 
-    if ($(this).val() === SELECT_NONE) {
+    if (selectedValue == SELECT_NONE) {
       return;
     }
 
-    // サイズ
-    switchItemSize(true);
+    // // サイズ
+    // switchItemSize(true);
+
+    // ブランド
+    switchBrand(true);
   });
 
   /**
    * 配送料の負担選択処理
    */
-  $('#pay_delivery_fee').on('change', function (e) {
-
-    if ($(this).val() === SELECT_NONE) {
-      resetOptions('delivery_type');
+  $('#shipping_charge').on('change', function (e) {
+    var selectedValue = $(this).val();
+    if (selectedValue == SELECT_NONE) {
+      resetOptions('#delivery_type');
       switchDeliveryType(false);
       return;
     }
 
-    // TODO: 送料込みか着払いかで値が変わるようにする
-    var values = [{
-        "id": "5",
-        "name": "未定"
-      },
-      {
-        "id": "6",
-        "name": "レターパック"
-      },
-      {
-        "id": "7",
-        "name": "ゆうメール"
-      }
-    ];
-    resetOptions('delivery_type', values);
-    switchDeliveryType(true);
+    $.ajax({
+      url: 'sell/get_delivery_types',
+      type: 'GET',
+      data: { shipping_charge_id: selectedValue },
+      dataType: 'json'
+    })
+    .done(function(types){
+      resetOptions('#delivery_type', types);
+      switchDeliveryType(true);
+    })
+    .fail(function(){
+      console.log('delivery_type not found');
+      resetOptions('#delivery_type');
+      switchDeliveryType(false);
+    })
   });
 
   /**
@@ -162,7 +160,8 @@ $(document).on('turbolinks:load', function () {
    */
   function resetOptions(selector, values = null) {
     $(selector + ' > option').remove();
-    $(selector).append($('<option>').html(SELECT_NONE).val(SELECT_NONE));
+    // 選択なし
+    $(selector).append($('<option>').html('---').val(SELECT_NONE));
     if (values !== null) {
       values.forEach(function (val) {
         $(selector).append($('<option>').html(val.name).val(val.id));
@@ -173,25 +172,27 @@ $(document).on('turbolinks:load', function () {
   /**
    * 子カテゴリの表示を切り替える
    * @param {Boolean} isVisible 表示するか
+   * @param {Number} category_id カテゴリ
    */
-  function switchCategoryChildren(isVisible) {
+  function switchCategoryChildren(isVisible, category_id = 0) {
     if (isVisible) {
-      // TODO:非同期で子カテゴリの値を取得する
-      var values = [{
-          "id": "30",
-          "name": "トップス"
-        },
-        {
-          "id": "31",
-          "name": "ジャケット/アウター"
-        },
-        {
-          "id": "32",
-          "name": "パンツ"
-        }
-      ];
-      resetOptions('#category_child_id', values);
-      $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+      if (category_id === 0) {
+        resetOptions('#category_child_id');
+        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+        return;
+      }
+
+      getCategoriesAsync(category_id)
+      .done(function(categories){
+        resetOptions('#category_child_id', categories);
+        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+      })
+      .fail(function(){
+        console.log('category not found');
+        resetOptions('#category_child_id');
+        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      })
+
     } else {
       resetOptions('#category_child_id');
       $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
@@ -201,29 +202,44 @@ $(document).on('turbolinks:load', function () {
   /**
    * 孫カテゴリの表示を切り替える
    * @param {Boolean} isVisible 表示するか
+   * @param {Number}  category_id 子カテゴリ
    */
-  function switchCategoryGrandchildren(isVisible) {
+  function switchCategoryGrandchildren(isVisible, category_id = 0) {
     if (isVisible) {
-      // TODO:非同期で孫カテゴリの値を取得する
-      var values = [{
-          "id": "302",
-          "name": "Tシャツ/カットソー"
-        },
-        {
-          "id": "304",
-          "name": "シャツ"
-        },
-        {
-          "id": "305",
-          "name": "ポロシャツ"
-        }
-      ];
-      resetOptions('#category_grandchild_id', values);
-      $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+      if (category_id === 0) {
+        resetOptions('#category_grandchild_id');
+        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+        return;
+      }
+
+      getCategoriesAsync(category_id)
+      .done(function(categories){
+        resetOptions('#category_grandchild_id', categories);
+        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+      })
+      .fail(function(){
+        console.log('category not found');
+        resetOptions('#category_grandchild_id');
+        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      })
+
     } else {
       resetOptions('#category_grandchild_id');
       $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
     }
+  }
+
+  /**
+   * 子孫カテゴリを非同期で取得
+   * @param {Number} category_id カテゴリID
+   */
+  function getCategoriesAsync(category_id) {
+    return  $.ajax({
+      url: 'sell/get_category_children',
+      type: 'GET',
+      data: { category_id: category_id },
+      dataType: 'json'
+    })
   }
 
   /**
@@ -247,6 +263,18 @@ $(document).on('turbolinks:load', function () {
       $('#delivery_type').parents('.sell-form-selectbox').show();
     } else {
       $('#delivery_type').parents('.sell-form-selectbox').hide();
+    }
+  }
+
+  /**
+   * ブランドの表示を切り替える
+   * @param {Boolean} isVisible 表示するか
+   */
+  function switchBrand(isVisible) {
+    if (isVisible) {
+      $('#brand_name').parents('.sell-form-text').show();
+    } else {
+      $('#brand_name').parents('.sell-form-text').hide();
     }
   }
 

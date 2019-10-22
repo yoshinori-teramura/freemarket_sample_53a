@@ -37,31 +37,36 @@
           %h3.sell-content__sub-head 商品の詳細
           .sell-form-box
             .sell-form-selectbox
+              = f.hidden_field :category_id, {id: 'item_category_id'}
               %label.sell-form-selectbox__label カテゴリー
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'category_id', options_for_select(["---", "メンズ", "レディース"], "---"), class: "sell-form-selectbox__select"
+                = select_tag 'category_root_id', options_for_select(@categories, :selected => @item.category_id), class: "sell-form-selectbox__select"
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 = select_tag 'category_child_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
                 = select_tag 'category_grandchild_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
-            .sell-form-selectbox
-              %label.sell-form-selectbox__label サイズ
-              %span.sell-form-require 必須
-              .sell-form-selectbox__select-wrapper
-                = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                = select_tag 'item_size', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+            -# .sell-form-selectbox
+            -#   %label.sell-form-selectbox__label サイズ
+            -#   %span.sell-form-require 必須
+            -#   .sell-form-selectbox__select-wrapper
+            -#     = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+            -#     = select_tag 'item_size', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+            .sell-form-text
+              %label.sell-form-text__label ブランド
+              %span.sell-form-optional 任意
+              .sell-form-text__input-wrapper
+                = f.fields_for :brand_id do |b|
+                  = b.text_field(:name , {class: "sell-form-text__input", placeholder: "例)シャネル", id: "brand_name"})
             .sell-form-selectbox
               %label.sell-form-selectbox__label 商品の状態
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'item_state', options_for_select(["---", "新品、未使用", "未使用に近い"], "---") , class: "sell-form-selectbox__select"
+                = f.select(:item_status, Item.item_statuses, {}, {class: "sell-form-selectbox__select"})
         .sell-content.sell-content--clearfix
           %h3.sell-content__sub-head 配送について
           %a.sell-form-question ?
@@ -71,29 +76,25 @@
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'pay_delivery_fee', options_for_select(["---", "送料込み(出品者負担)", "着払い(購入者負担)"], "---"), class: "sell-form-selectbox__select"
+                = f.select(:shipping_charge, Item.shipping_charges, {}, {class: "sell-form-selectbox__select", id: "shipping_charge"})
             .sell-form-selectbox
               %label.sell-form-selectbox__label 配送の方法
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'delivery_type', options_for_select(["---", "らくらくメルカリ便", "ゆうメール"], "---"), class: "sell-form-selectbox__select"
+                = f.select(:delivery_type, [0, "---"], {}, class: "sell-form-selectbox__select", id: 'delivery_type')
             .sell-form-selectbox
               %label.sell-form-selectbox__label 発送元の地域
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'delivery_area', options_for_select(["---", "北海道", "東京都"], "---"), class: "sell-form-selectbox__select"
+                = f.select(:delivery_region, Item.delivery_regions, {}, {class: "sell-form-selectbox__select"})
             .sell-form-selectbox
               %label.sell-form-selectbox__label 発送までの日数
               %span.sell-form-require 必須
               .sell-form-selectbox__select-wrapper
                 = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-                -# TODO:Dummy collection_selectを使用するように
-                = select_tag 'delivery_days', options_for_select(["---", "1~2日で配送", "2~3日で配送"], "---"), class: "sell-form-selectbox__select"
+                = f.select(:delivery_days, Item.delivery_terms, {}, {class: "sell-form-selectbox__select"})
         .sell-content.sell-content--clearfix
           %h3.sell-content__sub-head 販売価格(300〜9,999,999)
           %a.sell-form-question ?
