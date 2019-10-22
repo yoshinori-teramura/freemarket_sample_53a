@@ -7,6 +7,13 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :brand, optional: true
 
+  validates :name, presence: true, length: {maximum: 40}
+  validates :description, presence: true, length: {maximum: 1000}
+  validates :item_status, :shipping_charge, :derivery_region,
+            :delivery_type, :derivery_days, :trade_status, :image,
+            presence: true
+  validates_with ItemPriceValidator
+
   # 商品の状態
   enum item_statuses: {
     "---": 0, "新品、未使用": 1, "未使用に近い": 2,
