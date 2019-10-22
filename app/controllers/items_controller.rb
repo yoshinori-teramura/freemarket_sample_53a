@@ -11,10 +11,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @other_items = current_user
-                     .items
+    @other_items = Item.where('id <> ? AND user_id = ?', @item.id, @item.user_id)
                      .order(created_at: 'DESC')
-                     .where('id <> ?', params[:id])
                      .limit(6)
     @same_category_items = Category
                              .find(@item.category.id)
