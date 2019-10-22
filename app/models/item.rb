@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :item_status, :shipping_charge, :delivery_region,
             :delivery_type, :delivery_days, :trade_status, :image,
             presence: true
-  validates_with ItemPriceValidator
+  # validates_with ItemPriceValidator
 
   # 商品の状態
   enum item_status: {
