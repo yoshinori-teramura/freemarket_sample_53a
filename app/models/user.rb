@@ -80,9 +80,9 @@ class User < ApplicationRecord
    def self.find_oauth(auth)
     # request.envにてHTTPリクエストの値を取得し振り分け
     uid = auth.uid
-    # 例 =>"103727882963069126588"
+    # 例　=>"103727882963069126588"
     provider = auth.provider
-    # 例 =>"google_oauth2"
+    # 例　=>"google_oauth2"
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
     # 取得してきた値と同じものがsns_credentialテーブルに保存されていれば、値を取得してsns_credentialに代入
     if snscredential.present?
