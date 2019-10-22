@@ -9,7 +9,7 @@
       %section.main__box__purchase
         .main__box__purchase__inner
           %h3.main__box__purchase__inner__image
-            %img.lazyload{:alt => "", "data-src" => "https://static.mercdn.net/thumb/photos/m66900357794_1.jpg?1571553431"}/
+            = image_tag @items.image.url , class: 'main__box__purchase__inner__image__one' if @items.image.present?
           %p.main__box__purchase__inner__text 話せる!!社会人の気づかい英会話 : 1駅3分集中! : 通勤解速トレーニング!
           %form.main__box__purchase__inner__form{:action => "https://www.mercari.com/jp/transaction/buy/done/m66900357794/", :method => "POST", :novalidate => "novalidate"}
             %p.main__box__purchase__inner__form__price
