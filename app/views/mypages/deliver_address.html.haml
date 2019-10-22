@@ -1,0 +1,46 @@
+= render 'devise/shared/header'
+%main.mypage-container
+  = render 'sidemenu'
+  .mypage-content
+    .mypage-content__box
+      %h2.mypage-content__box__header 発送元・お届け先住所の変更
+      = form_for @address , :url => { :controller => :mypages, :action => :update_address } do |f|
+        .mypage-content__box__form-group
+          = f.label :お名前（全角）
+          %span.mypage-content__box__form-group__requier 必須
+          .mypage-content__box__form-group__input
+          = f.text_field :delivery_family_name, :class => "mypage-content__box__form-group__input-form"
+          = f.text_field :delivery_first_name, :class => "mypage-content__box__form-group__input-form"
+        .mypage-content__box__form-group
+          = f.label :お名前（カナ）
+          %span.mypage-content__box__form-group__requier 必須
+          .mypage-content__box__form-group__input
+          = f.text_field :delivery_family_kana_name ,:class => "mypage-content__box__form-group__input-form"
+          = f.text_field :delivery_first_kana_name, :class =>"mypage-content__box__form-group__input-form"
+        .mypage-content__box__form-group
+          = f.label :郵便番号
+          %span.mypage-content__box__form-group__requier 必須
+          = f.number_field :postal_code  ,:class => "mypage-content__box__form-group__input-form"
+        .mypage-content__box__form-group
+          = f.label :都道府県
+          %span.mypage-content__box__form-group__requier 必須
+          = f.select :prefecture_id,  User.address_prefectures.keys ,{:selected =>"#{@address.prefecture_id}" }, {class: 'mypage-content__box__form-group__input-form'}
+          -# TODO:既存の値を表示
+        .mypage-content__box__form-group
+          = f.label :市区町村
+          %span.mypage-content__box__form-group__requier 必須
+          = f.text_field :city ,:class => "mypage-content__box__form-group__input-form" 
+        .mypage-content__box__form-group
+          = f.label :番地
+          %span.mypage-content__box__form-group__requier 必須
+          = f.text_field :block ,:class => "mypage-content__box__form-group__input-form"
+        .mypage-content__box__form-group
+          = f.label :建物名
+          %span.mypage-content__box__form-group__any 任意
+          = f.text_field :building_name ,:class => "mypage-content__box__form-group__input-form"
+        .mypage-content__box__form-group
+          = f.label :電話番号
+          %span.mypage-content__box__form-group__any 任意
+          = f.text_field :delivery_tel ,:class => "mypage-content__box__form-group__input-form"
+        = f.submit '登録する', class: 'btn-default btn-red'
+= render 'devise/shared/footer'

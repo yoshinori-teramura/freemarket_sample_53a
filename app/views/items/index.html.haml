@@ -1,5 +1,7 @@
 = render 'devise/shared/header'
-
+- if flash[:notice]
+  .flash
+    = flash[:notice]
 .wrapper__main
   .main
     .main__top
