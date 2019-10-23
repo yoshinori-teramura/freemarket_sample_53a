@@ -33,7 +33,7 @@
     %h3.sell-content__sub-head 商品の詳細
     .sell-form-box
       .sell-form-selectbox
-        = f.hidden_field :category_id, {id: 'item_category_id', value: item.category.id}
+        = f.hidden_field :category_id, {id: 'item_category_id', value: (item.category.nil? ? 0 : item.category.id)}
         %label.sell-form-selectbox__label カテゴリー
         %span.sell-form-require 必須
         -# TODO: カテゴリの表示、値が存在する場合、非表示の値を表示する(js)
@@ -57,7 +57,7 @@
         %span.sell-form-optional 任意
         .sell-form-text__input-wrapper
           = f.fields_for :brand_id do |b|
-            = b.text_field(:name , {class: "sell-form-text__input", placeholder: "例)シャネル", id: "brand_name", value: "#{item.brand.name}"})
+            = b.text_field(:name , {class: "sell-form-text__input", placeholder: "例)シャネル", id: "brand_name", value: "#{item.brand.nil? ? '' : item.brand.name}"})
       .sell-form-selectbox
         %label.sell-form-selectbox__label 商品の状態
         %span.sell-form-require 必須
