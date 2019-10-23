@@ -235,7 +235,7 @@ $(document).on('turbolinks:load', function () {
    */
   function getCategoriesAsync(category_id) {
     return  $.ajax({
-      url: 'sell/get_category_children',
+      url: '/sell/get_category_children',
       type: 'GET',
       data: { category_id: category_id },
       dataType: 'json'

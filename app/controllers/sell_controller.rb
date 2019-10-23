@@ -46,6 +46,16 @@ class SellController < ApplicationController
       redirect_to :root, notice: 'Item was successfully created.'
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    @categories = []
+    @categories << ["---", 0]
+    #データベースから、Rootカテゴリーのみ抽出し、配列化
+    Category.where(ancestry: nil).each do |root|
+      @categories << [root.name, root.id]
+    end
+  end
+
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
     @category_children = Category.find("#{params[:category_id]}").children
