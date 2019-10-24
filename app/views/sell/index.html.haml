@@ -3,7 +3,7 @@
   %section.sell-container-wrapper
     .sell-container
       %h2.sell-container__head 商品の情報を入力
-      = form_for @item , url: '/sell', method: :post, html: {class: "sell-form"} do |f|
+      = form_for @item , url: '/sell', method: :post, html: {id: :sellnewitem , class: "sell-form"} do |f|
         .sell-upload-box
           %h3.sell-upload-box__head
             出品画像
@@ -24,14 +24,12 @@
             %span.sell-form-require 必須
             .sell-form-name__input-wrapper
               = f.text_field(:name, {class: "sell-form-name__input",
-                    placeholder: "商品名（必須40文字まで）",
-                    required: true})
+                    placeholder: "商品名（必須40文字まで）"})
           .sell-form-review
             = f.label "商品の説明", {class: "sell-form-review__label"}
             %span.sell-form-require 必須
             = f.text_area(:description, {class: "sell-form-review__textarea",
             rows: "5",
-            required: true,
             placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"})
         .sell-content.sell-content--clearfix
           %h3.sell-content__sub-head 商品の詳細
@@ -110,8 +108,7 @@
                     .sell-form-price__inputform__input
                       = f.text_field(:price, {id: "sell_input_price",
                             class: "sell-form-price__inputform__input__inner",
-                            placeholder: "例) 300",
-                            required: true})
+                            placeholder: "例) 300"})
               %li.sell-form-price__tax
                 .sell-form-price__tax--left 販売手数料 (10％)
                 .sell-form-price__tax--right -
@@ -131,7 +128,6 @@
               また、出品をもちまして
               %a.sell-btn-box__note__link> 加盟店規約
               に同意したことになります。
-          %button{type: "submit", class: "sell-btn-box__submit"} 出品する
+            = f.submit '出品する' ,class:'sell-btn-box__submit'
           %a.sell-btn-box__back#sell-back-btn 戻る
-
 = render 'partial/footer'

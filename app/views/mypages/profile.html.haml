@@ -5,8 +5,6 @@
     .mypage-content__box
     %h2.mypage-content__box__header プロフィール
     = form_for @user , :url => { :controller => :mypages, :action => :update_user } do |f|
-      .mypage-content__box__form-group
-        .mypage-content__box__form-group__input
-          = f.text_field :profile ,:class => "mypage-content__box__form-group__input-form"
+      = f.text_field :profile ,:class => "mypage-content__box__text-form-group"
       = f.submit '変更する', class: 'btn-default btn-red'
 = render 'devise/shared/footer'
