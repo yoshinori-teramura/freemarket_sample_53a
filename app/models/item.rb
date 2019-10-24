@@ -75,4 +75,84 @@ class Item < ApplicationRecord
         .where('id > ?', id)
         .reverse.first
   end
+
+  def root_siblings
+    get_category
+    if @category_root.present?
+      return category_to_array(@category_root.siblings)
+    else
+      return category_to_array(Category.where(ancestry: nil))
+    end
+  end
+
+  def child_siblings
+    get_category
+    if @category_child.present?
+      return category_to_array(@category_child.siblings)
+    else
+      return category_to_array
+    end
+  end
+
+  def grandchild_siblings
+    get_category
+    if @category_grandchild.present?
+      return category_to_array(@category_grandchild.siblings)
+    else
+      return category_to_array
+    end
+  end
+
+  def category_root_id
+    get_category
+    return @category_root.present? ? @category_root.id : 0
+  end
+
+  def category_child_id
+    get_category
+    return @category_child.present? ? @category_child.id : 0
+  end
+
+  def category_grandchild_id
+    get_category
+    return @category_grandchild.present? ? @category_grandchild.id : 0
+  end
+
+  def self.delivery_types_by_shipping_charge(shipping_charge_id)
+    if shipping_charges["送料込み(出品者負担)"] == shipping_charge_id then
+      return delivery_soryokomi_types.to_a
+    elsif shipping_charges["着払い(購入者負担)"] == shipping_charge_id then
+      return delivery_chakubarai_types.to_a
+    else
+      return [['---', 0]]
+    end
+  end
+
+  private
+
+    def get_category
+      if @is_init == true
+        return
+      end
+
+      if self.category.present?
+        self.category.path.each do |c|
+          @category_root = c if c.depth == 0
+          @category_child = c if c.depth == 1
+          @category_grandchild = c if c.depth == 2
+        end
+      end
+
+      @is_init = true
+    end
+
+    def category_to_array(colllection = [])
+      categories = []
+      categories << ["---", 0]
+      colllection.each do |c|
+        categories << [c.name, c.id]
+      end
+      return categories
+    end
+
 end

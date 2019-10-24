@@ -3,12 +3,6 @@ class SellController < ApplicationController
 
   def index
     @item = Item.new
-    @categories = []
-    @categories << ["---", 0]
-    #データベースから、Rootカテゴリーのみ抽出し、配列化
-    Category.where(ancestry: nil).each do |root|
-      @categories << [root.name, root.id]
-    end
   end
 
   def create
@@ -48,12 +42,6 @@ class SellController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @categories = []
-    @categories << ["---", 0]
-    #データベースから、Rootカテゴリーのみ抽出し、配列化
-    Category.where(ancestry: nil).each do |root|
-      @categories << [root.name, root.id]
-    end
   end
 
   def get_category_children
@@ -63,13 +51,7 @@ class SellController < ApplicationController
 
   def get_delivery_types
     shipping_charge_id = params[:shipping_charge_id].to_i
-    if Item.shipping_charges["送料込み(出品者負担)"] == shipping_charge_id then
-      @delivery_types = Item.delivery_soryokomi_types.to_a
-    elsif Item.shipping_charges["着払い(購入者負担)"] == shipping_charge_id then
-      @delivery_types = Item.delivery_chakubarai_types.to_a
-    else
-      @delivery_types = [['---', 0]]
-    end
+    @delivery_types = Item.delivery_types_by_shipping_charge(shipping_charge_id)
   end
 
   private

@@ -1,13 +1,28 @@
 $(document).on('turbolinks:load', function () {
   var SELECT_NONE = 0;
+  var CATEGORY_ROOT_SELECTOR = '#category_root_id';
+  var CATEGORY_CHILD_SELECTOR = '#category_child_id';
+  var CATEGORY_GRANDCHILD_SELECTOR = '#category_grandchild_id';
+  var SHIPPING_CHARGE_SELECTOR = '#shipping_charge';
+  var SELL_PRICE_SELECTOR = '#sell_input_price';
   var itemCategoryId = $('#item_category_id');
 
-  // 読み込み時、非表示
-  switchCategoryChildren(false);
-  switchCategoryGrandchildren(false);
+  // ロード時
+  if ($(CATEGORY_CHILD_SELECTOR).val() == SELECT_NONE) {
+    switchCategoryChildren(false);
+  }
+
+  if ($(CATEGORY_GRANDCHILD_SELECTOR).val() == SELECT_NONE) {
+    switchCategoryGrandchildren(false);
+  }
+
   // switchItemSize(false);
-  switchDeliveryType(false);
-  switchBrand(false);
+
+  if ($(SHIPPING_CHARGE_SELECTOR).val() == SELECT_NONE) {
+    switchDeliveryType(false);
+  }
+
+  calcSellPrice($(SELL_PRICE_SELECTOR).val());
 
   /**
    * 戻るボタン押下処理
@@ -20,9 +35,15 @@ $(document).on('turbolinks:load', function () {
   /**
    * 価格入力処理
    */
-  $('#sell_input_price').on('keyup', function (e) {
-    var input = this.value;
+  $(SELL_PRICE_SELECTOR).on('keyup', function (e) {
+    calcSellPrice(this.val)
+  });
 
+  /**
+   * 計算した価格を表示
+   * @param {String} input 入力値
+   */
+  function calcSellPrice(input) {
     if (input.length === 0 || isNaN(input)) {
       resetSellPrice();
       return false;
@@ -41,7 +62,7 @@ $(document).on('turbolinks:load', function () {
     $(".sell-form-price__tax--right").text('¥' + tax.toLocaleString());
     // 販売利益
     $(".sell-form-price__profit--right").text('¥' + profit.toLocaleString());
-  });
+  }
 
   /**
    * 価格表示をリセット
@@ -56,7 +77,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * カテゴリ選択処理
    */
-  $('#category_root_id').on('change', function (e) {
+  $(CATEGORY_ROOT_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val()
     itemCategoryId.val(selectedValue);
 
@@ -85,7 +106,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * 子カテゴリ選択処理
    */
-  $('#category_child_id').on('change', function (e) {
+  $(CATEGORY_CHILD_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val()
     itemCategoryId.val(selectedValue);
 
@@ -110,7 +131,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * 孫カテゴリ選択処理
    */
-  $('#category_grandchild_id').on('change', function (e) {
+  $(CATEGORY_GRANDCHILD_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val()
     itemCategoryId.val(selectedValue);
 
@@ -128,7 +149,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * 配送料の負担選択処理
    */
-  $('#shipping_charge').on('change', function (e) {
+  $(SHIPPING_CHARGE_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val();
     if (selectedValue == SELECT_NONE) {
       resetOptions('#delivery_type');
@@ -137,20 +158,22 @@ $(document).on('turbolinks:load', function () {
     }
 
     $.ajax({
-      url: 'sell/get_delivery_types',
-      type: 'GET',
-      data: { shipping_charge_id: selectedValue },
-      dataType: 'json'
-    })
-    .done(function(types){
-      resetOptions('#delivery_type', types);
-      switchDeliveryType(true);
-    })
-    .fail(function(){
-      console.log('delivery_type not found');
-      resetOptions('#delivery_type');
-      switchDeliveryType(false);
-    })
+        url: '/sell/get_delivery_types',
+        type: 'GET',
+        data: {
+          shipping_charge_id: selectedValue
+        },
+        dataType: 'json'
+      })
+      .done(function (types) {
+        resetOptions('#delivery_type', types);
+        switchDeliveryType(true);
+      })
+      .fail(function () {
+        console.log('delivery_type not found');
+        resetOptions('#delivery_type');
+        switchDeliveryType(false);
+      })
   });
 
   /**
@@ -177,25 +200,25 @@ $(document).on('turbolinks:load', function () {
   function switchCategoryChildren(isVisible, category_id = 0) {
     if (isVisible) {
       if (category_id === 0) {
-        resetOptions('#category_child_id');
-        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+        resetOptions(CATEGORY_CHILD_SELECTOR);
+        $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
         return;
       }
 
       getCategoriesAsync(category_id)
-      .done(function(categories){
-        resetOptions('#category_child_id', categories);
-        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
-      })
-      .fail(function(){
-        console.log('category not found');
-        resetOptions('#category_child_id');
-        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
-      })
+        .done(function (categories) {
+          resetOptions(CATEGORY_CHILD_SELECTOR, categories);
+          $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
+        })
+        .fail(function () {
+          console.log('category not found');
+          resetOptions(CATEGORY_CHILD_SELECTOR);
+          $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
+        })
 
     } else {
-      resetOptions('#category_child_id');
-      $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      resetOptions(CATEGORY_CHILD_SELECTOR);
+      $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
     }
   }
 
@@ -207,25 +230,25 @@ $(document).on('turbolinks:load', function () {
   function switchCategoryGrandchildren(isVisible, category_id = 0) {
     if (isVisible) {
       if (category_id === 0) {
-        resetOptions('#category_grandchild_id');
-        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+        resetOptions(CATEGORY_GRANDCHILD_SELECTOR);
+        $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
         return;
       }
 
       getCategoriesAsync(category_id)
-      .done(function(categories){
-        resetOptions('#category_grandchild_id', categories);
-        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
-      })
-      .fail(function(){
-        console.log('category not found');
-        resetOptions('#category_grandchild_id');
-        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
-      })
+        .done(function (categories) {
+          resetOptions(CATEGORY_GRANDCHILD_SELECTOR, categories);
+          $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
+        })
+        .fail(function () {
+          console.log('category not found');
+          resetOptions(CATEGORY_GRANDCHILD_SELECTOR);
+          $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
+        })
 
     } else {
-      resetOptions('#category_grandchild_id');
-      $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      resetOptions(CATEGORY_GRANDCHILD_SELECTOR);
+      $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
     }
   }
 
@@ -234,10 +257,12 @@ $(document).on('turbolinks:load', function () {
    * @param {Number} category_id カテゴリID
    */
   function getCategoriesAsync(category_id) {
-    return  $.ajax({
+    return $.ajax({
       url: '/sell/get_category_children',
       type: 'GET',
-      data: { category_id: category_id },
+      data: {
+        category_id: category_id
+      },
       dataType: 'json'
     })
   }

@@ -33,26 +33,25 @@
     %h3.sell-content__sub-head 商品の詳細
     .sell-form-box
       .sell-form-selectbox
-        = f.hidden_field :category_id, {id: 'item_category_id', value: (item.category.nil? ? 0 : item.category.id)}
+        = f.hidden_field :category_id, {id: 'item_category_id'}
         %label.sell-form-selectbox__label カテゴリー
         %span.sell-form-require 必須
-        -# TODO: カテゴリの表示、値が存在する場合、非表示の値を表示する(js)
         .sell-form-selectbox__select-wrapper
           = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-          = select_tag 'category_root_id', options_for_select(@categories, "---"), class: "sell-form-selectbox__select"
+          = select_tag 'category_root_id', options_for_select(item.root_siblings, item.category_root_id), class: "sell-form-selectbox__select"
         .sell-form-selectbox__select-wrapper
           = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-          = select_tag 'category_child_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+          = select_tag 'category_child_id', options_for_select(item.child_siblings, item.category_child_id), class: "sell-form-selectbox__select"
         .sell-form-selectbox__select-wrapper
           = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-          = select_tag 'category_grandchild_id', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+          = select_tag 'category_grandchild_id', options_for_select(item.grandchild_siblings, item.category_grandchild_id), class: "sell-form-selectbox__select"
       -# .sell-form-selectbox
       -#   %label.sell-form-selectbox__label サイズ
       -#   %span.sell-form-require 必須
       -#   .sell-form-selectbox__select-wrapper
       -#     = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
       -#     = select_tag 'item_size', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
-      .sell-form-text
+      %div{:class => "sell-form-text", :style => (type == :new) && "display:none"}
         %label.sell-form-text__label ブランド
         %span.sell-form-optional 任意
         .sell-form-text__input-wrapper
@@ -80,7 +79,7 @@
         %span.sell-form-require 必須
         .sell-form-selectbox__select-wrapper
           = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
-          = f.select(:delivery_type, ["---"], {selected: item.delivery_type_before_type_cast}, class: "sell-form-selectbox__select", id: 'delivery_type')
+          = f.select(:delivery_type, Item.delivery_types_by_shipping_charge(item.shipping_charge_before_type_cast), {selected: item.delivery_type_before_type_cast}, class: "sell-form-selectbox__select", id: 'delivery_type')
       .sell-form-selectbox
         %label.sell-form-selectbox__label 発送元の地域
         %span.sell-form-require 必須
