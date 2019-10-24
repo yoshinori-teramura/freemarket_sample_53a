@@ -1,5 +1,7 @@
 %h2.sell-container__head 商品の情報を入力
-= form_for item , url: '/sell', method: :post, html: {class: "sell-form"} do |f|
+- path = type == :edit ? "/sell/#{item.id}" : "/sell"
+- method = type == :edit ? :put : :post
+= form_for item , url: "#{path}", method: method, html: {class: "sell-form"} do |f|
   .sell-upload-box
     %h3.sell-upload-box__head
       出品画像

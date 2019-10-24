@@ -25,7 +25,7 @@ class SellController < ApplicationController
       brand_name = item_params[:brand_id][:name]
       if brand_name.present?
         brand = Brand.find_or_initialize_by(name: brand_name)
-        brand.save unless brand.id?
+        brand.save! unless brand.id?
         item.brand_id = brand.id
       end
 
@@ -42,6 +42,40 @@ class SellController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+
+    Item.transaction do
+      item[:name] = item_params[:name]
+      item[:description] = item_params[:description]
+      # item[:image] = item_params[:image]
+      item[:price] = item_params[:price]
+      item[:category_id] = item_params[:category_id].to_i
+      item[:shipping_charge] = item_params[:shipping_charge].to_i
+      item[:delivery_region] = item_params[:delivery_region].to_i
+      item[:delivery_days] = item_params[:delivery_days].to_i
+      item[:delivery_type] = item_params[:delivery_type].to_i
+      item[:item_status] = item_params[:item_status].to_i
+      item[:user_id] = current_user.id
+
+      brand_name = item_params[:brand_id][:name]
+      if brand_name.present?
+        brand = Brand.find_or_initialize_by(name: brand_name)
+        brand.save! unless brand.id?
+        item.brand_id = brand.id
+      end
+
+      item.save!
+    end
+
+    # TODO:出品完了ページへ遷移
+    redirect_to :root, notice: 'Item was successfully updated.'
+
+    rescue => e
+      puts e.message
+      redirect_to :root, notice: 'Item was not updated.'
   end
 
   def get_category_children
