@@ -36,7 +36,7 @@ $(document).on('turbolinks:load', function () {
    * 価格入力処理
    */
   $(SELL_PRICE_SELECTOR).on('keyup', function (e) {
-    calcSellPrice(this.val)
+    calcSellPrice(this.value)
   });
 
   /**
