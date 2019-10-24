@@ -22,7 +22,9 @@ $(document).on('turbolinks:load', function () {
     switchDeliveryType(false);
   }
 
-  calcSellPrice($(SELL_PRICE_SELECTOR).val());
+  if($(SELL_PRICE_SELECTOR).val()) {
+    calcSellPrice($(SELL_PRICE_SELECTOR).val());
+  }
 
   /**
    * 戻るボタン押下処理
