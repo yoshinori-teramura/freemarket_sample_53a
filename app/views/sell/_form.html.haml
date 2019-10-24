@@ -132,7 +132,7 @@
           に同意したことになります。
     - if type == :edit
       %button{type: "submit", class: "sell-btn-box__submit"} 変更する
-      %a.sell-btn-box__back#sell-back-btn キャンセル
+      = link_to 'キャンセル', root_path, class: "sell-btn-box__back"
     - else
       %button{type: "submit", class: "sell-btn-box__submit"} 出品する
       %a.sell-btn-box__back#sell-back-btn 戻る
