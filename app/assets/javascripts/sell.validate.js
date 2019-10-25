@@ -11,15 +11,13 @@ $(document).on('turbolinks:load', function () {
         required: true
       },
       "item[name]":{
-        required: true,
-        minlength : 5
+        required: true
       },
       "item[description]":{
         required:true
       },
       "item[category_id]":{
         selectCheck: 0,
-        selectCheck: "--",
         required: true
       },
       "category_root_id":{
