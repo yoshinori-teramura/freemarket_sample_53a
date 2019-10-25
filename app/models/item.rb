@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   validates :description, presence: true, length: {maximum: 1000}
   validates :item_status, :shipping_charge, :delivery_region,
             :delivery_type, :delivery_days, :trade_status, presence: true
-  # validates :image, presence: true
+  validates :image, presence: true
   # validates_with ItemPriceValidator
 
   # 商品の状態

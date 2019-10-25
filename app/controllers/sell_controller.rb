@@ -59,6 +59,11 @@ class SellController < ApplicationController
       item[:item_status] = item_params[:item_status].to_i
       item[:user_id] = current_user.id
 
+      if item_params[:image].present?
+        item.remove_image!
+        item.image = item_params[:image]
+      end
+
       brand_name = item_params[:brand_id][:name]
       if brand_name.present?
         brand = Brand.find_or_initialize_by(name: brand_name)

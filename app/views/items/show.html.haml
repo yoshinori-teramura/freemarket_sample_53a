@@ -7,11 +7,11 @@
     .item-photo-box
       .item-main-photo
         .item-main-photo__inner
-          = image_tag @item.image.url, class: 'item-main-photo__inner__img'
+          = image_tag @item.image.url, class: 'item-main-photo__inner__img' if @item.image.present?
       .item-thumnails
         .item-thumnail.item-thumnail--active
           .item-thumnail__inner
-            = image_tag @item.image.url, class: 'item-thumnail__inner__img'
+            = image_tag @item.image.url, class: 'item-thumnail__inner__img' if @item.image.present?
     %table.item-detail
       %tbody
         %tr.item-detail__tr
