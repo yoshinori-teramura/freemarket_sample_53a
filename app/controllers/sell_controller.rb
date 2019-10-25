@@ -50,7 +50,6 @@ class SellController < ApplicationController
     Item.transaction do
       item[:name] = item_params[:name]
       item[:description] = item_params[:description]
-      # item[:image] = item_params[:image]
       item[:price] = item_params[:price]
       item[:category_id] = item_params[:category_id].to_i
       item[:shipping_charge] = item_params[:shipping_charge].to_i

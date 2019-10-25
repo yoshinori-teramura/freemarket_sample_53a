@@ -9,9 +9,16 @@
     %p.sell-upload-box__note 最大10枚までアップロードできます
     .sell-dropbox
       .sell-dropbox__picturebox
-        .sell-dropbox__pictures
-          %ul.sell-dropbox__picture
-      = f.label(:image, for: "image", class: "sell-dropbox-area sell-dropbox-area--item0") do
+        .sell-dropbox__pictures{class: "sell-dropbox__pictures--item#{item.image.present? ? 1 : 0}"}
+          - if item.image.present?
+            %ul.sell-dropbox__picture
+              %li.sell-upload-picture
+                %figure.sell-upload-picture__figure
+                  = image_tag item.image.url, class: 'sell-upload-picture__figure__img'
+                .sell-upload-picture__buttons
+                  %a.sell-upload-picture__buttons__button 編集
+                  %a.sell-upload-picture__buttons__button 削除
+      = f.label(:image, for: "image", class: "sell-dropbox-area sell-dropbox-area--item#{item.image.present? ? 1 : 0}") do
         = f.file_field(:image, id: "image", class: "sell-dropbox-area__file")
         %pre.sell-dropbox-area__text
           ドラッグアンドドロップ
