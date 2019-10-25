@@ -11,10 +11,15 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    # TODO: ユーザーが出品した他の商品
-    @other_items = Item.limit(6)
-                       .where('id <> ?', params[:id])
-                       .order(" created_at DESC ")
+    @other_items = Item.where('id <> ? AND user_id = ?', @item.id, @item.user_id)
+                       .order(created_at: 'DESC')
+                       .limit(6)
+
+    @same_category_items = Category.find(@item.category.id)
+                                   .items
+                                   .order(created_at: 'DESC')
+                                   .where('id <> ?', params[:id])
+                                   .limit(6)
   end
 
   # GET /items/new
