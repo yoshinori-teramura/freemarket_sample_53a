@@ -82,7 +82,7 @@ $(document).on('turbolinks:load', function () {
     messages: {
       "user[tel]":{
         required:'電話番号を入力してください',
-        rangelength: '11文字で入力してください'
+        rangelength: '11桁で入力してください'
       }
     },
 
@@ -130,7 +130,7 @@ $(document).on('turbolinks:load', function () {
     messages: {
       "user[address_attributes][postal_code]":{
         required:'郵便番号を入力してください',
-        rangelength: '7文字で入力してください'
+        rangelength: '7桁で入力してください'
       }
     },
 
@@ -160,7 +160,14 @@ $(document).on('turbolinks:load', function () {
         required: true,
         rangelength:[3,4]
       }
-
+    },
+    messages: {
+      "user[[credit_attributes][number]":{
+        rangelength: '16桁で入力してください'
+      },
+      "user[credit_attributes][security_code]":{
+        rangelength: '3から4桁で入力してください'
+      }
     },
     errorPlacement: function(error, element){
       error.insertAfter(element);
