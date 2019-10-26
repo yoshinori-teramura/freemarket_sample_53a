@@ -11,7 +11,13 @@ crumb :brand do
 end
 
 crumb :mypage do
-  link "マイページ" # mypages_path
+  link "マイページ", mypages_path
+  parent :root
+end
+
+crumb :mypage_identification do |user|
+  link "本人情報の登録", identification_mypage_path(current_user.id)
+  parent :mypage
 end
 
 crumb :item do |item|
