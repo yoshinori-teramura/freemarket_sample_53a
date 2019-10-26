@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       get 'profile'
       get 'deliver_address'
+      get 'credit'
       get 'email_password'
       get 'identification'
       get 'sms_confirmation'  

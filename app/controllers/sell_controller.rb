@@ -27,7 +27,6 @@ class SellController < ApplicationController
         item_status: item_params[:item_status].to_i,
         user_id: current_user.id,
         trade_status: Item.trade_statuses[:showing])
-        # binding.pry
 
       brand_name = item_params[:brand_id][:name]
       if brand_name.present?
@@ -37,8 +36,6 @@ class SellController < ApplicationController
       end
 
       item.save!
-      # binding.pry
-
     end
 
     # TODO:出品完了ページへ遷移

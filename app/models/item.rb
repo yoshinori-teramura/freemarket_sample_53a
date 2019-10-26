@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :brand, optional: true
 
+
   validates :name, presence: true, length: {maximum: 40}
   validates :description, presence: true, length: {maximum: 1000}
   validates :item_status, :shipping_charge, :delivery_region,
