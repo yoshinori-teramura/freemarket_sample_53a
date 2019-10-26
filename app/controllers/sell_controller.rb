@@ -37,7 +37,7 @@ class SellController < ApplicationController
 
     rescue => e
       puts e
-      redirect_to :root, notice: 'Item was successfully created.'
+      redirect_to :root, notice: 'Item was not created.'
   end
 
   def edit
