@@ -22,7 +22,7 @@ $(document).on('turbolinks:load', function () {
     switchDeliveryType(false);
   }
 
-  if($(SELL_PRICE_SELECTOR).val()) {
+  if ($(SELL_PRICE_SELECTOR).val()) {
     calcSellPrice($(SELL_PRICE_SELECTOR).val());
   }
 
@@ -304,5 +304,53 @@ $(document).on('turbolinks:load', function () {
       $('#brand_name').parents('.sell-form-text').hide();
     }
   }
+
+  $('#image').on('change', function () {
+
+    if ($('#image').val() == '') {
+      return;
+    }
+
+    var file = $('#image').prop('files')[0];
+
+    // ファイル検証
+    // 指定の拡張子以外の場合はアラート
+    var permit_type = ['image/jpeg', 'image/png', 'image/gif'];
+    if (file && permit_type.indexOf(file.type) == -1) {
+      alert('この形式のファイルはアップロードできません');
+      $(this).val('');
+      $('#image').val('');
+      return
+    }
+
+    // ブラウザがFileReaderに対応しているか
+    if (!window.FileReader) {
+      $('#image').val('');
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function () {
+      var html = `
+      <li class="sell-upload-picture">
+        <figure class="sell-upload-picture__figure">
+          <img class="sell-upload-picture__figure__img">
+        </figure>
+        <div class="sell-upload-picture__buttons">
+          <a class="sell-upload-picture__buttons__button">編集</a>
+          <a class="sell-upload-picture__buttons__button">削除</a>
+        </div>
+      </li>`;
+      var dom = $(html);
+      dom.find('.sell-upload-picture__figure__img').attr('src', reader.result);
+      $('.sell-dropbox__picture').append(dom);
+      $('.sell-dropbox__pictures').removeClass('sell-dropbox__pictures--item0');
+      $('.sell-dropbox__pictures').addClass('sell-dropbox__pictures--item1');
+      $('.sell-dropbox-area').removeClass('sell-dropbox-area--item0');
+      $('.sell-dropbox-area').addClass('sell-dropbox-area--item1');
+    }
+
+    reader.readAsDataURL(file);
+  });
 
 });

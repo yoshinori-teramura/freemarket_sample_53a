@@ -10,8 +10,8 @@
     .sell-dropbox
       .sell-dropbox__picturebox
         .sell-dropbox__pictures{class: "sell-dropbox__pictures--item#{item.image.present? ? 1 : 0}"}
-          - if item.image.present?
-            %ul.sell-dropbox__picture
+          %ul.sell-dropbox__picture
+            - if item.image.present?
               %li.sell-upload-picture
                 %figure.sell-upload-picture__figure
                   = image_tag item.image.url, class: 'sell-upload-picture__figure__img'
