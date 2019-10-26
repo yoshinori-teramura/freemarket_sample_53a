@@ -305,6 +305,9 @@ $(document).on('turbolinks:load', function () {
     }
   }
 
+  /**
+   * 商品画像のサムネイルの表示
+   */
   $('#image').on('change', function () {
 
     if ($('#image').val() == '') {
@@ -318,14 +321,13 @@ $(document).on('turbolinks:load', function () {
     var permit_type = ['image/jpeg', 'image/png', 'image/gif'];
     if (file && permit_type.indexOf(file.type) == -1) {
       alert('この形式のファイルはアップロードできません');
-      $(this).val('');
       $('#image').val('');
       return
     }
 
     // ブラウザがFileReaderに対応しているか
     if (!window.FileReader) {
-      $('#image').val('');
+      alert('サムネイルは表示されません');
       return;
     }
 
@@ -341,12 +343,13 @@ $(document).on('turbolinks:load', function () {
         </figure>
         <div class="sell-upload-picture__buttons">
           <a class="sell-upload-picture__buttons__button">編集</a>
-          <a class="sell-upload-picture__buttons__button">削除</a>
+          <a class="sell-upload-picture__buttons__button sell-image-delete-btn">削除</a>
         </div>
       </li>`;
       var dom = $(html);
       dom.find('.sell-upload-picture__figure__img').attr('src', reader.result);
       $('.sell-dropbox__picture').append(dom);
+      // サムネイルとDnDエリアを調整
       $('.sell-dropbox__pictures').removeClass('sell-dropbox__pictures--item0');
       $('.sell-dropbox__pictures').addClass('sell-dropbox__pictures--item1');
       $('.sell-dropbox-area').removeClass('sell-dropbox-area--item0');
@@ -354,6 +357,19 @@ $(document).on('turbolinks:load', function () {
     }
 
     reader.readAsDataURL(file);
+  });
+
+  /**
+   * サムネイルに表示した商品画像の削除
+   */
+  $(document).on('click', '.sell-image-delete-btn', function () {
+    $(this).parents('.sell-upload-picture').remove();
+    // DnDエリアを調整
+    $('.sell-dropbox__pictures').removeClass('sell-dropbox__pictures--item1');
+    $('.sell-dropbox__pictures').addClass('sell-dropbox__pictures--item0');
+    $('.sell-dropbox-area').removeClass('sell-dropbox-area--item1');
+    $('.sell-dropbox-area').addClass('sell-dropbox-area--item0');
+    $('#image').val('');
   });
 
 });
