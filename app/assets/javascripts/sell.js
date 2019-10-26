@@ -331,6 +331,9 @@ $(document).on('turbolinks:load', function () {
 
     var reader = new FileReader();
     reader.onload = function () {
+      //1つしか画像を表示させないため、表示されている画像があれば削除する
+      $('.sell-upload-picture').remove();
+
       var html = `
       <li class="sell-upload-picture">
         <figure class="sell-upload-picture__figure">
