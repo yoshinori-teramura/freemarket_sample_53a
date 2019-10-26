@@ -136,8 +136,8 @@
           %a.sell-btn-box__note__link> 加盟店規約
           に同意したことになります。
     - if type == :edit
-      = f.submit '変更する' ,class:'sell-btn-box__submit'
+      = f.submit '変更する', class:'sell-btn-box__submit', data: {disable_with: '更新中...'}
       = link_to 'キャンセル', root_path, class: "sell-btn-box__back"
     - else
-      = f.submit '出品する' ,class:'sell-btn-box__submit'
+      = f.submit '出品する', class:'sell-btn-box__submit', data: {disable_with: '出品中...'}
       %a.sell-btn-box__back#sell-back-btn 戻る
