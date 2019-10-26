@@ -30,7 +30,9 @@ $(document).on('turbolinks:load', function () {
         selectCheck: 0
       },
       "item[price]":{
-        required: true
+        required: true,
+        number: true,
+        rangelength:[1,7]
       },
       "item[item_status]":{
         selectCheck: 0
@@ -47,6 +49,11 @@ $(document).on('turbolinks:load', function () {
       },
       "item[delivery_days]":{
         selectCheck: 0
+      }
+    },
+    messages:{
+      "item[price]":{
+        rangelength: '1千万未満で金額設定してください'
       }
     },
    

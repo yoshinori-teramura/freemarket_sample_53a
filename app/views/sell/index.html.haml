@@ -14,7 +14,7 @@
               .sell-dropbox__pictures
                 %ul.sell-dropbox__picture
             = f.label(:image, for: "image", class: "sell-dropbox-area sell-dropbox-area--item0") do
-              = f.file_field(:image, id: "image", class: "sell-dropbox-area__file")
+              = f.file_field(:image, id: "image", class: "sell-dropbox-area__file", require: "")
               %pre.sell-dropbox-area__text
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
