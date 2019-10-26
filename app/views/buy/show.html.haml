@@ -30,12 +30,12 @@
         .main__box__user__inner
           %h3.main__box__user__inner__text 配送先
           %address.main__box__user__inner__info
-            〒223-0061
+            = current_user.postal_code
             %br/
-            神奈川県 横浜市港北区
-            日吉2-16-9
+            = current_user.city
+            = current_user.block
             %br/
-            宮園 信一郎
+            = current_user.nickname
           %p.main__box__user__inner__space
           %a.main__box__user__inner__fix{:href => "https://www.mercari.com/jp/transaction/address/m66900357794/?_s=U2FsdGVkX19-Ch0-TcplbkSbEgMguQUV2ujtGVXzyO7G411-oVQNHKqUBkS8d3lVszLT5b_skwN1pXON35QwzHF842fk9IZNxunoDIvNzTWTF73_ogUXaiZoom8QUx2s"}
             %span 変更する
