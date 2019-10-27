@@ -42,13 +42,15 @@
     = render 'devise/shared/popular_category'
     = render 'devise/shared/popular_brand'
     
-  .display
-    = link_to sell_index_path , class: "display__link" do
-      .display__link__button
-        .display__link__button__text
-          出品
-        .display__link__button__mark
-          = fa_icon 'camera 3x'
+    
+
+.display
+  = link_to sell_index_path, class: "display__link" do
+    .display__link__button
+      .display__link__button__text
+        出品
+      .display__link__button__mark
+        = fa_icon 'camera 3x'
 
 = render 'devise/shared/aside'
 = render 'devise/shared/footer'

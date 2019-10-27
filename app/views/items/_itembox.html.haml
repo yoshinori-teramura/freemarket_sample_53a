@@ -1,7 +1,7 @@
 %section.item-box
   = link_to item_path(item.id), class: 'item-box__link' do
     %figure.item-box__link__photo
-      = image_tag item.image.url, class: 'item-box__link__photo__img' if item.image.present?
+      = image_tag item.image.url, class: 'item-box__link__photo__img'
     .item-box__body
       %h3.item-box__body__name
         = item.name
