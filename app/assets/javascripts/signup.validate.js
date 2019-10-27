@@ -59,23 +59,9 @@ $(document).on('turbolinks:load', function () {
       }
     },
 
-    groups:{
-      kanji: "user[family_name] user[first_name]",
-      kana: "user[family_kana_name] user[first_kana_name]",
-      birth: "user[birthday(1i)] user[birthday(2i)] user[birthday(3i)]"
-    },
-
     //エラーメッセージ出力箇所設定
     errorPlacement: function(error, element){
-      if (element.attr("name")=="user[family_name]" || element.attr("name")=="user[first_name"){
-        error.appendTo($('#validate_name'));
-      }else if (element.attr("name")=="user[family_kana_name]" || element.attr("name")=="user[first_kana_name]"){
-        error.appendTo($('#validate_kana_name'));
-      }else if (element.attr("name")=="user[birthday(1i)]" || element.attr("name")=="user[birthday(2i)]" || element.attr("name")=="user[birthday(3i)]"){
-        error.appendTo($('#validate_birthday'));
-      }else{
-        error.insertAfter(element);
-      } 
+      error.insertAfter(element);
     }
   });
 });
@@ -96,7 +82,7 @@ $(document).on('turbolinks:load', function () {
     messages: {
       "user[tel]":{
         required:'電話番号を入力してください',
-        rangelength: '11桁で入力してください'
+        rangelength: '11文字で入力してください'
       }
     },
 
@@ -144,7 +130,7 @@ $(document).on('turbolinks:load', function () {
     messages: {
       "user[address_attributes][postal_code]":{
         required:'郵便番号を入力してください',
-        rangelength: '7桁で入力してください'
+        rangelength: '7文字で入力してください'
       }
     },
 
@@ -174,14 +160,7 @@ $(document).on('turbolinks:load', function () {
         required: true,
         rangelength:[3,4]
       }
-    },
-    messages: {
-      "user[[credit_attributes][number]":{
-        rangelength: '16桁で入力してください'
-      },
-      "user[credit_attributes][security_code]":{
-        rangelength: '3から4桁で入力してください'
-      }
+
     },
     errorPlacement: function(error, element){
       error.insertAfter(element);

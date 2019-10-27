@@ -1,0 +1,10 @@
+.modal-inner
+  %div
+    %h3.modal-head 出品が完了しました
+    .sell-modal-body
+      あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
+      %p.text-center
+        = link_to '続けて出品する', sell_index_path, class: 'btn-default.btn-red'
+        / sell#newへ飛ぶ。
+      %p.text-center
+        = link_to '商品ページへ行ってシェアする', item_path(@item)

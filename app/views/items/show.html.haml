@@ -7,11 +7,11 @@
     .item-photo-box
       .item-main-photo
         .item-main-photo__inner
-          = image_tag @item.image.url, class: 'item-main-photo__inner__img' if @item.image.present?
+          = image_tag @item.image.url, class: 'item-main-photo__inner__img'
       .item-thumnails
         .item-thumnail.item-thumnail--active
           .item-thumnail__inner
-            = image_tag @item.image.url, class: 'item-thumnail__inner__img' if @item.image.present?
+            = image_tag @item.image.url, class: 'item-thumnail__inner__img'
     %table.item-detail
       %tbody
         %tr.item-detail__tr
@@ -104,11 +104,11 @@
         = fa_icon 'lock', class: 'item-button-link__icon'
         %span.item-button-link__text あんしん・あんぜんへの取り組み
   -# TODO:あとで消す
-  = link_to 'Edit', edit_sell_path(@item.id)
+  = link_to 'Edit', edit_item_path(@item)
   |
   = link_to 'Back', items_path
   |
-  = link_to 'Destroy', item_path, method: :delete
+  = link_to 'Destroy', item_path, method: :delete, data: {confirm: "削除しますか？"}
 
 - if user_signed_in?
   .item-comment-container
@@ -158,7 +158,7 @@
           = "#{@item.category.name}のその他の作品"
       .item-box-container__content
         = render partial: 'itembox', collection: @same_category_items, as: :item
--# TODO:パンくずリスト
+-# パンくずリスト
 - breadcrumb :item, @item
 = render 'partial/breadcrumbs'
 = render 'devise/shared/aside'

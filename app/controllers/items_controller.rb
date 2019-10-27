@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  # before_action :authenticate_user!
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
@@ -12,14 +13,14 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @other_items = Item.where('id <> ? AND user_id = ?', @item.id, @item.user_id)
-                       .order(created_at: 'DESC')
-                       .limit(6)
-
-    @same_category_items = Category.find(@item.category.id)
-                                   .items
-                                   .order(created_at: 'DESC')
-                                   .where('id <> ?', params[:id])
-                                   .limit(6)
+                     .order(created_at: 'DESC')
+                     .limit(6)
+    @same_category_items = Category
+                             .find(@item.category.id)
+                             .items
+                             .order(created_at: 'DESC')
+                             .where('id <> ?', params[:id])
+                             .limit(6)
   end
 
   # GET /items/new
@@ -64,11 +65,13 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    #respond_to do |format|
+    #  format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+    #  format.json { head :no_content }
+    #end
     @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # mypageへ遷移
+    redirect_to mypages_path, notice: "#{@item.name}を削除しました"
   end
 
   private
@@ -79,6 +82,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description, :image, :price)
+      params.require(:item).permit(:name, :description, :image, :price, :user_id, :category_id)
     end
 end

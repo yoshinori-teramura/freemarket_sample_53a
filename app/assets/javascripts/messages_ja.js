@@ -13,7 +13,7 @@
  * Locale: JA (Japanese; 日本語)
  */
 $.extend( $.validator.messages, {
-	required: "必須項目です。",
+	required: "このフィールドは必須項目です。",
 	remote: "このフィールドを修正してください。",
 	email: "有効なEメールアドレスを入力してください。",
 	url: "有効なURLを入力してください。",

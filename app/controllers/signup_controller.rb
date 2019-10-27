@@ -65,7 +65,7 @@ class SignupController < ApplicationController
     end
     if @user.save
       session[:id] = @user.id
-      redirect_to complete_signup_index_path
+      redirect_to root_path　, notice: 'ログインしました。'
     else
       render '/signup/registration'
     end
