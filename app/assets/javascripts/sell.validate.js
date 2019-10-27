@@ -58,8 +58,12 @@ $(document).on('turbolinks:load', function () {
     },
    
     errorPlacement: function(error, element){
+      if (element.attr("name")=="item[image]"){
+        error.appendTo($('p'));
+      }else {
       error.insertAfter(element);
-    }   
+      } 
+    }  
   });
 });
 
