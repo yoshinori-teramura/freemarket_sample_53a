@@ -1,0 +1,144 @@
+%h2.sell-container__head 商品の情報を入力
+- path = type == :edit ? "/sell/#{item.id}" : "/sell"
+- method = type == :edit ? :put : :post
+= form_for item , url: "#{path}", method: method, html: {id: :sellnewitem ,class: "sell-form"} do |f|
+  .sell-upload-box
+    %h3.sell-upload-box__head
+      出品画像
+      %span.sell-form-require 必須
+    %p.sell-upload-box__note 最大10枚までアップロードできます
+    #validation_image
+    .sell-dropbox
+      .sell-dropbox__picturebox
+        .sell-dropbox__pictures{class: "sell-dropbox__pictures--item#{item.image.present? ? 1 : 0}"}
+          %ul.sell-dropbox__picture
+            - if item.image.present?
+              %li.sell-upload-picture
+                %figure.sell-upload-picture__figure
+                  = image_tag item.image.url, class: 'sell-upload-picture__figure__img'
+                .sell-upload-picture__buttons
+                  %a.sell-upload-picture__buttons__button 編集
+                  %a.sell-upload-picture__buttons__button.sell-image-delete-btn 削除
+      = f.label(:image, for: "image", class: "sell-dropbox-area sell-dropbox-area--item#{item.image.present? ? 1 : 0}") do
+        = f.file_field(:image, id: "image", class: "sell-dropbox-area__file")
+        %pre.sell-dropbox-area__text
+          ドラッグアンドドロップ
+          またはクリックしてファイルをアップロード
+  .sell-content
+    .sell-form-name
+      = f.label "商品名", {class: "sell-form-name__label"}
+      %span.sell-form-require 必須
+      .sell-form-name__input-wrapper
+        = f.text_field(:name, {class: "sell-form-name__input",
+              placeholder: "商品名（必須40文字まで）"})
+    .sell-form-review
+      = f.label "商品の説明", {class: "sell-form-review__label"}
+      %span.sell-form-require 必須
+      = f.text_area(:description, {class: "sell-form-review__textarea",
+      rows: "5",
+      placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"})
+  .sell-content.sell-content--clearfix
+    %h3.sell-content__sub-head 商品の詳細
+    .sell-form-box
+      .sell-form-selectbox
+        = f.hidden_field :category_id, {id: 'item_category_id'}
+        %label.sell-form-selectbox__label カテゴリー
+        %span.sell-form-require 必須
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = select_tag 'category_root_id', options_for_select(item.root_siblings, item.category_root_id), class: "sell-form-selectbox__select"
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = select_tag 'category_child_id', options_for_select(item.child_siblings, item.category_child_id), class: "sell-form-selectbox__select"
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = select_tag 'category_grandchild_id', options_for_select(item.grandchild_siblings, item.category_grandchild_id), class: "sell-form-selectbox__select"
+      -# .sell-form-selectbox
+      -#   %label.sell-form-selectbox__label サイズ
+      -#   %span.sell-form-require 必須
+      -#   .sell-form-selectbox__select-wrapper
+      -#     = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+      -#     = select_tag 'item_size', options_for_select(["---"], "---"), class: "sell-form-selectbox__select"
+      .sell-form-text{:style => (type == :new) && "display:none"}
+        %label.sell-form-text__label ブランド
+        %span.sell-form-optional 任意
+        .sell-form-text__input-wrapper
+          = f.fields_for :brand_id do |b|
+            = b.text_field(:name , {class: "sell-form-text__input", placeholder: "例)シャネル", id: "brand_name", value: "#{item.brand.nil? ? '' : item.brand.name}"})
+      .sell-form-selectbox
+        %label.sell-form-selectbox__label 商品の状態
+        %span.sell-form-require 必須
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = f.select(:item_status, Item.item_statuses, {selected: item.item_status_before_type_cast}, {class: "sell-form-selectbox__select"})
+  .sell-content.sell-content--clearfix
+    %h3.sell-content__sub-head 配送について
+    %a.sell-form-question ?
+    .sell-form-box
+      .sell-form-selectbox
+        %label.sell-form-selectbox__label 配送料の負担
+        %span.sell-form-require 必須
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = f.select(:shipping_charge, Item.shipping_charges, {selected: item.shipping_charge_before_type_cast}, {class: "sell-form-selectbox__select", id: "shipping_charge"})
+      .sell-form-selectbox
+        %label.sell-form-selectbox__label 配送の方法
+        %span.sell-form-require 必須
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = f.select(:delivery_type, Item.delivery_types_by_shipping_charge(item.shipping_charge_before_type_cast), {selected: item.delivery_type_before_type_cast}, class: "sell-form-selectbox__select", id: 'delivery_type')
+      .sell-form-selectbox
+        %label.sell-form-selectbox__label 発送元の地域
+        %span.sell-form-require 必須
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = f.select(:delivery_region, Item.delivery_regions, {selected: item.delivery_region_before_type_cast}, {class: "sell-form-selectbox__select"})
+      .sell-form-selectbox
+        %label.sell-form-selectbox__label 発送までの日数
+        %span.sell-form-require 必須
+        .sell-form-selectbox__select-wrapper
+          = fa_icon 'angle-down 3', class: "sell-form-selectbox__icon"
+          = f.select(:delivery_days, Item.delivery_terms, {}, {class: "sell-form-selectbox__select"})
+  .sell-content.sell-content--clearfix
+    %h3.sell-content__sub-head 販売価格(300〜9,999,999)
+    %a.sell-form-question ?
+    .sell-form-box
+      %ul.sell-form-price
+        %li.sell-form-price__inputform
+          .sell-form-price__inputform__inner
+            %label.sell-form-price__inputform__label.sell-form-price__inputform__label--left
+              価格
+              %span.sell-form-require 必須
+            .sell-form-price__inputform__input-box.sell-form-price__inputform__input-box--right
+              ¥
+              .sell-form-price__inputform__input
+                = f.text_field(:price, {id: "sell_input_price",
+                      class: "sell-form-price__inputform__input__inner",
+                      placeholder: "例) 300"})
+        %li.sell-form-price__tax
+          .sell-form-price__tax--left 販売手数料 (10％)
+          .sell-form-price__tax--right -
+        %li.sell-form-price__profit
+          .sell-form-price__profit--left 販売利益
+          .sell-form-price__profit--right -
+  .sell-content.sell-btn-box
+    - type = :new if type.nil?
+    - if type == :new
+      .sell-btn-box__notes
+        %p.sell-btn-box__note
+          %a.sell-btn-box__note__link> 禁止されている出品、行為
+          を必ずご確認ください。
+        %p.sell-btn-box__note
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          %a.sell-btn-box__note__link> 偽ブランドの販売
+          は犯罪であり処罰される可能性があります。
+        %p.sell-btn-box__note
+          また、出品をもちまして
+          %a.sell-btn-box__note__link> 加盟店規約
+          に同意したことになります。
+    - if type == :edit
+      = f.submit '変更する', class:'sell-btn-box__submit', data: {disable_with: '更新中...'}
+      = link_to 'キャンセル', root_path, class: "sell-btn-box__back"
+    - else
+      = f.submit '出品する', class:'sell-btn-box__submit', data: {disable_with: '出品中...'}
+      %a.sell-btn-box__back#sell-back-btn 戻る
