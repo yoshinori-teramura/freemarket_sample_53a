@@ -15,6 +15,11 @@
   line-height: inherit;
 }
 
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
 
 a {
   color: #0099e8;
@@ -119,6 +124,11 @@ h3 {
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+}
+
+.visa {
+  width: 49px;
+  height: 15px;
 }
 
 .wrapper {
@@ -282,10 +292,13 @@ h3 {
           }
         }
       }
+      .main__box__user-bottom {
+        padding-bottom: 40px;
+      }
     }
   }
   .footer {
-    width: 456px;
+    width: 100%;
     height: 220px;
     margin: 0 auto;
     position: absolute;
@@ -295,6 +308,20 @@ h3 {
     z-index: 1;
     padding: 40px 0;
     text-align: center;
+    .footer__link {
+      display: inline-block;
+      margin: 0;
+      &--black {
+        display: block;
+        color: #333;
+      }
+    }
+    .second {
+      margin: 0 0 0 16px;
+    }
+    .third {
+      margin: 0 0 0 16px;
+    }
     &___logo {
       display: block;
       color: #333;
