@@ -17,6 +17,13 @@ Rails.application.routes.draw do
       patch 'update_user'
       patch 'update_address'
     end
+    resources :listings do
+      collection do
+        get 'listing'     #出品中
+        get 'in_progress' #取引中
+        get 'completed'   #売却済み
+      end
+    end
   end
 
   resources :logout, only: :index
