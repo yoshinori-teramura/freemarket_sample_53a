@@ -5,6 +5,7 @@ class BuyController < ApplicationController
 
     @addresses = Address.find(current_user.id)
     
+    @credits = Credit.find(current_user.id)
   end
 
 end
