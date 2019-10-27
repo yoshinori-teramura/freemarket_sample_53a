@@ -108,7 +108,7 @@
   |
   = link_to 'Back', items_path
   |
-  = link_to 'Destroy', item_path, method: :delete
+  = link_to 'Destroy', item_path, method: :delete, data: {confirm: "削除しますか？"}
 
 - if user_signed_in?
   .item-comment-container
@@ -158,7 +158,7 @@
           = "#{@item.category.name}のその他の作品"
       .item-box-container__content
         = render partial: 'itembox', collection: @same_category_items, as: :item
--# TODO:パンくずリスト
+-# パンくずリスト
 - breadcrumb :item, @item
 = render 'partial/breadcrumbs'
 = render 'devise/shared/aside'

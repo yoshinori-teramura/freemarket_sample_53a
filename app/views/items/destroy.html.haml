@@ -1,0 +1,13 @@
+-# 使用しないためコメントアウト
+  .modal-inner.modal-banner
+    .modal-body
+      .modal-head.bold 確認
+      削除すると二度と復活できません。
+      %br>/
+      削除する代わりに停止することもできます。
+      %br/
+      %br/
+      本当に削除しますか？
+    .clearfix
+      = link_to 'キャンセル', item_path(@item) class: 'modal-btn.modal-btn-cancel'
+      = link_to '削除する', item_path(@item), method: :delete, data: {confirm: "削除しますか？"} class: 'button.modal-btn.modal-btn-submit'

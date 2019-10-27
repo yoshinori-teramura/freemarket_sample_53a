@@ -1,0 +1,23 @@
+.modal-inner
+  %div
+    %h3.modal-head 出品が完了しました
+    .sell-modal-body
+      あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
+      %p.text-center
+        = link_to '続けて出品する', sell_index_path, class: 'btn-default.btn-red'
+        / sell#newへ飛ぶ。
+      %p.text-center
+        = link_to '商品ページへ行ってシェアする', item_path(@item)
+
+-# 本家のHaml
+  .modal.is-show.is-animate.sell-draft{:role => "dialog", :tabindex => "-1"}
+    .modal-inner
+      %div
+        %h3.modal-head 出品が完了しました
+        .sell-modal-body{"data-gtm-vis-first-on-screen-6824027_198" => "113749", "data-gtm-vis-has-fired-6824027_198" => "1", "data-gtm-vis-recent-on-screen-6824027_198" => "113749", "data-gtm-vis-total-visible-time-6824027_198" => "100"}
+          / react-text: 299
+          あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
+          / /react-text
+          %a.btn-default.btn-red{:href => "https://www.mercari.com/jp/sell/"} 続けて出品する
+          %p.text-center
+            %a{:href => "https://item.mercari.com/jp/m23249013255/"} 商品ページへ行ってシェアする

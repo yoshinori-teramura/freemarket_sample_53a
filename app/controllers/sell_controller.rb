@@ -14,7 +14,7 @@ class SellController < ApplicationController
   def create
 
     Item.transaction do
-      item = Item.new(
+      @item = Item.new(
         name: item_params[:name],
         description: item_params[:description],
         image: item_params[:image],
@@ -32,14 +32,14 @@ class SellController < ApplicationController
       if brand_name.present?
         brand = Brand.find_or_initialize_by(name: brand_name)
         brand.save unless brand.id?
-        item.brand_id = brand.id
+        @item.brand_id = brand.id
       end
 
-      item.save!
-    end
+      @item.save!
 
-    # TODO:出品完了ページへ遷移
-    redirect_to :root, notice: 'Item was successfully created.'
+      # 出品完了ページへ遷移
+      # render action: :create
+    end
 
     rescue => e
       puts e

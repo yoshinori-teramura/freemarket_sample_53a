@@ -65,11 +65,13 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    #respond_to do |format|
+    #  format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+    #  format.json { head :no_content }
+    #end
     @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # mypageへ遷移
+    redirect_to mypages_path, notice: "#{@item.name}を削除しました"
   end
 
   private
