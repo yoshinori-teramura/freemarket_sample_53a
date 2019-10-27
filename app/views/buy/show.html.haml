@@ -1,8 +1,5 @@
 .wrapper
-  %header.header
-    %h1.header__box
-      %a.header__box__link{:href => "/items"}
-        = image_tag 'mercari_buy_header_logo.svg', alt: 'mercari', class: 'header__box__link__logo'
+  = render 'partial/header'
   %main.main
     %section.main__box
       %h2.main__box__title 購入内容の確認
@@ -10,7 +7,7 @@
         .main__box__purchase__inner
           %h3.main__box__purchase__inner__image
             = image_tag @items.image.url , class: 'main__box__purchase__inner__image__one' if @items.image.present?
-          %p.main__box__purchase__inner__text 
+          %p.main__box__purchase__inner__text
             =(@items.name)
           %form.main__box__purchase__inner__form{:action => "https://www.mercari.com/jp/transaction/buy/done/m66900357794/", :method => "POST", :novalidate => "novalidate"}
             %p.main__box__purchase__inner__form__price
@@ -54,16 +51,4 @@
           %a.main__box__user__inner__fix{:href => "/transaction/card/"}
             %span 変更する
             %i.icon-arrow-right
-  %footer.footer
-    %nav
-      %ul.clearfix
-        %li.footer__link
-          %a.footer__link--black{:href => "/privacy/"} プライバシーポリシー
-        %li.footer__link.second
-          %a.footer__link--black{:href => "/tos/"} メルカリ利用規約
-        %li.footer__link.third
-          %a.footer__link--black{:href => "/tokutei/"} 特定商取引に関する表記
-    %a.footer__logo{:href => "/items"}
-      %img{:alt => "mercari", :height => "65", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", :width => "80"}/
-    %p
-      %small © 2019 Mercari
+  = render 'partial/footer'
