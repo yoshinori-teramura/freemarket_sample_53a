@@ -3,7 +3,7 @@ class BuyController < ApplicationController
   def show
     @items = Item.find(params[:id])
 
-    @address = Address.find(current_user.id)
+    @addresses = Address.find(current_user.id)
     
   end
 
