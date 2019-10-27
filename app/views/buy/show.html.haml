@@ -45,8 +45,10 @@
         .main__box__user__inner
           %h3.main__box__user__inner__text 支払い方法
           %p.main__box__user__inner__info
+            = @credits.number
             %br/
-            \/
+            = @credits.expiration_date
+            \
             %figure
               %img{:alt => "", :height => "", :src => "", :width => ""}/
           %a.main__box__user__inner__fix{:href => "https://www.mercari.com/jp/transaction/card/m66900357794/?_s=U2FsdGVkX19-Ch0-TcplbkSbEgMguQUV2ujtGVXzyO7G411-oVQNHKqUBkS8d3lVszLT5b_skwN1pXON35QwzHF842fk9IZNxunoDIvNzTWTF73_ogUXaiZoom8QUx2s"}
