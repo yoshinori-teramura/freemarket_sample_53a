@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         get 'get_delivery_types', defaults: {format: 'json'}
     end
   end
+  resources :buy
 
   resources :signup do          #新規登録用コントローラー
     collection do
