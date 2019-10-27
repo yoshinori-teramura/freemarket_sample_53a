@@ -9,28 +9,27 @@
       .main__top__slider
         .main__top__slider__frame
           %ul.main__top__slider__frame__lists
-            %li.main__top__slider__frame__lists__slide__visible
+            %li#slide1.main__top__slider__frame__lists__slide__visible
               %a{:href => "/items/featured/camp/"}
-                .main__top__slider__frame__lists__slide__visible__image{:style => "background-image:url(#{asset_path "slide_camp.jpg"})"}
-            -#
-              %li.main__top__slider__frame__lists__slide__invisible
-                .main__top__slider__frame__lists__slide__invisible__box
-                  .main__top__slider__frame__lists__slide__invisible__box__content
-                    %img.main__top__slider__frame__lists__slide__invisible__box__content__image{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/top-banner-main-device-1f627e51e488f6ca35feaa6a08b79736.png"}
-                    .main__top__slider__frame__lists__slide__invisible__box__content__subs
-                      .main__top__slider__frame__lists__slide__invisible__box__content__subs__toptexts
-                        スマホでかんたん
-                        %br
-                        フリマアプリ
-                      %p.main__top__slider__frame__lists__slide__invisible__box__content__subs__middletexts
-                        メルカリはスマホカメラからすぐに出品できる
-                        %br
-                        購入時も安心な独自システムのアプリです
-                      .main__top__slider__frame__lists__slide__invisible__box__content__subs__bottomeimages
-                        %a{:href => "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8", :target => "_blank"}
-                          %img.main__top__slider__frame__lists__slide__invisible__box__content__subs__bottomeimages__itunes{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg"}
-                        %a{:href => "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja", :target => "_blank"}
-                          %img.main__top__slider__frame__lists__slide__invisible__box__content__subs__bottomeimages__google{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg"}
+                .main__top__slider__frame__lists__slide__visible__image{:style => "background-image:url(#{asset_path "slide_camp.jpg"})"}          
+            %li#slide2.main__top__slider__frame__lists__slide__visible.invisible
+              .main__top__slider__frame__lists__slide__visible__box
+                .main__top__slider__frame__lists__slide__visible__box__content
+                  %img.main__top__slider__frame__lists__slide__visible__box__content__image{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/top-banner-main-device-1f627e51e488f6ca35feaa6a08b79736.png"}
+                  .main__top__slider__frame__lists__slide__visible__box__content__subs
+                    .main__top__slider__frame__lists__slide__visible__box__content__subs__toptexts
+                      スマホでかんたん
+                      %br
+                      フリマアプリ
+                    %p.main__top__slider__frame__lists__slide__visible__box__content__subs__middletexts
+                      メルカリはスマホカメラからすぐに出品できる
+                      %br
+                      購入時も安心な独自システムのアプリです
+                    .main__top__slider__frame__lists__slide__visible__box__content__subs__bottomeimages
+                      %a{:href => "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8"}
+                        %img.main__top__slider__frame__lists__slide__visible__box__content__subs__bottomeimages__itunes{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg"}
+                      %a{:href => "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja"}
+                        %img.main__top__slider__frame__lists__slide__visible__box__content__subs__bottomeimages__google{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg"}
       .main__top__slider__arrow--left
         = fa_icon 'angle-left 4x'
       .main__top__slider__arrow--right

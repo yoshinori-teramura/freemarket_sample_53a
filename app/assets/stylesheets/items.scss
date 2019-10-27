@@ -73,7 +73,7 @@ div {
 
 %slide_box {
   box-sizing: border-box;
-  display: inline-block;
+  // display: inline-block;
   height: 290px;
   list-style-type: none;
   margin: auto 0px;
@@ -322,16 +322,16 @@ $mercari_white: rgb(255, 255, 255);
             cursor: pointer;
             box-sizing: border-box;
             touch-action: pan-y pinch-zoom;
+            &__slide__invisible {
+              display: none;
+            
+            }
             &__slide__visible {
               @extend %slide_box;
               left: 0px;
               &__image {
                 @extend %slide_image;
               }
-            }
-            &__slide__invisible {
-              @extend %slide_box;
-              left: 852px;
               &__box {
                 @extend %slide_image;
                 &__content {
@@ -698,4 +698,8 @@ $mercari_white: rgb(255, 255, 255);
       }
     }
   }
+}
+
+.invisible {
+  display: none;
 }
