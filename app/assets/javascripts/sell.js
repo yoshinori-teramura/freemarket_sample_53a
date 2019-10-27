@@ -1,13 +1,30 @@
 $(document).on('turbolinks:load', function () {
   var SELECT_NONE = 0;
+  var CATEGORY_ROOT_SELECTOR = '#category_root_id';
+  var CATEGORY_CHILD_SELECTOR = '#category_child_id';
+  var CATEGORY_GRANDCHILD_SELECTOR = '#category_grandchild_id';
+  var SHIPPING_CHARGE_SELECTOR = '#shipping_charge';
+  var SELL_PRICE_SELECTOR = '#sell_input_price';
   var itemCategoryId = $('#item_category_id');
 
-  // 読み込み時、非表示
-  switchCategoryChildren(false);
-  switchCategoryGrandchildren(false);
+  // ロード時
+  if ($(CATEGORY_CHILD_SELECTOR).val() == SELECT_NONE) {
+    switchCategoryChildren(false);
+  }
+
+  if ($(CATEGORY_GRANDCHILD_SELECTOR).val() == SELECT_NONE) {
+    switchCategoryGrandchildren(false);
+  }
+
   // switchItemSize(false);
-  switchDeliveryType(false);
-  switchBrand(false);
+
+  if ($(SHIPPING_CHARGE_SELECTOR).val() == SELECT_NONE) {
+    switchDeliveryType(false);
+  }
+
+  if ($(SELL_PRICE_SELECTOR).val()) {
+    calcSellPrice($(SELL_PRICE_SELECTOR).val());
+  }
 
   /**
    * 戻るボタン押下処理
@@ -20,9 +37,15 @@ $(document).on('turbolinks:load', function () {
   /**
    * 価格入力処理
    */
-  $('#sell_input_price').on('keyup', function (e) {
-    var input = this.value;
+  $(SELL_PRICE_SELECTOR).on('keyup', function (e) {
+    calcSellPrice(this.value)
+  });
 
+  /**
+   * 計算した価格を表示
+   * @param {String} input 入力値
+   */
+  function calcSellPrice(input) {
     if (input.length === 0 || isNaN(input)) {
       resetSellPrice();
       return false;
@@ -41,7 +64,7 @@ $(document).on('turbolinks:load', function () {
     $(".sell-form-price__tax--right").text('¥' + tax.toLocaleString());
     // 販売利益
     $(".sell-form-price__profit--right").text('¥' + profit.toLocaleString());
-  });
+  }
 
   /**
    * 価格表示をリセット
@@ -56,7 +79,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * カテゴリ選択処理
    */
-  $('#category_root_id').on('change', function (e) {
+  $(CATEGORY_ROOT_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val()
     itemCategoryId.val(selectedValue);
 
@@ -85,7 +108,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * 子カテゴリ選択処理
    */
-  $('#category_child_id').on('change', function (e) {
+  $(CATEGORY_CHILD_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val()
     itemCategoryId.val(selectedValue);
 
@@ -110,7 +133,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * 孫カテゴリ選択処理
    */
-  $('#category_grandchild_id').on('change', function (e) {
+  $(CATEGORY_GRANDCHILD_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val()
     itemCategoryId.val(selectedValue);
 
@@ -128,7 +151,7 @@ $(document).on('turbolinks:load', function () {
   /**
    * 配送料の負担選択処理
    */
-  $('#shipping_charge').on('change', function (e) {
+  $(SHIPPING_CHARGE_SELECTOR).on('change', function (e) {
     var selectedValue = $(this).val();
     if (selectedValue == SELECT_NONE) {
       resetOptions('#delivery_type');
@@ -137,20 +160,22 @@ $(document).on('turbolinks:load', function () {
     }
 
     $.ajax({
-      url: 'sell/get_delivery_types',
-      type: 'GET',
-      data: { shipping_charge_id: selectedValue },
-      dataType: 'json'
-    })
-    .done(function(types){
-      resetOptions('#delivery_type', types);
-      switchDeliveryType(true);
-    })
-    .fail(function(){
-      console.log('delivery_type not found');
-      resetOptions('#delivery_type');
-      switchDeliveryType(false);
-    })
+        url: '/sell/get_delivery_types',
+        type: 'GET',
+        data: {
+          shipping_charge_id: selectedValue
+        },
+        dataType: 'json'
+      })
+      .done(function (types) {
+        resetOptions('#delivery_type', types);
+        switchDeliveryType(true);
+      })
+      .fail(function () {
+        console.log('delivery_type not found');
+        resetOptions('#delivery_type');
+        switchDeliveryType(false);
+      })
   });
 
   /**
@@ -177,25 +202,25 @@ $(document).on('turbolinks:load', function () {
   function switchCategoryChildren(isVisible, category_id = 0) {
     if (isVisible) {
       if (category_id === 0) {
-        resetOptions('#category_child_id');
-        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
+        resetOptions(CATEGORY_CHILD_SELECTOR);
+        $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
         return;
       }
 
       getCategoriesAsync(category_id)
-      .done(function(categories){
-        resetOptions('#category_child_id', categories);
-        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').show();
-      })
-      .fail(function(){
-        console.log('category not found');
-        resetOptions('#category_child_id');
-        $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
-      })
+        .done(function (categories) {
+          resetOptions(CATEGORY_CHILD_SELECTOR, categories);
+          $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
+        })
+        .fail(function () {
+          console.log('category not found');
+          resetOptions(CATEGORY_CHILD_SELECTOR);
+          $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
+        })
 
     } else {
-      resetOptions('#category_child_id');
-      $('#category_child_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      resetOptions(CATEGORY_CHILD_SELECTOR);
+      $(CATEGORY_CHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
     }
   }
 
@@ -207,25 +232,25 @@ $(document).on('turbolinks:load', function () {
   function switchCategoryGrandchildren(isVisible, category_id = 0) {
     if (isVisible) {
       if (category_id === 0) {
-        resetOptions('#category_grandchild_id');
-        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
+        resetOptions(CATEGORY_GRANDCHILD_SELECTOR);
+        $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
         return;
       }
 
       getCategoriesAsync(category_id)
-      .done(function(categories){
-        resetOptions('#category_grandchild_id', categories);
-        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').show();
-      })
-      .fail(function(){
-        console.log('category not found');
-        resetOptions('#category_grandchild_id');
-        $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
-      })
+        .done(function (categories) {
+          resetOptions(CATEGORY_GRANDCHILD_SELECTOR, categories);
+          $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').show();
+        })
+        .fail(function () {
+          console.log('category not found');
+          resetOptions(CATEGORY_GRANDCHILD_SELECTOR);
+          $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
+        })
 
     } else {
-      resetOptions('#category_grandchild_id');
-      $('#category_grandchild_id').parents('.sell-form-selectbox__select-wrapper').hide();
+      resetOptions(CATEGORY_GRANDCHILD_SELECTOR);
+      $(CATEGORY_GRANDCHILD_SELECTOR).parents('.sell-form-selectbox__select-wrapper').hide();
     }
   }
 
@@ -234,10 +259,12 @@ $(document).on('turbolinks:load', function () {
    * @param {Number} category_id カテゴリID
    */
   function getCategoriesAsync(category_id) {
-    return  $.ajax({
-      url: 'sell/get_category_children',
+    return $.ajax({
+      url: '/sell/get_category_children',
       type: 'GET',
-      data: { category_id: category_id },
+      data: {
+        category_id: category_id
+      },
       dataType: 'json'
     })
   }
@@ -277,5 +304,72 @@ $(document).on('turbolinks:load', function () {
       $('#brand_name').parents('.sell-form-text').hide();
     }
   }
+
+  /**
+   * 商品画像のサムネイルの表示
+   */
+  $('#image').on('change', function () {
+
+    if ($('#image').val() == '') {
+      return;
+    }
+
+    var file = $('#image').prop('files')[0];
+
+    // ファイル検証
+    // 指定の拡張子以外の場合はアラート
+    var permit_type = ['image/jpeg', 'image/png', 'image/gif'];
+    if (file && permit_type.indexOf(file.type) == -1) {
+      alert('この形式のファイルはアップロードできません');
+      $('#image').val('');
+      return
+    }
+
+    // ブラウザがFileReaderに対応しているか
+    if (!window.FileReader) {
+      alert('サムネイルは表示されません');
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function () {
+      //1つしか画像を表示させないため、表示されている画像があれば削除する
+      $('.sell-upload-picture').remove();
+
+      var html = `
+      <li class="sell-upload-picture">
+        <figure class="sell-upload-picture__figure">
+          <img class="sell-upload-picture__figure__img">
+        </figure>
+        <div class="sell-upload-picture__buttons">
+          <a class="sell-upload-picture__buttons__button">編集</a>
+          <a class="sell-upload-picture__buttons__button sell-image-delete-btn">削除</a>
+        </div>
+      </li>`;
+      var dom = $(html);
+      dom.find('.sell-upload-picture__figure__img').attr('src', reader.result);
+      $('.sell-dropbox__picture').append(dom);
+      // サムネイルとDnDエリアを調整
+      $('.sell-dropbox__pictures').removeClass('sell-dropbox__pictures--item0');
+      $('.sell-dropbox__pictures').addClass('sell-dropbox__pictures--item1');
+      $('.sell-dropbox-area').removeClass('sell-dropbox-area--item0');
+      $('.sell-dropbox-area').addClass('sell-dropbox-area--item1');
+    }
+
+    reader.readAsDataURL(file);
+  });
+
+  /**
+   * サムネイルに表示した商品画像の削除
+   */
+  $(document).on('click', '.sell-image-delete-btn', function () {
+    $(this).parents('.sell-upload-picture').remove();
+    // DnDエリアを調整
+    $('.sell-dropbox__pictures').removeClass('sell-dropbox__pictures--item1');
+    $('.sell-dropbox__pictures').addClass('sell-dropbox__pictures--item0');
+    $('.sell-dropbox-area').removeClass('sell-dropbox-area--item1');
+    $('.sell-dropbox-area').addClass('sell-dropbox-area--item0');
+    $('#image').val('');
+  });
 
 });
