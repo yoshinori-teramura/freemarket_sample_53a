@@ -15,8 +15,8 @@ crumb :mypage do
   parent :root
 end
 
-crumb :mypage_identification do |user|
-  link "本人情報の登録", identification_mypage_path(current_user.id)
+crumb :mypage_identification do
+  link "本人情報の登録", identification_mypages_path
   parent :mypage
 end
 
