@@ -59,9 +59,23 @@ $(document).on('turbolinks:load', function () {
       }
     },
 
+    groups:{
+      kanji: "user[family_name] user[first_name]",
+      kana: "user[family_kana_name] user[first_kana_name]",
+      birth: "user[birthday(1i)] user[birthday(2i)] user[birthday(3i)]"
+    },
+
     //エラーメッセージ出力箇所設定
     errorPlacement: function(error, element){
-      error.insertAfter(element);
+      if (element.attr("name")=="user[family_name]" || element.attr("name")=="user[first_name"){
+        error.appendTo($('#validate_name'));
+      }else if (element.attr("name")=="user[family_kana_name]" || element.attr("name")=="user[first_kana_name]"){
+        error.appendTo($('#validate_kana_name'));
+      }else if (element.attr("name")=="user[birthday(1i)]" || element.attr("name")=="user[birthday(2i)]" || element.attr("name")=="user[birthday(3i)]"){
+        error.appendTo($('#validate_birthday'));
+      }else{
+        error.insertAfter(element);
+      } 
     }
   });
 });

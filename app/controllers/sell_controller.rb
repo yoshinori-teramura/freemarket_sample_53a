@@ -6,7 +6,6 @@ class SellController < ApplicationController
   end
 
   def create
-
     Item.transaction do
       item = Item.new(
         name: item_params[:name],

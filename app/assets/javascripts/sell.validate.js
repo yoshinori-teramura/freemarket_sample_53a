@@ -5,6 +5,7 @@ $.validator.addMethod("selectCheck", function(value, element,origin){
 $(document).on('turbolinks:load', function () {
 
   $('#sellnewitem').validate({
+    ignore: [],
     errorClass: 'valid-err',
     rules:{
       "item[image]":{
@@ -52,14 +53,21 @@ $(document).on('turbolinks:load', function () {
       }
     },
     messages:{
+      "item[image]":{
+        required: '商品画像は必須項目です。必ず一枚以上貼付してください。'
+      },
       "item[price]":{
         rangelength: '1千万未満で金額設定してください'
       }
     },
    
     errorPlacement: function(error, element){
+      if (element.attr("name")=="item[image]"){
+        error.appendTo($('#validation_image'));
+      }else {
       error.insertAfter(element);
-    }   
+      } 
+    }  
   });
 });
 
