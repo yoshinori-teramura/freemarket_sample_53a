@@ -70,29 +70,35 @@
     %h3.mypage-navi__head 設定
     %ul.mypage-navi-list
       %li.navi-item
-        %a.navi-item__link{:href => ""}
-          プロフィール
-          = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
+        .navi-item__link
+          = link_to'プロフィール', profile_mypage_path(current_user)
+          .navi-item__icon-arrow 
+            = fa_icon 'angle-right 2x'
       %li.navi-item
-        %a.navi-item__link{:href => ""}
-          発送元・お届け先住所変更
-          = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
+        .navi-item__link
+          = link_to '発送元・お届け先住所変更', deliver_address_mypage_path(current_user)
+          .navi-item__icon-arrow
+            = fa_icon 'angle-right 2x'
       %li.navi-item
-        %a.navi-item__link{:href => ""}
-          支払い方法
-          = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
+        .navi-item__link
+          = link_to '支払い方法' , credit_mypage_path(current_user)
+          .navi-item__icon-arrow
+            = fa_icon 'angle-right 2x'
       %li.navi-item
-        %a.navi-item__link{:href => ""}
-          メール/パスワード
-          = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
+        .navi-item__link
+          = link_to 'メール/パスワード', email_password_mypage_path(current_user)
+          .navi-item__icon-arrow
+            = fa_icon 'angle-right 2x'
       %li.navi-item
-        %a.navi-item__link{:href => ""}
-          本人情報
-          = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
+        .navi-item__link
+          = link_to '本人情報', identification_mypage_path(current_user)
+          .navi-item__icon-arrow
+            = fa_icon 'angle-right 2x'
       %li.navi-item
-        %a.navi-item__link{:href => ""}
-          電話番号の確認
-          = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
+        .navi-item__link
+          = link_to '電話番号の確認', sms_confirmation_mypage_path(current_user)
+          .navi-item__icon-arrow
+            = fa_icon 'angle-right 2x'
       %li.navi-item
         = link_to(logout_index_path, class: 'navi-item__link') do
           ログアウト

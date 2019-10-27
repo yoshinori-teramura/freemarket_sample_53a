@@ -1,0 +1,15 @@
+= render 'devise/shared/header'
+%main.mypage-container
+  = render 'sidemenu'
+  .mypage-content
+    .mypage-content__box
+      %h2.mypage-content__box__header プロフィール
+    = form_for @user , :url => { :controller => :mypages, :action => :update_user } do |f|  
+      .mypage-content__profile
+        .mypage-content__profile__box
+          = image_tag "member_photo_noimage_thumb.png", size: "60x60", class: 'mypage-content__profile__box__icon'
+          -# %img.mypage-content__profile__box__icon(src="https://static.mercdn.net/thumb/members/785450209.jpg?1509593489" width="60" height="60" )
+          = f.text_field :nickname , class: 'mypage-content__profile__box__form'
+      = f.text_area :profile , class: 'mypage-content-input-profile', wrap: "soft", placeholder: '例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪'
+      = f.submit '変更する', class: 'btn-default btn-red'
+= render 'devise/shared/footer'

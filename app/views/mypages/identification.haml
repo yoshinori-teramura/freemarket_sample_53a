@@ -1,0 +1,51 @@
+- breadcrumb :mypage_identification
+= render 'devise/shared/header'
+%main.mypage-container
+  = render 'sidemenu'
+  .mypage-content
+    .mypage-content__box
+      %h2.mypage-content__box__header 本人情報の登録
+      %p.mypage-content__box__text お客様の本人情報をご確認ください。
+      %p.mypage-content__box__text 登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+      %p.mypage-content__box__text
+        %a{:href => "", :target => "_blank"}
+          本人確認書類のアップロードについて
+          \#{fa_icon("chevron-right")}
+      = form_for @address , :url => { :controller => :mypages, :action => :update_address } do |f|
+        .mypage-content__box__form-group
+          = f.label :お名前（全角）
+          .mypage-content__box__form-group__input
+          = current_user.family_name
+          = current_user.first_name
+        .mypage-content__box__form-group
+          = f.label :お名前（カナ）
+          .mypage-content__box__form-group__input
+          = current_user.family_kana_name
+          = current_user.first_kana_name
+        .mypage-content__box__form-group
+          = f.label :生年月日
+          .mypage-content__box__form-group__input
+          = current_user.birthday
+        .mypage-content__box__form-group
+          = f.label :郵便番号
+          %span.mypage-content__box__form-group__any 任意
+          = f.number_field :postal_code  ,:class => "mypage-content__box__form-group__input-form"
+        .mypage-content__box__form-group
+          = f.label :都道府県
+          %span.mypage-content__box__form-group__any 任意
+          = f.select :prefecture_id,  User.address_prefectures.keys ,{:selected =>"#{@address.prefecture_id}" }, {class: 'mypage-content__box__form-group__input-form'}
+          -# TODO:既存の値を表示
+        .mypage-content__box__form-group
+          = f.label :市区町村
+          %span.mypage-content__box__form-group__any 任意
+          = f.text_field :city ,:class => "mypage-content__box__form-group__input-form" 
+        .mypage-content__box__form-group
+          = f.label :番地
+          %span.mypage-content__box__form-group__any 任意
+          = f.text_field :block ,:class => "mypage-content__box__form-group__input-form"
+        .mypage-content__box__form-group
+          = f.label :建物名
+          %span.mypage-content__box__form-group__any 任意
+          = f.text_field :building_name ,:class => "mypage-content__box__form-group__input-form"
+        = f.submit '登録する', class: 'btn-default btn-red'
+= render 'devise/shared/footer'

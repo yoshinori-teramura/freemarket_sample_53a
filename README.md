@@ -57,7 +57,7 @@
 |name              |string  |null: false |
 |description       |text    |null: false |
 |category_id       |references |null: false, foreign_key: true |
-|brand_id          |references |foreign_key: true |
+|brand_id          |integer  ||
 |item_status       |integer  |null: false |
 |shipping_charge   |integer  |null: false |
 |delivery_region   |integer  |null: false |
@@ -72,8 +72,7 @@
 - belongs_to :favorite
 - belongs_to :user
 - belongs_to :category
-- belongs_to :brand
-
+- belongs_to :brand, optional: ture
 
 ## photos table
 |Column|Type|Options|

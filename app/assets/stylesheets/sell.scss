@@ -1,5 +1,4 @@
 @mixin sell-form-header() {
-  font-weight: 600;
   display: inline-block;
 }
 
@@ -40,8 +39,8 @@
   line-height: 48px;
   font-size: 14px;
   border: 1px solid transparent;
-  -webkit-transition: all ease-out .3s;
-  transition: all ease-out .3s;
+  -webkit-transition: all ease-out 0.3s;
+  transition: all ease-out 0.3s;
   cursor: pointer;
   text-align: center;
   min-height: 1.5em;
@@ -81,6 +80,16 @@
   vertical-align: top;
 }
 
+.sell-form-optional {
+  background: #ccc;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+
 .sell-upload-box {
   width: 620px;
   padding: 40px;
@@ -94,7 +103,6 @@
     line-height: 1.5;
     font-size: 14px;
   }
-
 }
 
 .sell-content {
@@ -126,6 +134,11 @@
   &__pictures {
     float: left;
     display: block;
+
+    &--item1 {
+      -webkit-box-flex: 1;
+      flex: 1;
+    }
   }
 
   &__picture {
@@ -143,9 +156,9 @@
   border: 1px dashed #ccc;
   font-size: 0;
   text-align: center;
-  -webkit-transition: -webkit-box-shadow ease-out .3s;
-  transition: -webkit-box-shadow ease-out .3s;
-  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+  -webkit-transition: -webkit-box-shadow ease-out 0.3s;
+  transition: -webkit-box-shadow ease-out 0.3s;
+  transition: box-shadow ease-out 0.3s, -webkit-box-shadow ease-out 0.3s;
   cursor: pointer;
   float: right;
   margin-left: 2%;
@@ -176,10 +189,87 @@
     width: 100%;
     margin-left: 0;
   }
+  &--item1 {
+    width: 491px;
+  }
 }
 
 .sell-form-name {
   margin: 0;
+
+  &__label {
+    font-weight: 600;
+    @include sell-form-header();
+  }
+
+  &__input {
+    @include sell-input-default();
+  }
+}
+
+.sell-upload-picture {
+  &:first-child {
+    margin-left: 0;
+  }
+
+  width: 116px;
+  margin: 0 0 10px 10px;
+  position: relative;
+  display: inline-block;
+  border: 1px solid #eee;
+  vertical-align: top;
+
+  &__figure {
+    width: auto;
+    height: 116px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+
+    &__img {
+      position: static;
+      // position: absolute;
+      top: 50%;
+      -webkit-transform: none;
+      transform: none;
+      left: 0;
+      width: 100%;
+    }
+
+    &--landscape {
+      line-height: 116px;
+    }
+    &--portrait {
+      text-align: center;
+    }
+  }
+
+  &__buttons {
+    // 子要素にinline-blcokの時の隙間をなくす
+    font-size: 0;
+
+    &__button {
+      font-size: 14px;
+      display: inline-block;
+      width: 50%;
+      background: #f5f5f5;
+      line-height: 44px;
+      text-align: center;
+      text-align: center;
+      color: #0099ed;
+      text-decoration: none;
+      border-style: solid;
+      border-width: 0;
+      &:last-child {
+        border-left: 1px solid #eee;
+      }
+    }
+  }
+}
+
+.sell-form-text {
+  margin: 40px 0 0;
 
   &__label {
     @include sell-form-header();
@@ -194,6 +284,7 @@
   margin: 40px 0 0;
 
   &__label {
+    font-weight: 600;
     @include sell-form-header();
   }
 
@@ -312,9 +403,9 @@
       margin: 0 0 0 5%;
 
       &__inner {
-         @include sell-input-default();
-         margin: 0 !important;
-         text-align: right;
+        @include sell-input-default();
+        margin: 0 !important;
+        text-align: right;
       }
     }
   }
@@ -344,11 +435,9 @@
       float: right;
     }
   }
-
 }
 
 .sell-btn-box {
-
   &__note {
     line-height: 1.5;
     font-size: 14px;
