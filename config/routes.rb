@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :items
-  resources :mypages do
+  resource :mypages, only: [:index] do
+    get 'index'
     member do
       get 'profile'
       get 'deliver_address'
