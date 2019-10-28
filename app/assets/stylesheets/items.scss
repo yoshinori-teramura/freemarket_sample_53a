@@ -398,6 +398,9 @@ $mercari_white: rgb(255, 255, 255);
           top: 50%;
           left: 0;
           margin-left: 60px;
+          border: 0;
+          background: none;
+          outline:0;
           i {
             @extend %slide_icons_i;
           }
@@ -407,6 +410,9 @@ $mercari_white: rgb(255, 255, 255);
           top: 50%;
           right: 0;
           margin-right: 60px;
+          border: 0;
+          background: none;
+          outline:0;
           i {
             @extend %slide_icons_i;
           }
