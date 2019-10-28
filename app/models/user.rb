@@ -15,6 +15,18 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :credit
   accepts_nested_attributes_for :sns_credentials
 
+
+  validates :nickname, presence: true
+  validates :family_name, presence: true
+  validates :first_name, presence: true 
+  validates :family_kana_name, presence: true
+  validates :first_kana_name, presence: true
+  validates :birthday, presence: true
+  validates :tel, presence: true
+  validates :email ,presence: true, uniqueness: true         
+  validates :password, presence: true, length: { minimum: 6 }, confirmation: true
+
+
   enum address_prefecture: {
     "--":0,北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
     茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,
