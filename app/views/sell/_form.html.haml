@@ -1,13 +1,15 @@
 %h2.sell-container__head 商品の情報を入力
 - path = type == :edit ? "/sell/#{item.id}" : "/sell"
 - method = type == :edit ? :put : :post
-= form_for item , url: "#{path}", method: method, html: {id: :sellnewitem ,class: "sell-form"} do |f|
+- form_id = type == :edit ? :selledititem : :sellnewitem
+= form_for item , url: "#{path}", method: method, html: {id: form_id, class: "sell-form"} do |f|
   .sell-upload-box
     %h3.sell-upload-box__head
       出品画像
       %span.sell-form-require 必須
     %p.sell-upload-box__note 最大10枚までアップロードできます
     #validation_image
+    = f.hidden_field("image_exists", value: item.image.present?, id: "sell_image_exists")
     .sell-dropbox
       .sell-dropbox__picturebox
         .sell-dropbox__pictures{class: "sell-dropbox__pictures--item#{item.image.present? ? 1 : 0}"}
