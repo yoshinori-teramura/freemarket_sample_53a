@@ -163,7 +163,7 @@
   line-height: 72px;
 }
 
-.mypage-tab {
+@mixin mypage-default-tab($width:50%) {
   border: 0;
   background-color: #eee;
   font-size: 0;
@@ -171,7 +171,7 @@
 
   &__item {
     $selector: #{&};
-    width: 50%;
+    width: $width;
     display: inline-block;
     text-align: center;
     vertical-align: top;
@@ -197,40 +197,12 @@
     }
   }
 }
+.mypage-tab {
+  @include mypage-default-tab();
+}
 
 .mypage-listing-tab {
-  border: 0;
-  background-color: #eee;
-  font-size: 0;
-  list-style: none;
-
-  &__item {
-    $selector: #{&};
-    width: 33.3%;
-    display: inline-block;
-    text-align: center;
-    vertical-align: top;
-
-    &--active {
-      background-color: #fff;
-
-      #{$selector}__link {
-        border-top: 2px solid #ea352d;
-      }
-    }
-
-    &__head {
-      font-size: 22px;
-    }
-
-    &__link {
-      position: relative;
-      display: block;
-      color: #333;
-      font-size: 16px;
-      line-height: 72px;
-    }
-  }
+  @include mypage-default-tab(33.3%);
 }
 
 .mypage-item-list {
