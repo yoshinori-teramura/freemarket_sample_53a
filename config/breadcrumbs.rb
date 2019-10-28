@@ -2,6 +2,11 @@ crumb :root do
   link "メルカリ", root_path
 end
 
+crumb :item do |item|
+  link item.name, item_path
+  parent :root
+end
+
 crumb :category do
   link "カテゴリー一覧" # パスを指定
 end
@@ -20,9 +25,34 @@ crumb :mypage_identification do
   parent :mypage
 end
 
-crumb :item do |item|
-  link item.name, item_path
-  parent :root
+crumb :mypage_profile do
+  link "プロフィール", profile_mypages_path
+  parent :mypage
+end
+
+crumb :mypage_deliver_address do
+  link "発送元・お届け先住所変更", deliver_address_mypages_path
+  parent :mypage
+end
+
+crumb :mypage_credit do
+  link "支払い方法", credit_mypages_path
+  parent :mypage
+end
+
+crumb :mypage_email_password do
+  link "メール/パスワード", email_password_mypages_path
+  parent :mypage
+end
+
+crumb :mypage_sms_confirmation do
+  link "電話番号の確認", sms_confirmation_mypages_path
+  parent :mypage
+end
+
+crumb :mypage_logout_index do
+  link "ログアウト", logout_index_path
+  parent :mypage
 end
 
 # crumb :projects do
