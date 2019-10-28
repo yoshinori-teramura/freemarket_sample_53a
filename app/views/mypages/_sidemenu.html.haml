@@ -2,7 +2,7 @@
   %nav.mypage-navi
     %ul.mypage-navi-list
       %li.navi-item--first
-        %a.navi-item__link.navi-item__link--active{:href => ""}
+        = link_to(mypages_path, class: 'navi-item__link navi-item__link--active') do
           マイページ
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow navi-item__icon-arrow--active"
       %li.navi-item
