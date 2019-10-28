@@ -1,0 +1,32 @@
+-breadcrumb :mypage_logout_index
+= render 'devise/shared/header'
+%main.mypage-container
+  = render 'mypages/sidemenu'
+  .mypage-content
+    %section.mypage-tab-container
+      %h2.mypage-tab-header 出品した商品
+      %ul.mypage-listing-tab
+        %li.mypage-listing-tab__item
+          %h3.mypage-listing-tab__item__head
+            = link_to("出品中", listing_mypages_listings_path, class: "mypage-listing-tab__item__link")
+        %li.mypage-listing-tab__item
+          %h3.mypage-listing-tab__item__head
+            = link_to("取引中", in_progress_mypages_listings_path, class: "mypage-listing-tab__item__link")
+        %li.mypage-listing-tab__item.mypage-listing-tab__item--active
+          %h3.mypage-listing-tab__item__head
+            %a.mypage-listing-tab__item__link 売却済み
+      .mypage-tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.mypage-item-list--active
+        - if @items.count == 0
+          %li.mypage-li-wrapper--not-found.bold 売却済みの商品がありません
+        - else
+          = render partial: 'mypages/message_link', collection: @items, as: :item
+    %ul.mypage-history-pager
+      %li.mypage-history-pager__item.mypage-history-pager__item--left
+        %a.mypage-history-pager__item__link
+          = fa_icon("angle-left 2x", class: "mypage-history-pager__item__link__icon")
+      %li.mypage-history-pager__item.mypage-history-pager__item--right
+        %a.mypage-history-pager__item__link
+          = fa_icon("angle-right 2x", class: "mypage-history-pager__item__link__icon")
+= render 'devise/shared/aside'
+= render 'devise/shared/footer'

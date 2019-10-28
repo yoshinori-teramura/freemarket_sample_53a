@@ -198,6 +198,41 @@
   }
 }
 
+.mypage-listing-tab {
+  border: 0;
+  background-color: #eee;
+  font-size: 0;
+  list-style: none;
+
+  &__item {
+    $selector: #{&};
+    width: 33.3%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+
+    &--active {
+      background-color: #fff;
+
+      #{$selector}__link {
+        border-top: 2px solid #ea352d;
+      }
+    }
+
+    &__head {
+      font-size: 22px;
+    }
+
+    &__link {
+      position: relative;
+      display: block;
+      color: #333;
+      font-size: 16px;
+      line-height: 72px;
+    }
+  }
+}
+
 .mypage-item-list {
   display: none;
 
@@ -420,4 +455,49 @@
 }
 .edit_address {
   padding-top: 70px;
+}
+
+.mypage-history-pager {
+  margin: 40px 0 0;
+  height: 44px;
+  position: relative;
+  font-size: 0;
+  text-align: center;
+
+  &__item {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    line-height: 42px;
+    position: absolute;
+    top: 0;
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &__link {
+      display: block;
+      color: #333;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+        background: #f5f5f5;
+        text-decoration: none;
+      }
+
+      &__icon {
+        position: relative;
+        top: 0.15em;
+      }
+    }
+  }
 }
