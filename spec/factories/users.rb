@@ -11,6 +11,7 @@ FactoryBot.define do
     first_kana_name       {"テスト"}
     birthday              {"2019-01-01"}
     tel                   {"08012345678"}
+    id                    {"1"}
   end
-
+  
 end
