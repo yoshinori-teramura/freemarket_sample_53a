@@ -18,9 +18,9 @@
       .mypage-tab-content
         %ul#mypage-tab-transaction-now.mypage-item-list
         - if @items.count == 0
-          %li.mypage-li-wrapper--not-found.bold 出品中の商品がありません
+          %li.mypage-listing-li-wrapper--not-found.bold 出品中の商品がありません
         - else
-          = render partial: 'mypages/message_link', collection: @items, as: :item
+          = render partial: 'listing_item', collection: @items, as: :item
     %ul.mypage-history-pager
       %li.mypage-history-pager__item.mypage-history-pager__item--left
         %a.mypage-history-pager__item__link

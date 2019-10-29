@@ -1,0 +1,18 @@
+%li.mypage-listing-li-wrapper
+  = link_to item_path(item.id), class: "mypage-listing-li" do
+    %figure.mypage-listing-li__figure
+      = image_tag item.image.url, class: 'mypage-listing-li__figure__img' if item.image.present?
+    .mypage-listing-li__body
+      .mypage-listing-li__body__text
+        = item.name
+      %span.mypage-listing-li__body__inner
+        = fa_icon 'heart-o', class: "mypage-listing-li__body__inner__icon"
+        %span.mypage-listing-li__body__inner__text 0
+      %span.mypage-listing-li__body__inner
+        = fa_icon 'comment-o', class: "mypage-listing-li__body__inner__icon"
+        %span.mypage-listing-li__body__inner__text 0
+      - if item.trade_status_showing?
+        .mypage-listing-li__body__tag.mypage-listing-li__body__tag--showing 出品中
+      - elsif item.trade_status_suspend?
+        .mypage-listing-li__body__tag.mypage-listing-li__body__tag--suspend 停止中
+    = fa_icon 'angle-right 2x', class: "mypage-listing-li__icon-arrow"

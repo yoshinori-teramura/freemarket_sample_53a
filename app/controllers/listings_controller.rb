@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
   def listing
     @items = current_user.items
       .where(trade_status: :showing)
+      .or(current_user.items.where(trade_status: :suspend))
       .limit(5)
   end
 
