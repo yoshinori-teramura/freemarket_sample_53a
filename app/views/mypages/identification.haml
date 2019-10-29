@@ -33,8 +33,7 @@
         .mypage-content__box__form-group
           = f.label :都道府県
           %span.mypage-content__box__form-group__any 任意
-          = f.select :prefecture_id,  User.address_prefectures.keys ,{:selected =>"#{@address.prefecture_id}" }, {class: 'mypage-content__box__form-group__input-form'}
-          -# TODO:既存の値を表示
+          = f.select :prefecture_id,  User.address_prefectures ,{}, {class: 'mypage-content__box__form-group__input-form'}
         .mypage-content__box__form-group
           = f.label :市区町村
           %span.mypage-content__box__form-group__any 任意

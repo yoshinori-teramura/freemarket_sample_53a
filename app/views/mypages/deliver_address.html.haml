@@ -5,7 +5,7 @@
   .mypage-content
     .mypage-content__box
       %h2.mypage-content__box__header 発送元・お届け先住所の変更
-      = form_for @address , :url => { :controller => :mypages, :action => :update_address } do |f|
+      = form_for @address  , :url => { :controller => :mypages, :action => :update_address } do |f|
         .mypage-content__box__form-group
           = f.label :お名前（全角）
           %span.mypage-content__box__form-group__requier 必須
@@ -25,8 +25,7 @@
         .mypage-content__box__form-group
           = f.label :都道府県
           %span.mypage-content__box__form-group__requier 必須
-          = f.select :prefecture_id,  User.address_prefectures.keys ,{:selected =>"#{@address.prefecture_id}" }, {class: 'mypage-content__box__form-group__input-form'}
-          -# TODO:既存の値を表示
+          = f.select :prefecture_id,  User.address_prefectures ,{}, {class: 'mypage-content__box__form-group__input-form'}
         .mypage-content__box__form-group
           = f.label :市区町村
           %span.mypage-content__box__form-group__requier 必須
