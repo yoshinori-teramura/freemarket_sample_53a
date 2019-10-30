@@ -181,23 +181,24 @@
 }
 
 .item-buy-btn {
+  @extend %default-button;
   font-size: 24px;
   line-height: 60px;
-  display: block;
   margin-top: 16px;
-  background: #ea352d;
-  color: #fff;
-  text-align: center;
   font-weight: 600;
-  -webkit-transition: all ease-out .3s;
-  transition: all ease-out .3s;
-  cursor: pointer;
 
-  &:hover {
-    background-color: #e62017;
-    color: #fff;
-    text-decoration: none;
-    opacity: 1;
+  &--enable {
+    @extend %button-theme-red;
+    &:hover {
+      background-color: #e62017;
+      color: #fff;
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
+  &--disable {
+    @extend %button-theme-gray;
+    cursor: not-allowed;
   }
 }
 
