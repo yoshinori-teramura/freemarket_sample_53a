@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :destroy]
 
   # GET /items
   # GET /items.json
@@ -22,52 +22,43 @@ class ItemsController < ApplicationController
                                    .limit(6)
   end
 
-  # GET /items/new
-  def new
-    @item = Item.new
+  # 商品の出品状態変更ページへ遷移
+  def myitem
+    @item = Item.find(params[:item_id])
+    redirect_to :root unless @item.user.id == current_user.id
   end
 
-  # GET /items/1/edit
-  def edit
-  end
-
-  # POST /items
-  # POST /items.json
-  def create
-    @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+  # 出品中の商品を公開停止にする
+  def suspend_showing_item
+    item = Item.find(params[:item_id])
+    if item.user.id == current_user.id && item.trade_status_showing?
+      item.update_attribute(:trade_status, :suspend)
+      redirect_to action: :myitem, item_id: item.id
+    else
+      redirect_to :root
     end
+    rescue => e
+      puts e
+      redirect_to :root, notice: "Failed to suspend listing item."
   end
 
-  # PATCH/PUT /items/1
-  # PATCH/PUT /items/1.json
-  def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+  # 公開停止中の商品を出品中にする
+  def resume_showing_item
+    item = Item.find(params[:item_id])
+    if item.user.id == current_user.id && item.trade_status_suspend?
+      item.update_attribute(:trade_status, :showing)
+      redirect_to action: :myitem, item_id: item.id
+    else
+      redirect_to :root
     end
+    rescue => e
+      puts e
+      redirect_to :root, notice: "Failed to resume listing item."
   end
 
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    #respond_to do |format|
-    #  format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-    #  format.json { head :no_content }
-    #end
     @item.destroy
     # mypageへ遷移
     redirect_to mypages_path, notice: "#{@item.name}を削除しました"

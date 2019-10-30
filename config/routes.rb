@@ -5,7 +5,13 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  resources :items
+
+  resources :items, only: [:index, :show, :destroy] do
+    get 'myitem'
+    patch 'suspend_showing_item'
+    patch 'resume_showing_item'
+  end
+
   resource :mypages, only: [:index] do
     get 'index'
     member do
@@ -17,6 +23,13 @@ Rails.application.routes.draw do
       get 'sms_confirmation'
       patch 'update_user'
       patch 'update_address'
+    end
+    resources :listings do
+      collection do
+        get 'listing'     #出品中
+        get 'in_progress' #取引中
+        get 'completed'   #売却済み
+      end
     end
   end
 

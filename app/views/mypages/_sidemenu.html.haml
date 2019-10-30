@@ -2,7 +2,7 @@
   %nav.mypage-navi
     %ul.mypage-navi-list
       %li.navi-item--first
-        %a.navi-item__link.navi-item__link--active{:href => ""}
+        = link_to(mypages_path, class: 'navi-item__link navi-item__link--active') do
           マイページ
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow navi-item__icon-arrow--active"
       %li.navi-item
@@ -19,18 +19,19 @@
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
         %a.navi-item__link{:href => ""}
+        = link_to(sell_index_path, class: 'navi-item__link') do
           出品する
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(listing_mypages_listings_path, class: 'navi-item__link') do
           出品した商品 - 出品中
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(in_progress_mypages_listings_path, class: 'navi-item__link') do
           出品した商品 - 取引中
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(completed_mypages_listings_path, class: 'navi-item__link') do
           出品した商品 - 売却済み
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item

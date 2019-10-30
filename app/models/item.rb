@@ -26,7 +26,8 @@ class Item < ApplicationRecord
   enum trade_status: {
     showing: 1, # 出品中
     trading: 2, # 取引中
-    sold: 3 #売却済み
+    sold: 3,    # 売却済み
+    suspend: 4  # 出品停止中
   }, _prefix: true
 
   # 配送元の地域
