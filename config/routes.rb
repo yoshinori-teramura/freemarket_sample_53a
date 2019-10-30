@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'credit/new'
+  get 'credit/show'
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
