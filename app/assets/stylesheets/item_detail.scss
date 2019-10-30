@@ -582,3 +582,30 @@
 
   }
 }
+
+.myitem-buttons-box {
+  width: 700px;
+  margin: 8px auto;
+  background: #fff;
+  padding: 8px 16px 8px 16px;
+
+  &__text {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  &__button {
+    @extend %default-button;
+    margin: 16px 0 16px 0;
+
+    &--edit {
+      @extend %button-theme-red;
+    }
+    &--suspend {
+      @extend %button-theme-gray;
+    }
+    &--delete {
+      @extend %button-theme-gray;
+    }
+  }
+}

@@ -5,7 +5,13 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  resources :items
+
+  resources :items, only: [:index, :show, :destroy] do
+    get 'myitem'
+    patch 'suspend_showing_item'
+    patch 'resume_showing_item'
+  end
+
   resource :mypages, only: [:index] do
     get 'index'
     member do

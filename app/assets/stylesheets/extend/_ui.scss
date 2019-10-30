@@ -1,0 +1,23 @@
+%default-button {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
+
+%button-theme-red {
+  background: #ea352d;
+  border: 1px solod #ea352d;
+  color: #fff;
+}
+
+%button-theme-gray {
+  background: #aaa;
+  border: 1px solod #aaa;
+  color: #fff;
+}

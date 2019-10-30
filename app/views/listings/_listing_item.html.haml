@@ -1,5 +1,5 @@
 %li.mypage-listing-li-wrapper
-  = link_to item_path(item.id), class: "mypage-listing-li" do
+  = link_to item_myitem_path(item.id), class: "mypage-listing-li" do
     %figure.mypage-listing-li__figure
       = image_tag item.image.url, class: 'mypage-listing-li__figure__img' if item.image.present?
     .mypage-listing-li__body

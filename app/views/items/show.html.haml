@@ -19,23 +19,8 @@
       %a.item-button-link{target: '_blank'}
         = fa_icon 'lock', class: 'item-button-link__icon'
         %span.item-button-link__text あんしん・あんぜんへの取り組み
-  -# TODO:あとで消す
-  = link_to 'Edit', edit_sell_path(@item.id)
-  |
-  = link_to 'Back', items_path
-  |
-  = link_to 'Destroy', item_path, method: :delete, data: {confirm: "削除しますか？"}
 
-- if user_signed_in?
-  .item-comment-container
-    .item-comment
-      .item-comment__form
-        %p.item-comment__form__warning
-          相手のことを考え丁寧なコメントを心がけましょう。
-          不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        %textarea.item-comment__form__message
-        %button.item-comment__form__button
-          %span.item-comment__form__button__text コメントする
+= render 'item_comments'
 
 %ul.item-pager
   %li.item-pager__prev
