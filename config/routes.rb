@@ -31,6 +31,14 @@ Rails.application.routes.draw do
   end
   resources :buy
 
+  resources :credit, only: [:new, :show] do
+    collection do
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+    end
+  end
+
   resources :signup do          #新規登録用コントローラー
     collection do
       get 'registration_type'   #新規登録を、メールor Facebook or google選択画面
