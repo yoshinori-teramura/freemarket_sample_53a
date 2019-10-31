@@ -11,7 +11,7 @@
           %ul.main__top__slider__frame__lists
             %li#slide1.main__top__slider__frame__lists__slide__visible
               %a{:href => "/items/featured/camp/"}
-                .main__top__slider__frame__lists__slide__visible__image{:style => "background-image:url(#{asset_path "slide_camp.jpg"})"}          
+                .main__top__slider__frame__lists__slide__visible__image{:style => "background-image:url(#{asset_path "slide_camp.jpg"})"}
             %li#slide2.main__top__slider__frame__lists__slide__visible.invisible
               .main__top__slider__frame__lists__slide__visible__box
                 .main__top__slider__frame__lists__slide__visible__box__content
@@ -38,9 +38,9 @@
         = fa_icon 'circle'
         = fa_icon 'circle'
 
-    = render 'devise/shared/popular_category'
-    = render 'devise/shared/popular_brand'
-    
+    = render 'popular_category'
+    = render 'popular_brand'
+
   .display
     = link_to sell_index_path , class: "display__link" do
       .display__link__button
