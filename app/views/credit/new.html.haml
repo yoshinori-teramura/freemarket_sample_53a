@@ -1,15 +1,15 @@
-.main
-  %section.main__container
-    %h2.main__container__form クレジットカード情報入力
-    = form_tag('/credit', method: :post, action: "create", id: 'charge-form',  name: "inputForm", class: "main__container__inner") do
-      .main__container__form__content
-        .main__container__form__content__info
+.card
+  %section.card__container
+    %h2.card__container__form クレジットカード情報入力
+    = form_tag('/credit', method: :post, action: "create", id: 'charge-form',  name: "inputForm", class: "card__container__inner") do
+      .card__container__form__content
+        .card__container__form__content__info
           %label.payment__credit カード番号
           %span.require__form 必須
           = text_field_tag "number", "", class: "number input__deafult", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
           .credit__list
             .credit__list__picture
-        .main__container__form__content__info.top__margin
+        .card__container__form__content__info.top__margin
           %label.payment__credit 有効期限
           %span.require__form 必須
           .select__box.top__margin
@@ -49,7 +49,7 @@
               %i
                 = icon('fas', 'chevron-down')
               %span  年
-        .main__container__form__content__info.top__margin
+        .card__container__form__content__info.top__margin
           %label セキュリティーコード
           %span.require__form 必須
           = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc"
