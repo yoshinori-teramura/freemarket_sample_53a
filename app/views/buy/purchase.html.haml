@@ -1,0 +1,9 @@
+.modal-inner
+  %div
+    %h3.modal-head 購入が完了しました
+    .sell-modal-body
+      出品者の発送通知をお待ちください。
+      %p.text-center
+        = link_to 'マイページへ', mypages_path, class: 'btn-default.btn-red'
+        -# mypages#indexへ飛ぶようにした。
+        -# 本来なら「シェアする」、「取引画面へ」というリンク。
