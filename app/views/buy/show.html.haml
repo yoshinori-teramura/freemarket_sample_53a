@@ -6,13 +6,13 @@
       %section.main__box__purchase
         .main__box__purchase__inner
           %h3.main__box__purchase__inner__image
-            = image_tag @items.image.url , class: 'main__box__purchase__inner__image__one' if @items.image.present?
+            = image_tag @item.image.url , class: 'main__box__purchase__inner__image__one' if @item.image.present?
           %p.main__box__purchase__inner__text
-            =(@items.name)
+            =(@item.name)
           -# %form.main__box__purchase__inner__form{:action => "https://www.mercari.com/jp/transaction/buy/done/m66900357794/", :method => "POST", :novalidate => "novalidate"}
-          %form.main__box__purchase__inner__form{:action => "", :method => "POST", :novalidate => "novalidate"}
+          .main__box__purchase__inner__form
             %p.main__box__purchase__inner__form__price
-              = to_yen(@items.price)
+              = to_yen(@item.price)
               %span.main__box__purchase__inner__form__price__shipping 送料込み
             %ul.main__box__purchase__inner__form__point
               %li.main__box__purchase__inner__form__point__parent
@@ -22,19 +22,20 @@
               %li.main__box__purchase__inner__form__table__cell
                 .main__box__purchase__inner__form__table__cell__text 支払い金額
                 .main__box__purchase__inner__form__table__cell__price
-                  %span= to_yen(@items.price)
-              %button.main__box__purchase__inner__form__table__button{:type => "submit"} 購入する
+                  %span= to_yen(@item.price)
+              -# %button.main__box__purchase__inner__form__table__button{:type => "submit"} 購入する
+              = button_to '購入する', purchase_buy_path, method: :put, class: 'main__box__purchase__inner__form__table__button', data: {confirm: "購入を確定しますか？"}
       %section.main__box__user
         .main__box__user__inner
           %h3.main__box__user__inner__text 配送先
           %address.main__box__user__inner__info
-            = @addresses.postal_code
+            = @address.postal_code
             %br/
-            = @addresses.city
-            = @addresses.block
+            = @address.city
+            = @address.block
             %br/
-            = @addresses.delivery_family_name
-            = @addresses.delivery_first_name
+            = @address.delivery_family_name
+            = @address.delivery_first_name
           %p.main__box__user__inner__space
           %a.main__box__user__inner__fix{:href => "/transaction/address/"}
             %span 変更する
@@ -43,9 +44,9 @@
         .main__box__user__inner
           %h3.main__box__user__inner__text 支払い方法
           %p.main__box__user__inner__info
-            = @credits.number
+            = @credit.number
             %br/
-            = @credits.expiration_date
+            = @credit.expiration_date
             \
             %figure
               = image_tag 'visa.svg', alt: 'visa', class: 'visa'

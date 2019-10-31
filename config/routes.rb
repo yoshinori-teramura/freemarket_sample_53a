@@ -39,9 +39,15 @@ Rails.application.routes.draw do
     collection do
         get 'get_category_children', defaults: {format: 'json'}
         get 'get_delivery_types', defaults: {format: 'json'}
+        put 'completed' # 取引中の商品を発送
     end
   end
-  resources :buy
+
+  resources :buy do
+    member do
+      put 'purchase'  # 商品の購入を確定
+    end
+  end
 
   resources :signup do          #新規登録用コントローラー
     collection do
