@@ -1,3 +1,126 @@
-// Place all the styles related to the credit controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.payment__credit {
+
+}
+
+.input__default {
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+  width: 100%;
+  margin: 8px 0 0;
+}
+.require__form{
+  background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+.credit__list {
+  margin: 8px 0 0;
+  font-size: 0;
+  &__picture {
+    display: inline-block;
+    margin: 0 0 0 8px;
+    vertical-align: middle; 
+  }
+}
+.top__margin {
+  margin: 8px 0 0;
+}
+.select__box {
+  &__half {
+    display: inline-block;
+    width: calc(50% - 2px);
+  }
+}
+.select__default {
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.form__question {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0099e8;
+  color: #fff;
+  line-height: 14px;
+  font-size: 12px;
+  text-align: center;
+}
+
+#exp_month {
+
+}
+
+#exp_year {
+
+}
+
+#card_token
+
+.btn-red {
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: 
+}
+
+.btn-default {
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.main {
+  width: 700px;
+  &__container {
+    //float: none;
+    width: 100%;
+    &__form {
+      font-size: 24px;
+      padding: 8px 24px;
+      border-bottom: 1px solid #f5f5f5;
+      text-align: center;
+      &__content {
+        margin: 0 auto;
+        &__info {
+          margin: 24px 0 0;
+          label {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+.single__code {
+  position: relative;
+  margin: 8px 0 0;
+  &__text {
+    text-align: right;
+    color: #0099e8;
+  }
+}
