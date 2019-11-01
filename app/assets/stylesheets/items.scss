@@ -300,7 +300,6 @@ $mercari_white: rgb(255, 255, 255);
             touch-action: pan-y pinch-zoom;
             &__slide__invisible {
               display: none;
-            
             }
             &__slide__visible {
               @extend %slide_box;
@@ -589,33 +588,31 @@ $mercari_white: rgb(255, 255, 255);
 
 .display {
   bottom: 32px;
-  font-size: 22px;
-  height: 160px;
   right: 32px;
-  width: 160px;
   position: fixed;
+  width: 160px;
+  height: 160px;
+  z-index: 1000;
   text-align: center;
-  z-index: 2;
   &__link {
-    display: block;
     &__button {
       width: 160px;
       height: 160px;
-      padding-top: 32px;
       text-align: center;
       background-color: $mercari_red;
       border-radius: 50%;
       &__text {
         font-size: 22px;
+        padding-top: 20px;
         color: $mercari_white;
       }
       &__mark {
-        height: 54px;
         max-width: 100%;
         max-height: 100%;
+        font-size: 20px;
         color: $mercari_white;
         display: block;
-        margin: 8px auto 0px;
+        margin: 4px auto 0px;
       }
     }
   }
