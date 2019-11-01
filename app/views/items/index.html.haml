@@ -37,8 +37,17 @@
       .main__top__slider__dots
         = fa_icon 'circle'
         = fa_icon 'circle'
+    .main__popularCategory
+      %h2.main__popularCategory__title.h2
+        人気のカテゴリー
+      .main__popularCategory__content
+        %ul.main__popularCategory__content__topics
+          - @categories.each do |category|
+            %li.main__popularCategory__content__topics__1topic
+              %span{data: {"category-id": category.id}, class: "main__popularCategory__content__topics__1topic__link"}
+                = category.name
 
-    = render 'popular_category'
+    = render partial: 'popular_category', collection: @categories, as: :category
     = render 'popular_brand'
 
   .display
