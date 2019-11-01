@@ -37,7 +37,7 @@
         .mypage-content__box__form-group
           = f.label :市区町村
           %span.mypage-content__box__form-group__any 任意
-          = f.text_field :city ,:class => "mypage-content__box__form-group__input-form" 
+          = f.text_field :city ,:class => "mypage-content__box__form-group__input-form"
         .mypage-content__box__form-group
           = f.label :番地
           %span.mypage-content__box__form-group__any 任意
@@ -48,3 +48,4 @@
           = f.text_field :building_name ,:class => "mypage-content__box__form-group__input-form"
         = f.submit '登録する', class: 'btn-default btn-red'
 = render 'devise/shared/footer'
+= render 'partial/sellbutton'

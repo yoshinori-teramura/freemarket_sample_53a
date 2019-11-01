@@ -10,7 +10,7 @@
       %a.mypage-user__link{:href => ""}
         %figure.mypage-user__icon
           = image_tag "member_photo_noimage_thumb.png", size: "60x60"
-        %h2.mypage-user__name.bold 
+        %h2.mypage-user__name.bold
         = current_user.nickname
         .mypage-user__status
           .mypage-user__status__review
@@ -52,3 +52,4 @@
         %ul#mypage-tab-transaction-old.mypage-item-list
           %li.mypage-li-wrapper--not-found.bold 過去に取引した商品がありません
 = render 'devise/shared/footer'
+= render 'partial/sellbutton'
