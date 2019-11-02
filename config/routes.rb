@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'credit/new'
-  get 'credit/show'
+  
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
@@ -31,11 +30,13 @@ Rails.application.routes.draw do
   end
   resources :buy
 
-  resources :credit, only: [:new, :show] do
+  resources :credit, only: [:create, :show, :edit] do
     collection do
-      post 'show', to: 'credit#show'
-      post 'pay', to: 'credit#pay'
       post 'delete', to: 'credit#delete'
+      post 'show'
+    end
+    member do
+      get 'confirmation'
     end
   end
 
