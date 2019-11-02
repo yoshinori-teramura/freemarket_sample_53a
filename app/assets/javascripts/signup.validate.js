@@ -67,7 +67,7 @@ $(document).on('turbolinks:load', function () {
 
     //エラーメッセージ出力箇所設定
     errorPlacement: function(error, element){
-      if (element.attr("name")=="user[family_name]" || element.attr("name")=="user[first_name"){
+      if (element.attr("name")=="user[family_name]" || element.attr("name")=="user[first_name]"){
         error.appendTo($('#validate_name'));
       }else if (element.attr("name")=="user[family_kana_name]" || element.attr("name")=="user[first_kana_name]"){
         error.appendTo($('#validate_kana_name'));

@@ -13,6 +13,7 @@ class Item < ApplicationRecord
   validates :item_status, :shipping_charge, :delivery_region,
             :delivery_type, :delivery_days, :trade_status, presence: true
   validates :image, presence: true
+  validates :price , presence: true ,numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   # validates_with ItemPriceValidator
 
   # 商品の状態
@@ -26,7 +27,8 @@ class Item < ApplicationRecord
   enum trade_status: {
     showing: 1, # 出品中
     trading: 2, # 取引中
-    sold: 3 #売却済み
+    sold: 3,    # 売却済み
+    suspend: 4  # 出品停止中
   }, _prefix: true
 
   # 配送元の地域
@@ -127,6 +129,15 @@ class Item < ApplicationRecord
     else
       return [['---', 0]]
     end
+  end
+
+  def self.same_category_items(category_id)
+    # rootカテゴリが同じ商品を全て取得
+    Item.joins(:category)
+        .where('categories.ancestry = ? OR categories.ancestry LIKE ?', category_id, "#{category_id}/%")
+        .where(trade_status: :showing)
+        .order(created_at: 'DESC')
+        .limit(10)
   end
 
   private

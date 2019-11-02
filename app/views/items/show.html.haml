@@ -1,92 +1,11 @@
 = render 'devise/shared/header'
 
 %section.item-container
-  %h1.item-name
-    = @item.name
-  .item-main-content
-    .item-photo-box
-      .item-main-photo
-        .item-main-photo__inner
-          = image_tag @item.image.url, class: 'item-main-photo__inner__img' if @item.image.present?
-      .item-thumnails
-        .item-thumnail.item-thumnail--active
-          .item-thumnail__inner
-            = image_tag @item.image.url, class: 'item-thumnail__inner__img' if @item.image.present?
-    %table.item-detail
-      %tbody
-        %tr.item-detail__tr
-          %th.item-detail__th 出品者
-          %td.item-detail__td
-            %a.item-detail__username
-              = @item.user.nickname if @item.user.present?
-            .item-detail-user-ratings
-              .item-detail-user-rating
-                = fa_icon 'smile-o', class: 'item-detail-user-rating__icon item-detail-user-rating__icon--good'
-                %span 0
-              .item-detail-user-rating
-                = fa_icon 'meh-o', class: 'item-detail-user-rating__icon item-detail-user-rating__icon--normal'
-                %span 0
-              .item-detail-user-rating
-                = fa_icon 'frown-o', class: 'item-detail-user-rating__icon item-detail-user-rating__icon--bad'
-                %span 0
-        %tr.item-detail__tr
-          %th.item-detail__th カテゴリー
-          %td.item-detail__td
-            %a.item-detail__category
-              .item-detail__category__name
-                = @item.category.root.name
-            - if @item.category.parent.present?
-              %a.item-detail__category
-                .item-detail__category__name
-                  = fa_icon 'angle-right'
-                  = @item.category.parent.name
-            - if @item.category.ancestry.present?
-              %a.item-detail__category
-                .item-detail__category__name
-                  = fa_icon 'angle-right'
-                  = @item.category.name
-        %tr.item-detail__tr
-          %th.item-detail__th ブランド
-          %td.item-detail__td
-            %a.item-detail__bland
-              = @item.brand.name if @item.brand.present?
-        -# %tr.item-detail__tr
-        -#   %th.item-detail__th 商品のサイズ
-        -#   %td.item-detail__td M
-        %tr.item-detail__tr
-          %th.item-detail__th 商品の状態
-          %td.item-detail__td
-            = @item.item_status
-        %tr.item-detail__tr
-          %th.item-detail__th 配送料の負担
-          %td.item-detail__td
-            = @item.shipping_charge
-        %tr.item-detail__tr
-          %th.item-detail__th 配送の方法
-          %td.item-detail__td
-            - if @item.shipping_charge == "送料込み(出品者負担)"
-              = Item.delivery_soryokomi_types.key(@item.delivery_type)
-            - elsif @item.shipping_charge == "着払い(購入者負担)"
-              = Item.delivery_chakubarai_types.key(@item.delivery_type)
-        %tr.item-detail__tr
-          %th.item-detail__th 配送元地域
-          %td.item-detail__td
-            %a.item-detail__area
-              = @item.delivery_region
-        %tr.item-detail__tr
-          %th.item-detail__th 発送日の目安
-          %td.item-detail__td
-            = Item.delivery_terms.key(@item.delivery_days)
-  .item-price-box
-    %span.item-price-box__price
-      = to_yen(@item.price)
-    %span.item-price-box__tax (税込)
-    %span.item-price-box__shipping-fee
-      - if @item.shipping_charge == "送料込み(出品者負担)"
-        送料込み
-      - elsif @item.shipping_charge == "着払い(購入者負担)"
-        送料別
-  %a.item-buy-btn 購入画面に進む
+  = render partial: 'iteminfo', locals: {item: @item}
+  - if user_signed_in? == false || @item.user.id != current_user.id
+    = link_to '購入画面に進む', buy_path, class: "item-buy-btn item-buy-btn--enable"
+  - else
+    .item-buy-btn.item-buy-btn--disable 購入できません
   .item-description
     %p.item-description__text
       = html_escape(@item.description) if @item.description.present?
@@ -103,23 +22,8 @@
       %a.item-button-link{target: '_blank'}
         = fa_icon 'lock', class: 'item-button-link__icon'
         %span.item-button-link__text あんしん・あんぜんへの取り組み
-  -# TODO:あとで消す
-  = link_to 'Edit', edit_sell_path(@item.id)
-  |
-  = link_to 'Back', items_path
-  |
-  = link_to 'Destroy', item_path, method: :delete, data: {confirm: "削除しますか？"}
 
-- if user_signed_in?
-  .item-comment-container
-    .item-comment
-      .item-comment__form
-        %p.item-comment__form__warning
-          相手のことを考え丁寧なコメントを心がけましょう。
-          不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        %textarea.item-comment__form__message
-        %button.item-comment__form__button
-          %span.item-comment__form__button__text コメントする
+= render 'item_comments'
 
 %ul.item-pager
   %li.item-pager__prev

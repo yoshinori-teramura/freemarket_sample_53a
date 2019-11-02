@@ -306,7 +306,7 @@ $(document).on('turbolinks:load', function () {
   }
 
   /**
-   * 商品画像のサムネイルの表示
+   * 商品画像設定時
    */
   $('#image').on('change', function () {
 
@@ -322,6 +322,7 @@ $(document).on('turbolinks:load', function () {
     if (file && permit_type.indexOf(file.type) == -1) {
       alert('この形式のファイルはアップロードできません');
       $('#image').val('');
+      $('#sell_image_exists').val(false);
       return
     }
 
@@ -332,9 +333,11 @@ $(document).on('turbolinks:load', function () {
     }
 
     var reader = new FileReader();
+    // 画像を読み込んだ時にサムネイルを表示する
     reader.onload = function () {
       //1つしか画像を表示させないため、表示されている画像があれば削除する
       $('.sell-upload-picture').remove();
+      $('#sell_image_exists').val(false);
 
       var html = `
       <li class="sell-upload-picture">
@@ -354,8 +357,9 @@ $(document).on('turbolinks:load', function () {
       $('.sell-dropbox__pictures').addClass('sell-dropbox__pictures--item1');
       $('.sell-dropbox-area').removeClass('sell-dropbox-area--item0');
       $('.sell-dropbox-area').addClass('sell-dropbox-area--item1');
+      $('#sell_image_exists').val(true);
     }
-
+    // 画像を読み込む
     reader.readAsDataURL(file);
   });
 
@@ -370,6 +374,7 @@ $(document).on('turbolinks:load', function () {
     $('.sell-dropbox-area').removeClass('sell-dropbox-area--item1');
     $('.sell-dropbox-area').addClass('sell-dropbox-area--item0');
     $('#image').val('');
+    $('#sell_image_exists').val(false);
   });
 
 });

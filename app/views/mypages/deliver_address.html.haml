@@ -1,10 +1,11 @@
+- breadcrumb :mypage_deliver_address
 = render 'devise/shared/header'
 %main.mypage-container
   = render 'sidemenu'
   .mypage-content
     .mypage-content__box
       %h2.mypage-content__box__header 発送元・お届け先住所の変更
-      = form_for @address , :url => { :controller => :mypages, :action => :update_address } do |f|
+      = form_for @address  , :url => { :controller => :mypages, :action => :update_address } do |f|
         .mypage-content__box__form-group
           = f.label :お名前（全角）
           %span.mypage-content__box__form-group__requier 必須
@@ -24,12 +25,11 @@
         .mypage-content__box__form-group
           = f.label :都道府県
           %span.mypage-content__box__form-group__requier 必須
-          = f.select :prefecture_id,  User.address_prefectures.keys ,{:selected =>"#{@address.prefecture_id}" }, {class: 'mypage-content__box__form-group__input-form'}
-          -# TODO:既存の値を表示
+          = f.select :prefecture_id,  User.address_prefectures ,{}, {class: 'mypage-content__box__form-group__input-form'}
         .mypage-content__box__form-group
           = f.label :市区町村
           %span.mypage-content__box__form-group__requier 必須
-          = f.text_field :city ,:class => "mypage-content__box__form-group__input-form" 
+          = f.text_field :city ,:class => "mypage-content__box__form-group__input-form"
         .mypage-content__box__form-group
           = f.label :番地
           %span.mypage-content__box__form-group__requier 必須
@@ -44,3 +44,4 @@
           = f.text_field :delivery_tel ,:class => "mypage-content__box__form-group__input-form"
         = f.submit '登録する', class: 'btn-default btn-red'
 = render 'devise/shared/footer'
+= render 'partial/sellbutton'

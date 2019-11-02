@@ -13,7 +13,7 @@
 .mypage-content {
   float: right;
   width: 700px;
-  background-color: #fff;
+  background-color: #f5f5f5;
   padding-bottom: 50px;
 }
 
@@ -93,7 +93,7 @@
   position: relative;
   height: 200px;
   padding: 20px;
-  background: rgba(22, 192, 6, 0.5);
+  background: image-url("user-bg.jpg");
   text-align: center;
 
   &__link {
@@ -149,6 +149,9 @@
 }
 
 .mypage-tab-container {
+  &:nth-of-type(1) {
+    margin: 0;
+  }
   margin: 40px 0 0;
   background: #fff;
 }
@@ -160,7 +163,7 @@
   line-height: 72px;
 }
 
-.mypage-tab {
+@mixin mypage-default-tab($width:50%) {
   border: 0;
   background-color: #eee;
   font-size: 0;
@@ -168,7 +171,7 @@
 
   &__item {
     $selector: #{&};
-    width: 50%;
+    width: $width;
     display: inline-block;
     text-align: center;
     vertical-align: top;
@@ -194,6 +197,13 @@
     }
   }
 }
+.mypage-tab {
+  @include mypage-default-tab();
+}
+
+.mypage-listing-tab {
+  @include mypage-default-tab(33.3%);
+}
 
 .mypage-item-list {
   display: none;
@@ -214,7 +224,7 @@
   &--not-found {
     border: 0;
     padding: 160px 0 60px;
-    background: url(https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg);
+    background: image-url("logo-gray-icon.svg");
     background-repeat: no-repeat;
     background-position: center 40px;
     background-size: 78px 85px;
@@ -314,13 +324,14 @@
   width: 100%;
   height: 100%;
   background-color: #fff;
-  padding: 0 70px;
-
+  padding: 0 70px 70px 64px;
+  &--no-space {
+    padding: 0 0 50px 0;
+  }
   &__header{
     text-align: center;
     font-size: 20px;
     padding: 30px 0;
-
   }
   &__text{
     font-size: 12px;
@@ -364,7 +375,7 @@
       font-size: 16px;
       display: block;
     }
-    
+
   }
   &__text-form-group{
     width: 100%;
@@ -376,13 +387,13 @@
 
 }
 .mypage-content__profile{
-  background: url("https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?35731317");
+  background: image-url("user-bg.jpg");
   height: 156px;
 
   &__box{
     text-align: center;
     padding-top: 40px;
-  
+
     &__icon{
       margin: 0 auto;
       border-radius: 50%;
@@ -393,13 +404,14 @@
       width: 20%;
       font-size: 15px;
       margin-left: 10px;
-    
+
     }
-  }  
+  }
 }
 
 .mypage-content-input-profile{
   width: 100%;
+  max-width: 100%;
   height: 200px;
   margin: 36px 0px;
   padding: 10px 20px;
@@ -407,6 +419,7 @@
   border: 1px solid #ccc;
   font-size: 16px;
   line-height: 1.5;
+  resize: vertical;
 }
 
 .text-center {
@@ -414,4 +427,158 @@
 }
 .edit_address {
   padding-top: 70px;
+}
+
+.mypage-history-pager {
+  margin: 40px 0 0;
+  height: 44px;
+  position: relative;
+  font-size: 0;
+  text-align: center;
+
+  &__item {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    line-height: 42px;
+    position: absolute;
+    top: 0;
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &__link {
+      display: block;
+      color: #333;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+        background: #f5f5f5;
+        text-decoration: none;
+      }
+
+      &__icon {
+        position: relative;
+        top: 0.15em;
+      }
+    }
+  }
+}
+
+.mypage-listing-li-wrapper {
+  position: relative;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border: 0;
+  }
+
+  &--not-found {
+    border: 0;
+    padding: 160px 0 60px;
+    background: image-url("logo-gray-icon.svg");
+    background-repeat: no-repeat;
+    background-position: center 40px;
+    background-size: 78px 85px;
+    text-align: center;
+    font-size: 16px;
+    color: #ccc;
+  }
+}
+
+.mypage-listing-li {
+  display: block;
+  min-height: 80px;
+  padding: 16px;
+  color: #333;
+
+  &:hover {
+    background-color: #fafafa;
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  &__figure {
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 48px;
+    height: 48px;
+
+    &__img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+    }
+  }
+
+  &__body {
+    margin: 0 40px 0 68px;
+
+    &__text {
+      overflow: hidden;
+      display: block;
+      display: -webkit-box;
+      max-height: 4.4em;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      line-height: 1.5;
+    }
+
+    &__inner {
+      display: inline-block;
+      color: #888;
+      margin: 0 8px 0 0;
+
+      &__icon {
+        font-size: 16px !important;
+        vertical-align: middle;
+      }
+
+      &__text {
+        vertical-align: middle;
+      }
+    }
+
+    &__tag {
+      display: inline-block;
+      margin: 8px 0 0 0;
+      padding: 2px 4px;
+      border-radius: 2px;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 600;
+
+      &--showing {
+        background: #0099e8;
+      }
+      &--suspend {
+        background: rgb(145, 143, 143);
+      }
+    }
+
+  }
+
+  &__icon-arrow {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
 }

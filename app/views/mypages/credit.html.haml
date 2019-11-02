@@ -1,10 +1,11 @@
+- breadcrumb :mypage_credit
 = render 'devise/shared/header'
 %main.mypage-container
   = render 'sidemenu'
   .mypage-content
     .mypage-content__box
-      %h2.mypage-content__box__header　支払い方法
-    
+      %h2.mypage-content__box__header 支払い方法
+
       .mypage-content__box__form-froup
         %p.text-center クレジットカード一覧
         .btn-default.btn-red
@@ -12,4 +13,4 @@
           = link_to 'クレジットカードを追加する', edit_credit_path
 
 = render 'devise/shared/footer'
-
+= render 'partial/sellbutton'

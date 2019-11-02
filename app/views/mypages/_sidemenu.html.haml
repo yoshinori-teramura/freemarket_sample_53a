@@ -2,7 +2,7 @@
   %nav.mypage-navi
     %ul.mypage-navi-list
       %li.navi-item--first
-        %a.navi-item__link.navi-item__link--active{:href => ""}
+        = link_to(mypages_path, class: 'navi-item__link navi-item__link--active') do
           マイページ
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow navi-item__icon-arrow--active"
       %li.navi-item
@@ -18,19 +18,19 @@
           いいね！一覧
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(sell_index_path, class: 'navi-item__link') do
           出品する
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(listing_mypages_listings_path, class: 'navi-item__link') do
           出品した商品 - 出品中
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(in_progress_mypages_listings_path, class: 'navi-item__link') do
           出品した商品 - 取引中
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
-        %a.navi-item__link{:href => ""}
+        = link_to(completed_mypages_listings_path, class: 'navi-item__link') do
           出品した商品 - 売却済み
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
       %li.navi-item
@@ -71,32 +71,32 @@
     %ul.mypage-navi-list
       %li.navi-item
         .navi-item__link
-          = link_to'プロフィール', profile_mypage_path(current_user)
-          .navi-item__icon-arrow 
-            = fa_icon 'angle-right 2x'
-      %li.navi-item
-        .navi-item__link
-          = link_to '発送元・お届け先住所変更', deliver_address_mypage_path(current_user)
+          = link_to'プロフィール', profile_mypages_path
           .navi-item__icon-arrow
             = fa_icon 'angle-right 2x'
       %li.navi-item
         .navi-item__link
-          = link_to '支払い方法' , credit_mypage_path(current_user)
+          = link_to '発送元・お届け先住所変更', deliver_address_mypages_path
           .navi-item__icon-arrow
             = fa_icon 'angle-right 2x'
       %li.navi-item
         .navi-item__link
-          = link_to 'メール/パスワード', email_password_mypage_path(current_user)
+          = link_to '支払い方法' , credit_mypages_path
           .navi-item__icon-arrow
             = fa_icon 'angle-right 2x'
       %li.navi-item
         .navi-item__link
-          = link_to '本人情報', identification_mypage_path(current_user)
+          = link_to 'メール/パスワード', email_password_mypages_path
           .navi-item__icon-arrow
             = fa_icon 'angle-right 2x'
       %li.navi-item
         .navi-item__link
-          = link_to '電話番号の確認', sms_confirmation_mypage_path(current_user)
+          = link_to '本人情報', identification_mypages_path
+          .navi-item__icon-arrow
+            = fa_icon 'angle-right 2x'
+      %li.navi-item
+        .navi-item__link
+          = link_to '電話番号の確認', sms_confirmation_mypages_path
           .navi-item__icon-arrow
             = fa_icon 'angle-right 2x'
       %li.navi-item

@@ -1,7 +1,7 @@
 %li.mypage-li-wrapper
   %a.mypage-li{:href => ""}
     %figure.mypage-li__figure
-      %img.mypage-li__figure__img{:src => "https://static.mercdn.net/images/mercari_profile.png"}
+      = image_tag 'mercari_profile.png', class: 'mypage-li__figure__img'
     .mypage-li__body
       .mypage-li__body__text 事務局から個別メッセージ「ログイン通知」
       %time.mypage-li__body__time

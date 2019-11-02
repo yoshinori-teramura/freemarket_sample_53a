@@ -1,59 +1,69 @@
 class MypagesController < ApplicationController
   before_action :authenticate_user!
-  
-  def index  
+
+  def index
   end
 
-  
+
   def profile
-    @user=User.find(params[:id])
+    @user=User.find(current_user.id)
   end
 
-  
+
   def deliver_address
-    @address=Address.find(params[:id])
+    @address=Address.find_by(user_id: current_user.id)
   end
 
   def email_password
-    @user=User.find(params[:id])
+    @user=User.find(current_user.id)
   end
 
   def identification
-    @address=Address.find(params[:id])
+    @address=Address.find_by(user_id: current_user.id)
   end
 
   def sms_confirmation
-    @user=User.find(params[:id])    
+    @user=User.find(current_user.id)
   end
 
 
   def update_user
-    @user=User.find(params[:id])
+    @user=User.find(current_user.id)
     @user.update(user_params)
     redirect_to mypages_path, notice: '更新しました。'
+    if @user.update(current_user.id)
+      redirect_to mypages_path, notice: '更新しました。'
+    else
+      redirect_to mypages_path, notice: '更新失敗！！！！'
+    end
   end
 
   def update_address
-    @address=Address.find(params[:id])
+    @address=Address.find_by(user_id: current_user.id)
     @address.update(address_params)
-    redirect_to mypages_path, notice: '更新しました。'
+    if @address.update(user_id: current_user.id)
+      redirect_to mypages_path, notice: '更新しました。'
+    else
+      redirect_to mypages_path, notice:'更新失敗！！！！'
+    end
   end
 
-    private
+  private
   def user_params
     params.require(:user).permit(
       :nickname,
       :email,
       :password,
       :password_confirmaiton,
-      :family_name, 
-      :first_name, 
-      :family_kana_name, 
-      :first_kana_name, 
+      :family_name,
+      :first_name,
+      :family_kana_name,
+      :first_kana_name,
       :birthday,
       :tel,
       :profile)
-    end
+  end
+
   def address_params
     params.require(:address).permit(
       :id,
@@ -68,5 +78,5 @@ class MypagesController < ApplicationController
       :block,
       :building_name,
       :delivery_tel)
-    end
+  end
 end
