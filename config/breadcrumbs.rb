@@ -55,6 +55,38 @@ crumb :mypage_logout_index do
   parent :mypage
 end
 
+crumb :mypage_listings_listing do
+  link "出品した商品 - 出品中", listing_mypages_listings_path
+  parent :mypage
+end
+
+crumb :items_myitem do
+  link "出品商品画面", item_myitem_path
+  parent :mypage_listings_listing
+end
+
+crumb :mypage_listings_in_progress do
+  link "出品した商品 - 取引中", in_progress_mypages_listings_path
+  parent :mypage
+end
+
+crumb :mypage_listings_completed do
+  link "出品した商品 - 売却済み", completed_mypages_listings_path
+  parent :mypage
+end
+
+=begin
+crumb :mypage_purchase do
+  link "購入した商品 - 取引中", # TODO
+  parent :mypage
+end
+
+crumb :mypage_purchased do
+  link "購入した商品 - 過去の取引", # TODO
+  parent :mypage
+end
+=end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

@@ -64,18 +64,16 @@
       .single-main__container__form-group
         %p.form-info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
       .single-main__container__form-group
-        =image_tag "https://i.gyazo.com/d1c693a279de98c05670163a3e2079c6.png"
+        =image_tag "reCAPTCHA-re-devise-sessions.png", height: '78px', width: '306px'
         -# = recaptcha_tags
         -# 本番環境ではrecaptcahのIDが読み込まれないとrecaptha_tagsが使用できないためコメントアウト。
         %p.single-text.text-center
           「次へ進む」のボタンを押すことにより、
-          %a{:href => "https://www.mercari.com/jp/tos_list/", :target => "_blank"}> 利用規約
-          に同意したものとみなします
-        = f.submit '次へ進む',class: 'btn-default btn-red'
+          利用規約に同意したものとみなします
+        = f.submit '次へ進む', class: 'btn-default btn-red'
       .single-main__container__form-group.text-right
         %p
-          %a{:href => "https://www.mercari.com/jp/help_center/article/423/", :target => "_blank"}
-            本人情報の登録について
-            \#{fa_icon("chevron-right")}
+          本人情報の登録について
+          \#{fa_icon("chevron-right")}
   = render 'partial/footer'
 
