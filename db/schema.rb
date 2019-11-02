@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_10_31_110512) do
-
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code", null: false
     t.string "city", null: false
@@ -42,9 +41,8 @@ ActiveRecord::Schema.define(version: 2019_10_31_110512) do
 
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.date "expiration_date", null: false
-    t.integer "security_code", null: false
-    t.string "number", null: false
+    t.string "customer_id"
+    t.string "card_id"
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 

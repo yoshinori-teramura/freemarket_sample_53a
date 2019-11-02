@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
@@ -46,6 +47,17 @@ Rails.application.routes.draw do
   resources :buy do
     member do
       put 'purchase'  # 商品の購入を確定
+    end
+  end
+
+  resources :credit, only: [:create, :show, :edit] do
+    collection do
+      post 'delete', to: 'credit#delete'
+      post 'show'
+    end
+    member do
+      get 'show'
+      get 'confirmation'
     end
   end
 
