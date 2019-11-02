@@ -23,7 +23,8 @@
                 .main__box__purchase__inner__form__table__cell__price
                   %span= to_yen(@item.price)
               -# %button.main__box__purchase__inner__form__table__button{:type => "submit"} 購入する
-              = button_to '購入する', purchase_buy_path, method: :put, class: 'main__box__purchase__inner__form__table__button', data: {confirm: "購入を確定しますか？"}
+              = form_tag(action: :purchase, method: :post) do
+                = button_to '購入する', purchase_buy_path, method: :put, class: 'main__box__purchase__inner__form__table__button', data: {confirm: "購入を確定しますか？"}
       %section.main__box__user
         .main__box__user__inner
           %h3.main__box__user__inner__text 配送先
@@ -43,10 +44,15 @@
         .main__box__user__inner
           %h3.main__box__user__inner__text 支払い方法
           %p.main__box__user__inner__info
-            = @credit.number
-            %br/
-            = @credit.expiration_date
-            \
+            - if @default_card_information.blank?
+              %br /
+            - else
+              -#以下カード情報を表示
+              = "**** **** **** " + @default_card_information.last4
+              - exp_month = @default_card_information.exp_month.to_s
+              - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+              = exp_month + " / " + exp_year
+            %br
             %figure
               = image_tag 'visa.svg', alt: 'visa', class: 'visa'
           %a.main__box__user__inner__fix{:href => "/transaction/card/"}
