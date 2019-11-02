@@ -25,19 +25,19 @@
       - if user_signed_in?
         %ul.header__bottom__right
           %li.header__bottom__right__icon
-            = link_to(mypages_path class: "header__bottom__right__icon__link") do
+            = link_to(mypages_path, class: "header__bottom__right__icon__link") do
               = fa_icon 'heart-o', class: 'header__bottom__right__icon__link__i'
               %span.header__bottom__right__icon__link__text いいね！一覧
           %li.header__bottom__right__icon
-            = link_to(mypages_path class: "header__bottom__right__icon__link") do
+            = link_to(mypages_path, class: "header__bottom__right__icon__link") do
               = fa_icon 'bell', class: 'header__bottom__right__icon__link__i'
               %span.header__bottom__right__icon__link__text お知らせ
           %li.header__bottom__right__icon
-            = link_to(mypages_path class: "header__bottom__right__icon__link") do
+            = link_to(mypages_path, class: "header__bottom__right__icon__link") do
               = fa_icon 'check', class: 'header__bottom__right__icon__link__i'
               %span.header__bottom__right__icon__link__text やることリスト
           %li.header__bottom__right__icon
-            = link_to(mypages_path class: "header__bottom__right__icon__link") do
+            = link_to(mypages_path, class: "header__bottom__right__icon__link") do
               = fa_icon 'smile-o', class: 'header__bottom__right__icon__link__i'
               %span.header__bottom__right__icon__link__text マイページ
       - else

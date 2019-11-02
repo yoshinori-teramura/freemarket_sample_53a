@@ -28,6 +28,10 @@ div {
   display: block;
 }
 
+ul, li {
+  list-style: none;
+}
+
 .bold {
   font-weight: 600;
 }

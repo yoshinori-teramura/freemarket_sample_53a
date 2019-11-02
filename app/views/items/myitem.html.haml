@@ -1,0 +1,25 @@
+= render 'devise/shared/header'
+-# TODO:パンくずリスト パスを変更
+-# - breadcrumb :item, @item
+= render 'partial/breadcrumbs'
+
+%section.item-container
+  = render partial: 'iteminfo', locals: {item: @item}
+  .item-description
+    %p.item-description__text
+      = html_escape(@item.description) if @item.description.present?
+
+- if @item.trade_status_showing? || @item.trade_status_suspend?
+  .myitem-buttons-box
+    = link_to '商品の編集', edit_sell_path(@item), class: "myitem-buttons-box__button myitem-buttons-box__button--edit"
+    %p.myitem-buttons-box__text or
+    - if @item.trade_status_showing?
+      = link_to('出品を一旦停止する', item_suspend_showing_item_path(@item), method: :patch, class: "myitem-buttons-box__button myitem-buttons-box__button--suspend", data: {confirm: "出品を停止しますか？"})
+    - elsif @item.trade_status_suspend?
+      = link_to('出品を再開する', item_resume_showing_item_path(@item), method: :patch, class: "myitem-buttons-box__button myitem-buttons-box__button--suspend", data: {confirm: "出品を再開しますか？"})
+    = link_to('この商品を削除する', "/items/#{@item.id}", method: :delete, class: "myitem-buttons-box__button myitem-buttons-box__button--delete", data: {confirm: " 商品を削除しますか？"})
+
+= render 'item_comments'
+
+= render 'devise/shared/aside'
+= render 'devise/shared/footer'
