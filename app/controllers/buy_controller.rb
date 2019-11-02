@@ -5,7 +5,7 @@ class BuyController < ApplicationController
 
     @address = Address.find(current_user.id)
     
-    @credit = Credit.find(current_user.id)
+    #@credit = Credit.find(current_user.id)
 
     card = Credit.where(user_id: current_use.id).first
     if card.blank?
