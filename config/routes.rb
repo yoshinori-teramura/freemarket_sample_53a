@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       post 'show'
     end
     member do
+      get 'show'
       get 'confirmation'
     end
   end

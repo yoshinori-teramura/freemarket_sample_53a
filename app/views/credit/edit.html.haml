@@ -1,3 +1,4 @@
+= render 'partial/header'
 .card
   %section.card__container
     %h2.card__container__form クレジットカード情報入力
@@ -59,3 +60,5 @@
             %span カードの裏面の番号とは？
         #card_token
         = submit_tag "追加する", id: "token_submit", class: "top__margin"
+= render 'devise/shared/aside'
+= render 'devise/shared/footer'
