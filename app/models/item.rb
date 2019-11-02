@@ -130,6 +130,15 @@ class Item < ApplicationRecord
     end
   end
 
+  def self.same_category_items(category_id)
+    # rootカテゴリが同じ商品を全て取得
+    Item.joins(:category)
+        .where('categories.ancestry = ? OR categories.ancestry LIKE ?', category_id, "#{category_id}/%")
+        .where(trade_status: :showing)
+        .order(created_at: 'DESC')
+        .limit(10)
+  end
+
   private
 
     def get_category

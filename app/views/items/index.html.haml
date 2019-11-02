@@ -5,12 +5,12 @@
 .wrapper__main
   .main
     .main__top
-      %a.main__top__link{:href => "/items/featured/camp/"}
+      %a.main__top__link
       .main__top__slider
         .main__top__slider__frame
           %ul.main__top__slider__frame__lists
             %li#slide1.main__top__slider__frame__lists__slide__visible
-              %a{:href => "/items/featured/camp/"}
+              %a
                 .main__top__slider__frame__lists__slide__visible__image{:style => "background-image:url(#{asset_path "slide_camp.jpg"})"}
             %li#slide2.main__top__slider__frame__lists__slide__visible.invisible
               .main__top__slider__frame__lists__slide__visible__box
@@ -26,9 +26,9 @@
                       %br
                       購入時も安心な独自システムのアプリです
                     .main__top__slider__frame__lists__slide__visible__box__content__subs__bottomeimages
-                      %a{:href => "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8"}
+                      %a
                         %img.main__top__slider__frame__lists__slide__visible__box__content__subs__bottomeimages__itunes{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg"}
-                      %a{:href => "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja"}
+                      %a
                         %img.main__top__slider__frame__lists__slide__visible__box__content__subs__bottomeimages__google{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg"}
       %button.main__top__slider__arrow--left
         = fa_icon 'angle-left 4x'
@@ -37,6 +37,18 @@
       .main__top__slider__dots
         = fa_icon 'circle'
         = fa_icon 'circle'
+    .main__popularCategory
+      %h2.main__popularCategory__title.h2
+        人気のカテゴリー
+      .main__popularCategory__content
+        %ul.main__popularCategory__content__topics
+          - @categories.each do |category|
+            %li.main__popularCategory__content__topics__1topic
+              %span{data: {"category-id": category.id}, class: "main__popularCategory__content__topics__1topic__link"}
+                = category.name
+
+    = render partial: 'popular_category', collection: @categories, as: :category
+    = render 'popular_brand'
 
     = render 'devise/shared/popular_category'
     = render 'devise/shared/popular_brand'

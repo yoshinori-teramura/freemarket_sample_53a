@@ -4,8 +4,10 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    # @items = Item.all
-    @items = Item.limit(10).order(" created_at DESC ")
+    # 商品のRootカテゴリ
+    @categories = Category.where(ancestry: nil)
+                          .order(created_at: 'DESC')
+                          .limit(4)
   end
 
   # GET /items/1
