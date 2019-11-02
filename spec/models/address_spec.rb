@@ -74,5 +74,20 @@ RSpec.describe Address, type: :model do
       address.valid?
       expect(address.errors[:prefecture_id]).to include("を入力してください")
     end
+
+    # delivery_telが数字ではない
+    it "is invalid with a delivery_tel is string" do
+      user = @user 
+      address = build(:address, delivery_tel:"aaaaaa", user_id:"1")
+      address.valid?
+      expect(address.errors[:delivery_tel]).to include("は数値で入力してください")
+    end
+
+    # telが11文字以外なら登録できない
+    it "is invalid with a expect than 11 characters" do
+      address = build(:address, delivery_tel:"12345678", user_id:"1")
+      address.valid?
+      expect(address.errors[:delivery_tel]).to include("は11文字で入力してください")
+    end
   end
 end

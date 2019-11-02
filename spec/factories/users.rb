@@ -13,5 +13,4 @@ FactoryBot.define do
     tel                   {"08012345678"}
     id                    {"1"}
   end
-  
 end

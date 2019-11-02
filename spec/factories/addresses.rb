@@ -9,7 +9,7 @@ FactoryBot.define do
     delivery_first_name   {"test-address"}
     delivery_family_kana_name {"テストアドレス"}
     delivery_first_kana_name  {"テストアドレス"}
-    delivery_tel          {"08000000000"}
+    delivery_tel          {"08012345678"}
     prefecture_id         {"12"}
     
   end
