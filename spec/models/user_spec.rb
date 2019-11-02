@@ -54,13 +54,13 @@ RSpec.describe User, type: :model do
     it "is invalid without a email" do
       user = build(:user, email: "")
       user.valid?
-      expect(user.errors[:email]).to include("を入力してください")
+      expect(user.errors[:email]).to include("が入力されていません。")
     end
 
     it "is invalid without a password" do
       user = build(:user, password: "")
       user.valid?
-      expect(user.errors[:password]).to include("を入力してください")
+      expect(user.errors[:password]).to include("が入力されていません。")
     end
 
     # passwordが存在してもpassword_confirmationが空では登録できないこと
@@ -70,11 +70,26 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
     end
 
-    # passwordが６文字以上なら登録できる
-    it "is valid with a password that has more than 6 characters " do
-      user = build(:user , password: "aaaaaa", password_confirmation: "aaaaaa")
+    # passwordが5文字以下なら登録できない
+    it "is valid with a password that has less than 5 characters " do
+      user = build(:user , password: "aaaaa", password_confirmation: "aaaaa")
       user.valid?
-      expect(user).to be_valid
+      expect(user.errors[:password]).to include("は6文字以上に設定して下さい。")
     end
+
+    # telが数字ではない
+    it "is invalid with a tel is string" do
+      user = build(:user, tel:"aaaaaa")
+      user.valid?
+      expect(user.errors[:tel]).to include("は数値で入力してください")
+    end
+
+    # telが11文字以外なら登録できない
+    it "is invalid with a expect than 11 characters" do
+      user = build(:user, tel:"12345678")
+      user.valid?
+      expect(user.errors[:tel]).to include("は11文字で入力してください")
+    end
+
   end
 end

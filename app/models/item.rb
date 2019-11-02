@@ -13,6 +13,7 @@ class Item < ApplicationRecord
   validates :item_status, :shipping_charge, :delivery_region,
             :delivery_type, :delivery_days, :trade_status, presence: true
   validates :image, presence: true
+  validates :price , presence: true ,numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   # validates_with ItemPriceValidator
 
   # 商品の状態
