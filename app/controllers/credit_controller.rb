@@ -4,7 +4,7 @@ class CreditController < ApplicationController
 
   def new
     credit = Credit.where(user_id: current_user.id)
-    redirect_to action: "show" if card.exists?
+    redirect_to action: "show" if credit.exists?
   end
 
   def pay
@@ -38,7 +38,7 @@ class CreditController < ApplicationController
   end
 
   def show
-    credit = Credit.where(user_id: currendt_user.id).first
+    credit = Credit.where(user_id: current_user.id).first
     if credit.blank?
       redirect_to action:"new"
     else
