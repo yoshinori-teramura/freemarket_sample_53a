@@ -1,5 +1,5 @@
 = render 'partial/header'
-= form_for @user, html: { id: :address }, url: credit_signup_index_path, method: :get do |f|
+= form_for @user, html: { id: :address }, url: signup_index_path, method: :post do |f|
   %header
     %ol.progress
       %li.progress__box
