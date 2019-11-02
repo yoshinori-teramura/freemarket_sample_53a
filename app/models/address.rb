@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
   belongs_to :user
 
-  validates :postal_code ,presence: true
+  validates :postal_code ,presence: true ,length:{is:7}
   validates :city ,presence: true
   validates :block ,presence: true
   validates :delivery_first_name, presence: true
