@@ -4,11 +4,9 @@ class MypagesController < ApplicationController
   def index
   end
 
-
   def profile
     @user=User.find(current_user.id)
   end
-
 
   def deliver_address
     @address=Address.find_by(user_id: current_user.id)
@@ -30,11 +28,11 @@ class MypagesController < ApplicationController
   def update_user
     @user=User.find(current_user.id)
     @user.update(user_params)
-    redirect_to mypages_path, notice: '更新しました。'
-    if @user.update(current_user.id)
+    binding.pry
+    if @user.update(id:current_user.id)
       redirect_to mypages_path, notice: '更新しました。'
     else
-      redirect_to mypages_path, notice: '更新失敗！！！！'
+      redirect_to mypages_path, notice: '更新失敗！！！'
     end
   end
 
@@ -51,6 +49,7 @@ class MypagesController < ApplicationController
   private
   def user_params
     params.require(:user).permit(
+      :id,
       :nickname,
       :email,
       :password,
