@@ -9,7 +9,6 @@
             = image_tag @item.image.url , class: 'main__box__purchase__inner__image__one' if @item.image.present?
           %p.main__box__purchase__inner__text
             =(@item.name)
-          -# %form.main__box__purchase__inner__form{:action => "https://www.mercari.com/jp/transaction/buy/done/m66900357794/", :method => "POST", :novalidate => "novalidate"}
           .main__box__purchase__inner__form
             %p.main__box__purchase__inner__form__price
               = to_yen(@item.price)
