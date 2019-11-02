@@ -17,6 +17,10 @@
       = link_to('出品を再開する', item_resume_showing_item_path(@item), method: :patch, class: "myitem-buttons-box__button myitem-buttons-box__button--suspend", data: {confirm: "出品を再開しますか？"})
     = link_to('この商品を削除する', "/items/#{@item.id}", method: :delete, class: "myitem-buttons-box__button myitem-buttons-box__button--delete", data: {confirm: " 商品を削除しますか？"})
 
+- elsif @item.trade_status_trading?
+  .myitem-buttons-box
+    = link_to '商品の発送をしたので、通知する', item_notify_send_item_path(@item), method: :patch, class: "myitem-buttons-box__button myitem-buttons-box__button--edit", data: {confirm: "発送を通知しますか？"}
+
 = render 'item_comments'
 
 = render 'devise/shared/aside'
