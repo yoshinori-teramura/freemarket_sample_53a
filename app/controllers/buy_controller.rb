@@ -7,7 +7,7 @@ class BuyController < ApplicationController
     
     #@credit = Credit.find(current_user.id)
 
-    card = Credit.where(user_id: current_use.id).first
+    card = Credit.where(user_id: current_user.id).first
     if card.blank?
       redirect_to controller: "credit", action: "edit"
     else

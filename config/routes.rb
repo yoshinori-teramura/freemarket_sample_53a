@@ -46,6 +46,10 @@ Rails.application.routes.draw do
   end
 
   resources :buy do
+    collection do
+      get 'show', to: 'buy#show'
+      post 'purchase', to: 'buy#purchase'
+    end
     member do
       put 'purchase'  # 商品の購入を確定
     end
