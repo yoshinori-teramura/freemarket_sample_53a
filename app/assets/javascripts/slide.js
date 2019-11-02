@@ -3,7 +3,7 @@ $(function(){
   setInterval(function(){
     $('#slide1').toggleClass("invisible");
     $('#slide2').toggleClass("invisible");
-  },4000);
+  },3000);
 });
 
 $(function(){
