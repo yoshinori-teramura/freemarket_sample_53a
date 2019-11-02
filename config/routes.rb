@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'myitem'
     patch 'suspend_showing_item'
     patch 'resume_showing_item'
+    patch 'notify_send_item'
   end
 
   resource :mypages, only: [:index] do

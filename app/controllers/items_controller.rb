@@ -58,6 +58,19 @@ class ItemsController < ApplicationController
       redirect_to :root, notice: "Failed to resume listing item."
   end
 
+  def notify_send_item
+    item = Item.find(params[:item_id])
+    if item.user.id == current_user.id && item.trade_status_trading?
+      item.update_attribute(:trade_status, :sold)
+      redirect_to action: :myitem, item_id: item.id
+    else
+      redirect_to :root
+    end
+    rescue => e
+      puts e
+      redirect_to :root, notice: "Failed to resume listing item."
+  end
+
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
