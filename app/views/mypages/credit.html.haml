@@ -8,9 +8,18 @@
 
       .mypage-content__box__form-froup
         %p.text-center クレジットカード一覧
-        .btn-default.btn-red
-          = fa_icon("credit-card")
-          = link_to 'クレジットカードを追加する', edit_credit_index_path
+        - if @credit.present?
+          = "**** **** **** " + @default_card_information.last4
+          - exp_month = @default_card_information.exp_month.to_s
+          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year
+          = form_tag(delete_credit_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+            %input{ type: "hidden", name: "card_id", value: "" }
+            %button.delete__button 削除する
+        - else
+          .btn-default.btn-red
+            = fa_icon("credit-card")
+            = link_to 'クレジットカードを追加する', edit_credit_index_path
 
 = render 'devise/shared/footer'
 = render 'partial/sellbutton'
