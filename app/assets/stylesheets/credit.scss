@@ -2,6 +2,7 @@
   display: inline-block;
 }
 
+
 .input__default {
   height: 48px;
   padding: 10px 16px 8px;
@@ -34,13 +35,45 @@
 .top__margin {
   margin: 8px 0 0;
 }
+
+.box--right {
+  float: right;
+  left: 30px;
+}
+
+.i--right {
+  font-size: 10px;
+  margin: 0 6px 0 -15px;
+  position: relative;
+  top: -30px;
+  pointer-events: none;
+  float: right;
+}
+
+.text--right {
+  position: relative;
+  top: -35px;
+  left: 20px;
+  float: right;
+}
+
 .select__box {
+  width: calc(100% - 38px);
   &__half {
-    display: inline-block;
     width: calc(50% - 2px);
+    margin-top: 8px;
+    display: inline-block;
+    position: relative;
+    background: #fff;
+    select {
+      -webkit-appearance: none;/* ベンダープレフィックス(Google Chrome、Safari用) */
+      -moz-appearance: none; /* ベンダープレフィックス(Firefox用) */
+      appearance: none; /* 標準のスタイルを無効にする */
+    }
   }
 }
 .select__default {
+  width: 100%;
   position: relative;
   z-index: 2;
   height: 48px;
@@ -65,38 +98,37 @@
   text-align: center;
 }
 
-// .btn-red {
-//   background: #ea352d;
-//   border: 1px solid #ea352d;
-//   color: white;
-// }
-
-// .btn-default {
-//   display: block;
-//   width: 100%;
-//   line-height: 48px;
-//   font-size: 14px;
-//   border: 1px solid transparent;
-//   -webkit-transition: all ease-out .3s;
-//   transition: all ease-out .3s;
-//   cursor: pointer;
-//   text-align: center;
-// }
 
 .card {
   width: 700px;
+  margin: 24px auto 0;
+  padding: 0 0 40px;
   &__container {
     //float: none;
     width: 100%;
+    background: #fff;
     &__inner {
       padding: 24px 16px 40px;
+    }
+    input[type="text"] {
+      height: 48px;
+      padding: 10px 16px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 16px;
+      width: 100%;
+      margin: 8px 0 0;
     }
     &__form {
       font-size: 24px;
       padding: 8px 24px;
       border-bottom: 1px solid #f5f5f5;
       text-align: center;
+      font-weight: bold;
       &__content {
+        max-width: 343px;
         margin: 0 auto;
         &__info {
           margin: 24px 0 0;

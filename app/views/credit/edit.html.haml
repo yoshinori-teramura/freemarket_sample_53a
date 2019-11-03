@@ -29,10 +29,10 @@
                 %option{value: "10"}10
                 %option{value: "11"}11
                 %option{value: "12"}12
-              %i
+              %i.i--right
                 = fa_icon 'chevron-down'
-              %span 月
-            .select__box__half
+              %span.text--right 月
+            .select__box__half.box--right
               .icon
               %select.select__default#exp_year{name: "exp_year", type: "text"}
                 %option{value: ""} --
@@ -47,9 +47,9 @@
                 %option{value: "2027"}27
                 %option{value: "2028"}28
                 %option{value: "2029"}29
-              %i
+              %i.i--right
                 = fa_icon 'chevron-down'
-              %span  年
+              %span.text--right  年
         .card__container__form__content__info.top__margin
           %label セキュリティーコード
           %span.require__form 必須
@@ -59,6 +59,6 @@
             %span.form__question ? 
             %span カードの裏面の番号とは？
         #card_token
-        = submit_tag "追加する", id: "token_submit", class: "top__margin"
+        = submit_tag "追加する", id: "token_submit", class: "top__margin btn-default btn-red"
 = render 'devise/shared/aside'
 = render 'devise/shared/footer'
