@@ -1,5 +1,6 @@
 class BuyController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def show
     @item = Item.find(params[:id])
 
