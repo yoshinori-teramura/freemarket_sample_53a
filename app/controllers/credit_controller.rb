@@ -2,10 +2,8 @@ class CreditController < ApplicationController
   
   #before_action :get_user_params, only: [:edit, :confirmation, :show]
   before_action :get_payjp_info, only: [:new_create, :create, :delete, :show]
- 
+
   def edit
-    card = Credit.where(user_id: current_user.id).first
-    redirect_to action: "show" if card.present?
   end
 
   def create
@@ -47,12 +45,8 @@ class CreditController < ApplicationController
   end
 
   def confirmation
-    card = Credit.where(user_id: current_user.id).first
-    if card.present?
-    redirect_to action: "show" 
-    else
-    redirect_to action: "edit" 
-    end
+    card = current_user.credits
+    redirect_to action: "show" if card.exists?
   end
 
   private
