@@ -19,7 +19,7 @@ class CreditController < ApplicationController
       )
       @credit = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @credit.save
-        redirect_to action: "show"
+        redirect_to controller: "mypages", action: "credit"
       else
         redirect_to action: "edit", id: current_user.id
       end
