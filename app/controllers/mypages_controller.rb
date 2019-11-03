@@ -24,6 +24,9 @@ class MypagesController < ApplicationController
     @user=User.find(current_user.id)
   end
 
+  def credit
+    @credit=Credit.find_by(user_id: current_user.id)
+  end
 
   def update_user
     @user=User.find(current_user.id)
