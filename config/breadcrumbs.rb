@@ -60,9 +60,15 @@ crumb :mypage_listings_listing do
   parent :mypage
 end
 
-crumb :items_myitem do
+crumb :items_myitem do |item|
   link "出品商品画面", item_myitem_path
-  parent :mypage_listings_listing
+  if item.trade_status_showing?
+    parent :mypage_listings_listing
+  elsif item.trade_status_trading?
+    parent :mypage_listings_in_progress
+  else
+    parent :mypage_listings_completed
+  end
 end
 
 crumb :mypage_listings_in_progress do
