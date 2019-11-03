@@ -73,7 +73,7 @@ Rails.application.routes.draw do
       get 'registration'        #会員情報登録画面
       get 'sms_confirmation'    #TEL登録画面（SMS認証）
       get 'address'              #住所情報登録画面
-      get 'credit'              #クレジット情報登録画面
+      # get 'credit'              #クレジット情報登録画面
       get 'complete'            #完了画面
     end
   end

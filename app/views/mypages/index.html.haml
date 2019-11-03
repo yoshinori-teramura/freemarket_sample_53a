@@ -18,7 +18,8 @@
             %span.mypage-user__status__number.bold 0
           .mypage-user__status__listings
             出品数
-            %span.mypage-user__status__number.bold 0
+            %span.mypage-user__status__number.bold
+            = current_user.items.count
     %section.mypage-tab-container-notification-todo
       %ul.mypage-tab
         %li.mypage-tab__item.mypage-tab__item--active
