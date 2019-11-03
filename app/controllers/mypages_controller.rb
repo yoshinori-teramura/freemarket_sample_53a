@@ -28,7 +28,6 @@ class MypagesController < ApplicationController
   def update_user
     @user=User.find(current_user.id)
     @user.update(user_params)
-    binding.pry
     if @user.update(id:current_user.id)
       redirect_to mypages_path, notice: '更新しました。'
     else
