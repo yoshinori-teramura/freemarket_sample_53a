@@ -4,6 +4,8 @@ class CreditController < ApplicationController
   before_action :get_payjp_info, only: [:new_create, :create, :delete, :show]
 
   def edit
+    card = Credit.where(user_id: current_user.id).first
+    redirect_to controller: "mypages", action: "credit" if card.present?
   end
 
   def create
@@ -21,7 +23,7 @@ class CreditController < ApplicationController
         @credit = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
         @credit.save!
 
-        redirect_to action: "show"
+        redirect_to controller: "mypages", action: "credit"
       rescue Payjp::CardError => e
         body = e.json_body
         err  = body[:error]
@@ -70,8 +72,12 @@ class CreditController < ApplicationController
   end
 
   def confirmation
-    card = current_user.credits
-    redirect_to action: "show" if card.exists?
+    #card = Credit.where(user_id: current_user.id).first
+    #if card.present?
+    #redirect_to action: "show" 
+    #else
+    redirect_to controller: "mypages", action: "credit"
+    #end
   end
 
   private
@@ -84,3 +90,4 @@ class CreditController < ApplicationController
     #end
   end
 end
+
