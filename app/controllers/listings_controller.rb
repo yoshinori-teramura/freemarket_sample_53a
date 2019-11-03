@@ -2,21 +2,21 @@ class ListingsController < ApplicationController
   before_action :authenticate_user!
 
   def listing
+    # TODO:ページネーション対応
     @items = current_user.items
       .where(trade_status: :showing)
       .or(current_user.items.where(trade_status: :suspend))
-      .limit(5)
   end
 
   def in_progress
+    # TODO:ページネーション対応
     @items = current_user.items
       .where(trade_status: :trading)
-      .limit(5)
   end
 
   def completed
+    # TODO:ページネーション対応
     @items = current_user.items
       .where(trade_status: :sold)
-      .limit(5)
   end
 end
