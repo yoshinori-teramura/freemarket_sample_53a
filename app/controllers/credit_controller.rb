@@ -51,7 +51,7 @@ class CreditController < ApplicationController
     if card.present?
     redirect_to action: "show" 
     else
-    redirect_to action: "edit" 
+    redirect_to controller: "mypages", action: "credit"
     end
   end
 
