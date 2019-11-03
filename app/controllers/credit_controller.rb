@@ -5,7 +5,7 @@ class CreditController < ApplicationController
 
   def edit
     card = Credit.where(user_id: current_user.id).first
-    redirect_to action: "show" if card.present?
+    redirect_to controller: "mypages", action: "credit" if card.present?
   end
 
   def create
@@ -47,12 +47,12 @@ class CreditController < ApplicationController
   end
 
   def confirmation
-    card = Credit.where(user_id: current_user.id).first
-    if card.present?
-    redirect_to action: "show" 
-    else
+    #card = Credit.where(user_id: current_user.id).first
+    #if card.present?
+    #redirect_to action: "show" 
+    #else
     redirect_to controller: "mypages", action: "credit"
-    end
+    #end
   end
 
   private
