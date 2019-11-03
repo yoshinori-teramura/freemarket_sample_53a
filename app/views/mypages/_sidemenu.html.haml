@@ -69,36 +69,30 @@
           = fa_icon 'angle-right 2x', class: "navi-item__icon-arrow"
     %h3.mypage-navi__head 設定
     %ul.mypage-navi-list
+      %li.navi-item      
+        = link_to(profile_mypages_path, class: "navi-item__link")do
+          プロフィール
+          = fa_icon 'angle-right 2x',class: "navi-item__icon-arrow"
       %li.navi-item
-        .navi-item__link
-          = link_to'プロフィール', profile_mypages_path
-          .navi-item__icon-arrow
-            = fa_icon 'angle-right 2x'
+        = link_to(deliver_address_mypages_path,class: "navi-item__link")do
+          発送元・お届け先住所変更
+          = fa_icon 'angle-right 2x',class: "navi-item__icon-arrow"
       %li.navi-item
-        .navi-item__link
-          = link_to '発送元・お届け先住所変更', deliver_address_mypages_path
-          .navi-item__icon-arrow
-            = fa_icon 'angle-right 2x'
+        = link_to(credit_mypages_path, class: "navi-item__link")do
+          支払い方法
+          = fa_icon 'angle-right 2x',class: "navi-item__icon-arrow"
       %li.navi-item
-        .navi-item__link
-          = link_to '支払い方法' , credit_mypages_path
-          .navi-item__icon-arrow
-            = fa_icon 'angle-right 2x'
+        = link_to(email_password_mypages_path, class: "navi-item__link")do
+          メール・パスワード
+          = fa_icon 'angle-right 2x',class: "navi-item__icon-arrow"
       %li.navi-item
-        .navi-item__link
-          = link_to 'メール/パスワード', email_password_mypages_path
-          .navi-item__icon-arrow
-            = fa_icon 'angle-right 2x'
+        = link_to(identification_mypages_path, class: "navi-item__link")do
+          本人情報
+          = fa_icon 'angle-right 2x',class: "navi-item__icon-arrow"
       %li.navi-item
-        .navi-item__link
-          = link_to '本人情報', identification_mypages_path
-          .navi-item__icon-arrow
-            = fa_icon 'angle-right 2x'
-      %li.navi-item
-        .navi-item__link
-          = link_to '電話番号の確認', sms_confirmation_mypages_path
-          .navi-item__icon-arrow
-            = fa_icon 'angle-right 2x'
+        = link_to(sms_confirmation_mypages_path, class:"navi-item__link")do
+          電話番号の確認
+          = fa_icon 'angle-right 2x',class: "navi-item__icon-arrow"
       %li.navi-item
         = link_to(logout_index_path, class: 'navi-item__link') do
           ログアウト

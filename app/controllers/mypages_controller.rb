@@ -5,7 +5,7 @@ class MypagesController < ApplicationController
   end
 
   def profile
-    @user=User.find(current_user.id)
+    @user=User.find_by(id:current_user.id)
   end
 
   def deliver_address
@@ -13,7 +13,7 @@ class MypagesController < ApplicationController
   end
 
   def email_password
-    @user=User.find(current_user.id)
+    @user=User.find_by(id:current_user.id)
   end
 
   def identification
@@ -21,12 +21,12 @@ class MypagesController < ApplicationController
   end
 
   def sms_confirmation
-    @user=User.find(current_user.id)
+    @user=User.find_by(id:current_user.id)
   end
 
 
   def update_user
-    @user=User.find(current_user.id)
+    @user=User.find_by(id:current_user.id)
     @user.update(user_params)
     if @user.update(id:current_user.id)
       redirect_to mypages_path, notice: '更新しました。'
