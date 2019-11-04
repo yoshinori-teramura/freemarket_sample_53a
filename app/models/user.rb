@@ -24,7 +24,7 @@ class User < ApplicationRecord
   validates :birthday, presence: true
   validates :tel, presence: true ,numericality: true ,length: {is:11}
   validates :email ,presence: true, uniqueness: true         
-  validates :password, presence: true, length: { minimum: 6 }, confirmation: true
+
 
 
   enum address_prefecture: {
