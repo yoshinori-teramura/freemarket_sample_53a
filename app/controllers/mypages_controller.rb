@@ -40,7 +40,7 @@ class MypagesController < ApplicationController
     if @user.update(id:current_user.id)
       redirect_to mypages_path, notice: '更新しました。'
     else
-      redirect_to mypages_path, notice: '更新失敗！！！'
+      redirect_to mypages_path, notice: '更新が失敗しました。'
     end
   end
 
@@ -50,7 +50,7 @@ class MypagesController < ApplicationController
     if @address.update(user_id: current_user.id)
       redirect_to mypages_path, notice: '更新しました。'
     else
-      redirect_to mypages_path, notice:'更新失敗！！！！'
+      redirect_to mypages_path, notice:'更新が失敗しました。'
     end
   end
 
