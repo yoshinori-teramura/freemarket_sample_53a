@@ -1,4 +1,3 @@
-
 $(function(){
   setInterval(function(){
     $('#slide1').toggleClass("invisible");
@@ -6,10 +5,12 @@ $(function(){
   },3000);
 });
 
-$(function(){
-  $('button').click(function() {
-    $('#slide1').toggleClass("invisible");
-    $('#slide2').toggleClass("invisible");
+
+$(document).on('turbolinks:load', function () {
+  $(function(){
+    $('button').click(function() {
+      $('#slide1').toggleClass("invisible");
+      $('#slide2').toggleClass("invisible");
+    });
   });
 });
-
