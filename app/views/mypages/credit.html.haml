@@ -7,8 +7,8 @@
       %h2.delete-card-head 支払い方法
 
       .mypage-content__box__form-froup.delete-card-inner
-        %p.delete-card-title クレジットカード一覧
         - if @credit.present?
+          %p.delete-card-title クレジットカード一覧
           = image_tag 'visa.svg', alt: 'visa', class: 'visa'
           .delete-card-number
           = "**** **** **** " + @default_card_information.last4
