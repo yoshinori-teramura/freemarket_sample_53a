@@ -4,15 +4,18 @@
   = render 'sidemenu'
   .mypage-content
     .mypage-content__box
-      %h2.mypage-content__box__header 支払い方法
+      %h2.delete-card-head 支払い方法
 
-      .mypage-content__box__form-froup
-        %p.text-center クレジットカード一覧
+      .mypage-content__box__form-froup.delete-card-inner
+        %p.delete-card-title クレジットカード一覧
         - if @credit.present?
+          = image_tag 'visa.svg', alt: 'visa', class: 'visa'
+          .delete-card-number
           = "**** **** **** " + @default_card_information.last4
-          - exp_month = @default_card_information.exp_month.to_s
-          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-          = exp_month + " / " + exp_year
+          .delete-card-time
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
           = form_tag(delete_credit_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
             %input{ type: "hidden", name: "card_id", value: "" }
             %button.delete__button 削除する
