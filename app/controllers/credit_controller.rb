@@ -61,15 +61,15 @@ class CreditController < ApplicationController
       redirect_to action: "confirmation", id: current_user.id
   end
 
-  def show
-    card = Credit.where(user_id: current_user.id).first
-    if card.present?
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
-    else
-      redirect_to action: "confirmation", id: current_user.id
-    end
-  end
+  #def show
+    #card = Credit.where(user_id: current_user.id).first
+    #if card.present?
+      #customer = Payjp::Customer.retrieve(card.customer_id)
+      #@default_card_information = customer.cards.retrieve(card.card_id)
+    #else
+      #redirect_to action: "confirmation", id: current_user.id
+    #end
+  #end
 
   def confirmation
     #card = Credit.where(user_id: current_user.id).first

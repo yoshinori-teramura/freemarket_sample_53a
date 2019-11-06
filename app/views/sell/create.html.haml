@@ -4,7 +4,7 @@
     .sell-modal-body
       あなたが出品した商品は「出品した商品一覧」からいつでも見ることができます。
       %p.text-center
-        = link_to '続けて出品する', sell_index_path, class: 'btn-default.btn-red'
+        = link_to '続けて出品する', sell_index_path, class: 'btn-default.btn-red', id: 'red-link'
         / sell#newへ飛ぶ。
       %p.text-center
-        = link_to '商品ページへ行ってシェアする', item_path(@item)
+        = link_to '商品ページへ行ってシェアする', item_path(@item), id: 'blue-link'
