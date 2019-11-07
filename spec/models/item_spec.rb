@@ -5,17 +5,17 @@ require 'rails_helper'
 # end
 
 RSpec.describe Item, type: :model do
-  
+
   before do
     @user = FactoryBot.create(:user)
+    @category = FactoryBot.create(:category)
   end
 
   describe '#create' do
     # 値が存在すれば登録できる
     it "is valid with a all value" do
       user = @user
-      category = Category.new(id:"1")
-      item = build(:item, user_id:"1",category_id:"1")
+      item = build(:item, user_id:"1", category_id:"1")
       expect(item).to be_valid
     end
 
@@ -91,10 +91,10 @@ RSpec.describe Item, type: :model do
     end
 
     it " is invalide without a category_id" do
-      user= @user 
+      user= @user
       item=build(:item, category_id:"", user_id:"1")
       item.valid?
-      expect(item.errors[:category_id]).to include("を入力してください")
+      expect(item.errors[:category]).to include("を入力してください")
     end
 
     # nameが40文字以上だと登録できない
@@ -107,7 +107,7 @@ RSpec.describe Item, type: :model do
 
     # priceが数字ではない
     it "is invalid with a price is string" do
-      user = @user 
+      user = @user
       item = build(:item, price:"aaaaaa", user_id:"1")
       item.valid?
       expect(item.errors[:price]).to include("は数値で入力してください")
@@ -128,7 +128,7 @@ RSpec.describe Item, type: :model do
       item.valid?
       expect(item.errors[:price]).to include("は9999999以下の値にしてください")
     end
-    
+
   end
 end
 
