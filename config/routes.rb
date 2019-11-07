@@ -57,14 +57,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :credit, only: [:create, :show] do
+  resources :credit, only: [:create] do
     collection do
       post 'delete', to: 'credit#delete'
-      post 'show'
       get 'edit'
     end
     member do
-      get 'show'
       get 'confirmation'
     end
   end
