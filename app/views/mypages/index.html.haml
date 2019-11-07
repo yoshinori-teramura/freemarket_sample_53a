@@ -49,8 +49,16 @@
             %a.mypage-tab__item__link{:href => ""} 過去の取引
       .mypage-tab-content
         %ul#mypage-tab-transaction-now.mypage-item-list.mypage-item-list--active
-          %li.mypage-li-wrapper--not-found.bold 取引中の商品がありません
+          - if @buyer_purchase.present?
+            - @buyer_purchase.each do |buyer|
+              = render partial: 'bought_item', locals: {item: buyer.item}
+          - else
+            %li.mypage-li-wrapper--not-found.bold 取引中の商品がありません
         %ul#mypage-tab-transaction-old.mypage-item-list
-          %li.mypage-li-wrapper--not-found.bold 過去に取引した商品がありません
+          - if @buyer_purchased.present?
+            - @buyer_purchased.each do |buyer|
+              = render partial: 'bought_item', locals: {item: buyer.item}
+          - else
+            %li.mypage-li-wrapper--not-found.bold 過去に取引した商品がありません
 = render 'devise/shared/footer'
 = render 'partial/sellbutton'
