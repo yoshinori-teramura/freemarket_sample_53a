@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories
+
   resources :credit, only: [:create] do
     collection do
       post 'delete', to: 'credit#delete'
