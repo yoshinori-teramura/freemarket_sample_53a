@@ -582,3 +582,94 @@
     transform: translate(0, -50%);
   }
 }
+
+.mypage-buy-li-wrapper {
+  position: relative;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border: 0;
+  }
+
+  &--not-found {
+    border: 0;
+    padding: 160px 0 60px;
+    background: image-url("logo-gray-icon.svg");
+    background-repeat: no-repeat;
+    background-position: center 40px;
+    background-size: 78px 85px;
+    text-align: center;
+    font-size: 16px;
+    color: #ccc;
+  }
+}
+
+.mypage-buy-li {
+  display: block;
+  min-height: 80px;
+  padding: 16px;
+  color: #333;
+
+  &:hover {
+    background-color: #fafafa;
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  &__figure {
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 48px;
+    height: 48px;
+
+    &__img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+    }
+  }
+
+  &__body {
+    margin: 0 40px 0 68px;
+
+    &__text {
+      overflow: hidden;
+      display: block;
+      display: -webkit-box;
+      max-height: 4.4em;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      line-height: 1.5;
+    }
+
+    &__inner {
+      display: inline-block;
+      color: #888;
+      margin: 0 8px 0 0;
+
+      &__icon {
+        font-size: 16px !important;
+        vertical-align: middle;
+      }
+
+      &__text {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__icon-arrow {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+}

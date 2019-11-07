@@ -2,6 +2,14 @@ class MypagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @buyer_trading = Buyer.joins(:item)
+                          .where(items: {trade_status: :trading})
+                          .where(user_id: current_user.id)
+                          .order(created_at: 'DESC')
+    @buyer_sold = Buyer.joins(:item)
+                       .where(items: {trade_status: :sold})
+                       .where(user_id: current_user.id)
+                       .order(created_at: 'DESC')
   end
 
   def profile

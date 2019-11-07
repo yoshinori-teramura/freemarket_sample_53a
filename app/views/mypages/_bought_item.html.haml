@@ -1,0 +1,14 @@
+%li.mypage-buy-li-wrapper
+  = link_to item_path(item.id), class: "mypage-buy-li" do
+    %figure.mypage-buy-li__figure
+      = image_tag item.image.url, class: 'mypage-buy-li__figure__img' if item.image.present?
+    .mypage-buy-li__body
+      .mypage-buy-li__body__text
+        = item.name
+      %span.mypage-buy-li__body__inner
+        = fa_icon 'heart-o', class: "mypage-buy-li__body__inner__icon"
+        %span.mypage-buy-li__body__inner__text 0
+      %span.mypage-buy-li__body__inner
+        = fa_icon 'comment-o', class: "mypage-buy-li__body__inner__icon"
+        %span.mypage-buy-li__body__inner__text 0
+    = fa_icon 'angle-right 2x', class: "mypage-buy-li__icon-arrow"
