@@ -1,0 +1,24 @@
+-breadcrumb :mypage_listings_listing
+= render 'devise/shared/header'
+%main.mypage-container
+  = render 'mypages/sidemenu'
+  .mypage-content
+    %section.mypage-tab-container
+      %h2.mypage-tab-header 購入した商品
+      %ul.mypage-tab
+        %li.mypage-tab__item.mypage-tab__item--active
+          %h3.mypage-tab__item__head
+            %a.mypage-tab__item__link 取引中
+        %li.mypage-tab__item
+          %h3.mypage-tab__item__head
+            = link_to("過去の取引", purchased_mypages_path, class: "mypage-tab__item__link")
+      .mypage-tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.mypage-item-list--active
+          - if @buyer_purchase.present?
+            - @buyer_purchase.each do |buyer|
+              = render partial: 'bought_item', locals: {item: buyer.item}
+          - else
+            %li.mypage-li-wrapper--not-found.bold 取引中の商品がありません
+= render 'devise/shared/aside'
+= render 'devise/shared/footer'
+= render 'partial/sellbutton'

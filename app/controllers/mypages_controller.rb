@@ -2,14 +2,8 @@ class MypagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @buyer_trading = Buyer.joins(:item)
-                          .where(items: {trade_status: :trading})
-                          .where(user_id: current_user.id)
-                          .order(created_at: 'DESC')
-    @buyer_sold = Buyer.joins(:item)
-                       .where(items: {trade_status: :sold})
-                       .where(user_id: current_user.id)
-                       .order(created_at: 'DESC')
+    set_buyer_purchase
+    set_buyer_purchased
   end
 
   def profile
@@ -40,6 +34,14 @@ class MypagesController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
+  end
+
+  def purchase
+    set_buyer_purchase
+  end
+
+  def purchased
+    set_buyer_purchased
   end
 
   def update_user
@@ -94,4 +96,19 @@ class MypagesController < ApplicationController
       :building_name,
       :delivery_tel)
   end
+
+  def set_buyer_purchase
+    @buyer_purchase = Buyer.joins(:item)
+                           .where(items: {trade_status: :trading})
+                           .where(user_id: current_user.id)
+                           .order(created_at: 'DESC')
+  end
+
+  def set_buyer_purchased
+    @buyer_purchased = Buyer.joins(:item)
+                            .where(items: {trade_status: :sold})
+                            .where(user_id: current_user.id)
+                            .order(created_at: 'DESC')
+  end
+
 end
