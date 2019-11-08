@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories
+  resources :categories, only: [:index, :show]
 
   resources :credit, only: [:create] do
     collection do
