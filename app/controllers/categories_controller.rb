@@ -1,9 +1,10 @@
 class CategoriesController < ApplicationController
   def index
-    @parents = Category.all.order("id ASC").limit(5)
-
+    @parent_categories = Category.where(ancestry: nil)
   end
+  
 
   def show
   end
+
 end

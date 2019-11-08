@@ -1,4 +1,36 @@
 = render 'partial/header'
+
+
+
+.main
+  .category
+    .category-index-wrapper
+      .parent-category
+        .parent-category__header
+          カテゴリー一覧
+        .parent-category__wrapper
+          - @parent_categories.each do |parent_category|
+            = link_to category_path(parent_category) do
+              .parent-category__wrapper--btn
+                = parent_category.name
+      - @parent_categories.each do |parent_category|
+        .category-wrapper
+          .category-wrapper__title
+            = parent_category.name
+          .category-wrapper__all
+            = link_to "すべて", category_path(parent_category)
+          - parent_category.children.each do |child_category|
+            .category-wrapper__child
+              .category-wrapper__child--title
+                = child_category.name
+              %br
+              .category-wrapper__child--subchildren
+                .category-wrapper__child--subchildren-subchild
+                  = link_to "すべて", category_path(child_category)
+                - child_category.children.each do |subchild_category|
+                  .category-wrapper__child--subchildren-subchild
+                    = link_to "#{subchild_category.name}", category_path(subchild_category)
+
 = render 'devise/shared/aside'
 = render 'devise/shared/footer'
 = render 'partial/sellbutton'
