@@ -1,0 +1,44 @@
+.category_choice__box {
+  
+  width: 240px; 
+  &__text {
+  height: 100%;
+  width: 100%;
+  display: block;
+  }
+
+}
+.category_choice__box:hover {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background: red;
+
+}
+// .category_choice-first {
+//   background: white;
+//   width: 240px;
+//   position: relative;
+// }
+
+// .category_choice-second {
+//   background: white;
+//   width: 240px;
+//   position: absolute;
+//   left: 240px;
+//   top: 0px;
+// }
+
+.category_choice-menu {
+  background: white;
+  width: 240px; 
+  position: relative;
+
+}
+.category_choice-sub {
+  background: white;
+  width: 240px;
+  position: absolute;
+  left: 240px;
+  top: 0px;
+}
