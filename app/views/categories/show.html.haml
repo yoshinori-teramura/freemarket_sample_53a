@@ -1,2 +1,12 @@
-%h1 Categories#show
-%p Find me in app/views/categories/show.html.haml
+.main
+  .showMain
+    .category-show-wrapper
+      .category-show-wrapper__category-name
+        = @category.name + "の商品一覧"
+      .itemBox
+        .itemHead
+          .itemLists
+            = render partial: '/items/popular_category', collection: @categories, as: :category
+      #pagenation
+        = paginate(@items)
+
