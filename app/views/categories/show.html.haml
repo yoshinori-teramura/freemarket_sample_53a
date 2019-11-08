@@ -6,7 +6,7 @@
       .itemBox
         .itemHead
           .itemLists
-            = render partial: '/items/popular_category', collection: @categories, as: :category
+            = render partial: 'categories', collection: @categories, as: :category
       #pagenation
         = paginate(@items)
 

@@ -78,3 +78,27 @@
   }
 }
 
+.category-show-wrapper {
+  &__category-name {
+    font-size: 1.5rem;
+    padding: 1rem;
+    font-weight: bold;
+  }
+  #pagenation {
+    text-align: center;
+  }
+}
+
+#header-category-list-wrapper {
+  display: flex;
+  position: absolute;
+  background-color: white;
+  z-index: 1000;
+  margin-top: 38px;
+  .categories {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+  }
+}
+
