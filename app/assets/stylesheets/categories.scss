@@ -1,3 +1,80 @@
-// Place all the styles related to the Categories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.category-index-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  .parent-category {
+    margin-bottom: 2rem;
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    a:visited {
+      color: black;
+      text-decoration: none;
+    }
+    &__header {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    &__wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      &--btn {
+        background-color: white;
+        padding: 1rem;
+        margin: 0.1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      &--btn:hover {
+        background-color: red;
+        color: white;
+      }
+    }
+  }
+
+  .category-wrapper {
+    background-color: white;
+    margin-bottom: 1rem;
+    a {
+      color: #0099e8;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0099e8;
+      text-decoration: none;
+    }
+    &__title {
+      background-color: red;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0.5rem 0;
+      padding-left: 2rem;
+      font-weight: bold;
+    }
+    &__all {
+      color: lightblue;
+      padding: 2rem;
+      padding-bottom: 0;
+    }
+    &__child {
+      padding: 1rem;
+      &--title {
+        font-weight: bold;
+        padding: 1rem;
+      }
+      &--subchildren {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        &-subchild {
+          width: 40%;
+          margin-left: 1rem;
+          color: lightblue;
+        }
+      }
+    }
+  }
+}
+
