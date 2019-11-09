@@ -1,0 +1,12 @@
+.main
+  .showMain
+    .category-show-wrapper
+      .category-show-wrapper__category-name
+        = @category.name + "の商品一覧"
+    
+      .itemBox
+        .itemHead
+          .itemLists
+            = render partial: 'categories'
+      
+

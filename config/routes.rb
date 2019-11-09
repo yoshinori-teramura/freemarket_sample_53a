@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'categories/index'
+  get 'categories/show'
   devise_for :users,
   controllers: {
     sessions: 'users/sessions',
@@ -56,6 +58,8 @@ Rails.application.routes.draw do
       put 'purchase'  # 商品の購入を確定
     end
   end
+
+  resources :categories, only: [:index, :show]
 
   resources :credit, only: [:create] do
     collection do

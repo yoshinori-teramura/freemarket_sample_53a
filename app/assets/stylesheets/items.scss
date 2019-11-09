@@ -660,14 +660,17 @@ $mercari_white: rgb(255, 255, 255);
             width: 68px;
           }
           &__link {
-            &__appstore {
+            margin: 10px 0px 0px 10px;
+            float: right;
+            &__googleplay {
+              margin-right: 20px;
               height: 40px;
-              margin-right: 8px;
               width: 144px;
             }
-            &__googleplay {
+            &__appstore {
               height: 40px;
               width: 144px;
+    
             }
           }
         }
