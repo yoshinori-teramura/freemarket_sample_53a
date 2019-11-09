@@ -6,10 +6,16 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @categories = Category.where(ancestry: nil)
-                          .order(created_at: 'DESC')
-                          .limit(4)
-    @items = Item.where(category_id: @category.id).paginate(page: params[:page], per_page: 8).order("created_at DESC")
+    
+    #if @category.id = 1 || 14 || 27
+      #@categories = Category.where(ancestry: nil).order(created_at: 'DESC').limit(8)
+      #@category_children = @category.children 
+      #@category_grandchildren = @category_children.children
+      #@items = Item.where(category_id: @category_grandchildren.id).order("created_at DESC")
+    #else
+      #@items = Item.where(category_id: @category.id).order("created_at DESC")
+    #end
+    @items = Item.where(category_id: @category.id).order("created_at DESC")
   end
-
+  
 end
