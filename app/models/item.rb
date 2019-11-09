@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
+  has_one    :buyer
 
 
   validates :name, presence: true, length: {maximum: 40}

@@ -8,9 +8,9 @@
           今すぐ無料ダウンロード！
         .banner__content__images__left__apps
           = image_tag 'mercari_icon_banner.png', alt: 'mercari', class: 'banner__content__images__left__apps__mercari'
-          .banner__content__images__left__apps__link
-            = image_tag 'google_play_logo.svg', alt: 'googleplay', class: 'banner__content__images__left__apps__link__googleplay'
-          .banner__content__images__left__apps__link
+          %span.banner__content__images__left__apps__link
             = image_tag 'app_store_logo.svg', alt: 'appsotre', class: 'banner__content__images__left__apps__link__appstore'
+          %span.banner__content__images__left__apps__link
+            = image_tag 'google_play_logo.svg', alt: 'googleplay', class: 'banner__content__images__left__apps__link__googleplay'
       %figure.banner__content__images__right
         = image_tag 'banner_right_image.png', alt: '', class: 'banner__content__images__right__image'

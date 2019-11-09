@@ -2,7 +2,7 @@
 
 %section.item-container
   = render partial: 'iteminfo', locals: {item: @item}
-  - if user_signed_in? == false || @item.user.id != current_user.id
+  - if can_buy_item(@item)
     = link_to '購入画面に進む', buy_path, class: "item-buy-btn item-buy-btn--enable"
   - else
     .item-buy-btn.item-buy-btn--disable 購入できません

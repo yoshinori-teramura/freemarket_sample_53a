@@ -81,17 +81,15 @@ crumb :mypage_listings_completed do
   parent :mypage
 end
 
-=begin
 crumb :mypage_purchase do
-  link "購入した商品 - 取引中", # TODO
+  link "購入した商品 - 取引中", purchase_mypages_path
   parent :mypage
 end
 
 crumb :mypage_purchased do
-  link "購入した商品 - 過去の取引", # TODO
+  link "購入した商品 - 過去の取引", purchased_mypages_path
   parent :mypage
 end
-=end
 
 # crumb :projects do
 #   link "Projects", projects_path

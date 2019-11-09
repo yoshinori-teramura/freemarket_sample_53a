@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       get 'email_password'
       get 'identification'
       get 'sms_confirmation'
+      get 'purchase'
+      get 'purchased'
       patch 'update_user'
       patch 'update_address'
     end
