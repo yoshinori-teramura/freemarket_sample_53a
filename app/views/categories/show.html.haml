@@ -1,13 +1,13 @@
 = render 'devise/shared/header'
-.main
+.main.show-margin
   .showMain
     .category-show-wrapper
       .category-show-wrapper__category-name
         = @category.name + "の商品一覧"
     
       .itemBox
-        .itemHead
-          .itemLists
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
             = render partial: 'categories'
       
 = render 'devise/shared/aside'
