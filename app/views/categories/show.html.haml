@@ -1,12 +1,15 @@
-.main
+= render 'devise/shared/header'
+.main.show-margin
   .showMain
     .category-show-wrapper
       .category-show-wrapper__category-name
         = @category.name + "の商品一覧"
     
       .itemBox
-        .itemHead
-          .itemLists
+        .main__popularities__items__onecategorylist
+          .main__popularities__items__onecategorylist__boxes
             = render partial: 'categories'
       
-
+= render 'devise/shared/aside'
+= render 'devise/shared/footer'
+= render 'partial/sellbutton'
